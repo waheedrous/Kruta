@@ -1,4 +1,4 @@
-namespace HPE.Kruta.DataAccess
+    namespace HPE.Kruta.DataAccess
 {
     using Model;
     using System.Data.Entity;
@@ -21,6 +21,8 @@ namespace HPE.Kruta.DataAccess
         public virtual DbSet<Queue> Queues { get; set; }
         public virtual DbSet<QueueStatu> QueueStatus { get; set; }
         public virtual DbSet<QueueHistory> QueueHistories { get; set; }
+
+        public virtual DbSet<vDocumentQueue> vDocumentQueues { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -118,6 +120,35 @@ namespace HPE.Kruta.DataAccess
                 .HasMany(e => e.Queues)
                 .WithOptional(e => e.QueueStatu)
                 .HasForeignKey(e => e.QueueStatus);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.DocumentNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.DepartmentName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.EmployeeName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.DocumentStatusDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.DocumentTypeCode)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.ParcelNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<vDocumentQueue>()
+                .Property(e => e.DocumentTypeDescription)
+                .IsUnicode(false);
         }
     }
 }
