@@ -1,47 +1,51 @@
-# Windows image file caches
+# git ignore file
+*.cache
+*.nupkg
+*resharper.user
+_ReSharper.*/
+*.orig
+
+#ignore thumbnails created by windows
 Thumbs.db
-ehthumbs.db
 
-# Folder config file
-Desktop.ini
+#Ignore files build by Visual Studio
+*.obj
+#*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.gen
+*.vsp
+*.vspscc
+*.vssscc
+*.vsp
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+#[Rr]elease*/
+^[Rr]elease$
+[Oo]bj/
+RSSFeedCache/
+*.lib
+*.sbr
+*.sdf
+Upload/
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+#Ignore SASS temp Files
+.sass-cache/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+#Ignore Test folder
+TestResults/
 
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+#Ignore .vs folder after upgrade to VS 2015
+.vs/
