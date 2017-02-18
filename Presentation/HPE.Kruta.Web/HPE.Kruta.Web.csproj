@@ -49,6 +49,10 @@
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2017.1.118.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Required References\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -229,6 +233,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_TelerikPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -246,6 +251,14 @@
     <ProjectReference Include="..\..\Code Base\Core\HPE.Kruta.Domain\HPE.Kruta.Domain.csproj">
       <Project>{18a165d3-b274-4cef-a630-b741ae284c76}</Project>
       <Name>HPE.Kruta.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Data\HPE.Kruta.Data\HPE.Kruta.DataAccess.csproj">
+      <Project>{95bb07a7-1962-43a6-819a-c208edb7c1b1}</Project>
+      <Name>HPE.Kruta.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Data\HPE.Kruta.Model\HPE.Kruta.Model.csproj">
+      <Project>{555f6284-4841-4129-be20-c7b6fa49a526}</Project>
+      <Name>HPE.Kruta.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,30 @@
+﻿
+@(Html.Kendo().Grid<HPE.Kruta.Model.vDocumentQueue>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound("").Visible(false);
+          columns.Bound("QueneID").Title("ID");
+          columns.Bound("ReceivedDateTime").Title("Received Date").Format("{0:MM/dd/yyyy}");
+          columns.Bound("RecordedDateTime").Title("Recorded Date").Format("{0:MM/dd/yyyy}");
+          columns.Bound("ParcelNumber").Title("Parcel Number");
+          columns.Bound("DocumentNumber").Title("Document Number");
+          columns.Bound("DocumentTypeCode").Title("Document Type");
+          columns.Bound("DepartmentName").Title("Queue/Department");
+          columns.Bound("EmployeeName").Title("Assigned To");
+          columns.Bound("DocumentStatusDescription").Title("Status");
+          columns.Bound("DocumentStatusDescription").Title("Document Status");
+          columns.Bound("DocumentStatusDescription").Title("Flagged");
+      })
+      .Scrollable()
+      .Sortable()
+      .Pageable(pageable => pageable
+                            .PageSizes(true)
+                            .ButtonCount(5))
+      .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .PageSize(10)
+                                .Read(read => read.Action("Queues_Read", "Home")))
+     .Resizable(resize => resize.Columns(true))
+     .Reorderable(reorder => reorder.Columns(true))
+)
