@@ -1,0 +1,9 @@
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\HPE.Kruta.Model.dll.config
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\HPE.Kruta.Model.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\HPE.Kruta.Model.pdb
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\EntityFramework.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\EntityFramework.xml
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\obj\Debug\HPE.Kruta.Model.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Model\obj\Debug\HPE.Kruta.Model.pdb

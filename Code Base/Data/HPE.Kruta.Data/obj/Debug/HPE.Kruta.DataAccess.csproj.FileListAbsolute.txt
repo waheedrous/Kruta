@@ -1,0 +1,12 @@
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\obj\Debug\HPE.Kruta.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\HPE.Kruta.DataAccess.dll.config
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\HPE.Kruta.DataAccess.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\HPE.Kruta.DataAccess.pdb
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\EntityFramework.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\HPE.Kruta.Model.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\HPE.Kruta.Model.pdb
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\EntityFramework.xml
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\obj\Debug\HPE.Kruta.DataAccess.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Data\HPE.Kruta.Data\obj\Debug\HPE.Kruta.DataAccess.pdb

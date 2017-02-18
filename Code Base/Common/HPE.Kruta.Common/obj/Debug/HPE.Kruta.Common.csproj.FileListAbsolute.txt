@@ -1,0 +1,5 @@
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Common\HPE.Kruta.Common\bin\Debug\HPE.Kruta.Common.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Common\HPE.Kruta.Common\bin\Debug\HPE.Kruta.Common.pdb
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Common\HPE.Kruta.Common\obj\Debug\HPE.Kruta.Common.csprojResolveAssemblyReference.cache
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Common\HPE.Kruta.Common\obj\Debug\HPE.Kruta.Common.dll
+C:\Users\wabualrous\Source\Repos\NewRepo\Code Base\Common\HPE.Kruta.Common\obj\Debug\HPE.Kruta.Common.pdb

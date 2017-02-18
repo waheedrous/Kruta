@@ -13,7 +13,7 @@ namespace HPE.Kruta.Domain.User
         {
             using (var db = new ModelDBContext()) // use your DbConext
             {
-                return db.Employees.ToList().Any(u => u.UserNm == username && 
+                return db.Employees.ToList().Any(u => u.UserName == username && 
                                            password == System.Configuration.ConfigurationManager.AppSettings["GenericPassword"]);
             }
         }
