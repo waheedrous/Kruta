@@ -16,9 +16,9 @@ namespace HPE.Kruta.Model
         }
 
         [Key]
-        public int QueneID { get; set; }
+        public int QueueID { get; set; }
 
-        public int? QueueStatus { get; set; }
+        public int? QueueStatusID { get; set; }
 
         public int? PropertyID { get; set; }
 
@@ -41,7 +41,7 @@ namespace HPE.Kruta.Model
 
         public virtual Property Property { get; set; }
 
-        public virtual QueueStatu QueueStatu { get; set; }
+        public virtual QueueStatus QueueStatus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QueueHistory> QueueHistories { get; set; }

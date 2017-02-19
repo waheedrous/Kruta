@@ -247,6 +247,10 @@
       <Project>{18a165d3-b274-4cef-a630-b741ae284c76}</Project>
       <Name>HPE.Kruta.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Data\HPE.Kruta.Model\HPE.Kruta.Model.csproj">
+      <Project>{555f6284-4841-4129-be20-c7b6fa49a526}</Project>
+      <Name>HPE.Kruta.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

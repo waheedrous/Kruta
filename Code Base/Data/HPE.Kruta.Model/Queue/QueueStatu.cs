@@ -6,10 +6,10 @@ namespace HPE.Kruta.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class QueueStatu
+    public partial class QueueStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QueueStatu()
+        public QueueStatus()
         {
             Queues = new HashSet<Queue>();
         }
