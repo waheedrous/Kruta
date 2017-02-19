@@ -11,7 +11,7 @@ namespace HPE.Kruta.Model
     {
         public int QueueHistoryID { get; set; }
 
-        public int? QueneID { get; set; }
+        public int? QueueID { get; set; }
 
         public int? RoutedToDepartmentID { get; set; }
 

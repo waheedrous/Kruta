@@ -12,7 +12,7 @@ namespace HPE.Kruta.Model
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int QueneID { get; set; }
+        public int QueueID { get; set; }
 
         public DateTime? ReceivedDateTime { get; set; }
 
@@ -52,5 +52,8 @@ namespace HPE.Kruta.Model
 
         [StringLength(255)]
         public string DocumentTypeDescription { get; set; }
+
+        [StringLength(20)]
+        public string QueueStatusDescription { get; set; }        
     }
 }

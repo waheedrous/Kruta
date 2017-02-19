@@ -19,7 +19,7 @@
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<PropertyClass> PropertyClasses { get; set; }
         public virtual DbSet<Queue> Queues { get; set; }
-        public virtual DbSet<QueueStatu> QueueStatus { get; set; }
+        public virtual DbSet<QueueStatus> QueueStatus { get; set; }
         public virtual DbSet<QueueHistory> QueueHistories { get; set; }
 
         public virtual DbSet<vDocumentQueue> vDocumentQueues { get; set; }
@@ -112,14 +112,14 @@
                 .Property(e => e.Notes)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<QueueStatu>()
+            modelBuilder.Entity<QueueStatus>()
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<QueueStatu>()
+            modelBuilder.Entity<QueueStatus>()
                 .HasMany(e => e.Queues)
                 .WithOptional(e => e.QueueStatu)
-                .HasForeignKey(e => e.QueueStatus);
+                .HasForeignKey(e => e.QueueStatusID);
 
             modelBuilder.Entity<vDocumentQueue>()
                 .Property(e => e.DocumentNumber)

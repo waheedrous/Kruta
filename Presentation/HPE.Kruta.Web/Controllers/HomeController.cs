@@ -83,7 +83,7 @@ namespace HPE.Kruta.Web.Controllers
             shipNameColumn.SearchToolBarOperation = SearchOperation.BeginsWith;
             shipNameColumn.ClearSearch = false;
 
-            var orderIDColumns = jqGridSample.Columns.Find(c => c.DataField == "QueneID");
+            var orderIDColumns = jqGridSample.Columns.Find(c => c.DataField == "QueueID");
             orderIDColumns.Searchable = true;
             orderIDColumns.DataType = typeof(int);
             orderIDColumns.SearchToolBarOperation = SearchOperation.IsEqualTo;

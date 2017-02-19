@@ -19,7 +19,7 @@ namespace HPE.Kruta.Web.Models
                     {
                         // Always set PrimaryKey for Add,Edit,Delete operations
                         // If not set, the first column will be assumed as primary key
-                        DataField = "QueneID",
+                        DataField = "QueueID",
                         HeaderText="ID",
                         PrimaryKey = true,
                         Editable = false,
@@ -94,7 +94,7 @@ namespace HPE.Kruta.Web.Models
                     },
                     new JQGridColumn
                     {
-                        DataField = "DocumentStatusDescription",
+                        DataField = "QueueStatusDescription",
                         HeaderText="Status",
                         Editable =  true,
                         Width = 100,
@@ -112,7 +112,7 @@ namespace HPE.Kruta.Web.Models
                     //},
                     //new JQGridColumn
                     //{
-                    //    DataField = "DocumentStatusDescription",
+                    //    DataField = "DepartmentName",
                     //    HeaderText="Flagged",
                     //    Editable =  true,
                     //    Width = 100,

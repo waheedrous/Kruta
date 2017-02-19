@@ -62,7 +62,7 @@
     <Compile Include="Property\PropertyClass.cs" />
     <Compile Include="Queue\Queue.cs" />
     <Compile Include="Queue\QueueHistory.cs" />
-    <Compile Include="Queue\QueueStatu.cs" />
+    <Compile Include="Queue\QueueStatus.cs" />
     <Compile Include="Queue\vDocumentQueue.cs" />
   </ItemGroup>
   <ItemGroup>
