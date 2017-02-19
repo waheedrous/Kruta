@@ -114,6 +114,9 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Trirand.Web.Mvc">
+      <HintPath>..\..\Required References\Trirand.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -187,6 +190,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Trirand\ui.jqcombobox.css" />
+    <Content Include="Content\Trirand\ui.jqdropdownlist.css" />
+    <Content Include="Content\Trirand\ui.jqgrid-bootstrap.css" />
+    <Content Include="Content\Trirand\ui.jqgrid.css" />
+    <Content Include="Content\Trirand\ui.jqmultiselect.css" />
+    <Content Include="Content\Trirand\ui.jqtreeview.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -217,6 +226,19 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Trirand\i18n\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqAutoComplete.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqChart.exporting.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqChart.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqComboBox.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqDatePicker.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqDropDownList.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqGrid.ColumnChooser.js" />
+    <Content Include="Scripts\Trirand\jquery.jqGrid.ContextMenu.js" />
+    <Content Include="Scripts\Trirand\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqMultiSelect.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqTemplating.min.js" />
+    <Content Include="Scripts\Trirand\jquery.jqTreeView.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
