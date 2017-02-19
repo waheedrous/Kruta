@@ -101,35 +101,36 @@ namespace HPE.Kruta.Web.Models
                         Resizable = true,
                         DataType = typeof(string)
                     },
-                    new JQGridColumn
-                    {
-                        DataField = "DocumentStatusDescription",
-                        HeaderText="Document Status",
-                        Editable =  true,
-                        Width = 100,
-                        Resizable = true,
-                        DataType = typeof(string)
-                    },
-                    new JQGridColumn
-                    {
-                        DataField = "DocumentStatusDescription",
-                        HeaderText="Flagged",
-                        Editable =  true,
-                        Width = 100,
-                        Resizable = true,
-                        DataType = typeof(string)
-                    }
+                    //new JQGridColumn
+                    //{
+                    //    DataField = "DocumentStatusDescription",
+                    //    HeaderText="Document Status",
+                    //    Editable =  true,
+                    //    Width = 100,
+                    //    Resizable = true,
+                    //    DataType = typeof(string)
+                    //},
+                    //new JQGridColumn
+                    //{
+                    //    DataField = "DocumentStatusDescription",
+                    //    HeaderText="Flagged",
+                    //    Editable =  true,
+                    //    Width = 100,
+                    //    Resizable = true,
+                    //    DataType = typeof(string)
+                    //}
                 },
 
                 Width = Unit.Pixel(1170),
                 Height = Unit.Percentage(100),
                 ColumnReordering = true,
-                DataUrl = "Home/JQGridSample_DataRequested"
 
-                //ToolBarSettings = new ToolBarSettings
-                //{
-                //    ShowRefreshButton = true
-                //}
+                ToolBarSettings = new ToolBarSettings
+                {
+                    //ShowRefreshButton = true,
+                    ShowSearchToolBar = true,
+                    ShowSearchButton = true
+                }
             };
         }
     }
