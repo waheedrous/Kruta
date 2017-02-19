@@ -21,7 +21,7 @@ namespace HPE.Kruta.DataAccess
         public virtual DbSet<Queue> Queues { get; set; }
         public virtual DbSet<QueueStatus> QueueStatus { get; set; }
         public virtual DbSet<QueueHistory> QueueHistories { get; set; }
-
+        public virtual DbSet<QueueNote> QueueNotes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -106,10 +106,6 @@ namespace HPE.Kruta.DataAccess
                 .WithOptional(e => e.PropertyClass)
                 .HasForeignKey(e => e.PropertyClassID);
 
-            modelBuilder.Entity<Queue>()
-                .Property(e => e.Notes)
-                .IsUnicode(false);
-
             modelBuilder.Entity<QueueStatus>()
                 .Property(e => e.Description)
                 .IsUnicode(false);
@@ -118,6 +114,15 @@ namespace HPE.Kruta.DataAccess
                 .HasMany(e => e.Queues)
                 .WithOptional(e => e.QueueStatus)
                 .HasForeignKey(e => e.QueueStatusID);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.QueueNotes)
+                .WithOptional(e => e.Employee)
+                .HasForeignKey(e => e.CreatedBy);
+
+            modelBuilder.Entity<QueueNote>()
+                .Property(e => e.Note)
+                .IsUnicode(false);
         }
     }
 }

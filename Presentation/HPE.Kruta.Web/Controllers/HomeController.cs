@@ -10,7 +10,7 @@ namespace HPE.Kruta.Web.Controllers
         {
             QueueManager m = new QueueManager();
 
-            var q = m.GetQueueByIDWithRelatedData(12);
+            var q = m.Get(12, true);
 
             string a = q.Property.ParcelNumber;
             string a1 = q.Document.DocumentSubType.DocumentType.Description;

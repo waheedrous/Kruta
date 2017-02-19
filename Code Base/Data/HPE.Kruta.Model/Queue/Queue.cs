@@ -13,6 +13,7 @@ namespace HPE.Kruta.Model
         public Queue()
         {
             QueueHistories = new HashSet<QueueHistory>();
+            QueueNotes = new HashSet<QueueNote>();
         }
 
         [Key]
@@ -30,9 +31,6 @@ namespace HPE.Kruta.Model
 
         public DateTime? ReceivedDateTime { get; set; }
 
-        [StringLength(255)]
-        public string Notes { get; set; }
-
         public virtual Department Department { get; set; }
 
         public virtual Document Document { get; set; }
@@ -45,5 +43,8 @@ namespace HPE.Kruta.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QueueHistory> QueueHistories { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QueueNote> QueueNotes { get; set; }
     }
 }
