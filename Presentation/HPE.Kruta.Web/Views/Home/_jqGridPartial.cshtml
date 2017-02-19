@@ -1,0 +1,57 @@
+﻿<script src="~/Scripts/Trirand/i18n/grid.locale-en.js"></script>
+<script src="~/Scripts/Trirand/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/Trirand/jquery.jqDatePicker.min.js"></script>
+<script src="~/Scripts/Trirand/jquery.jqAutoComplete.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css" />
+<link href="~/Content/Trirand/ui.jqgrid.css" rel="stylesheet" />
+
+<style>
+    /*the size of the datepicker items*/
+    #ui-datepicker-div {
+        font-size: 12px;
+    }
+    /*the size of the autocomplete seach menu for Shipname*/
+    .ui-menu-item {
+        font-size: 12px;
+        text-wrap: none;
+    }
+    /*the image that will be shown in the autocomplete input box while performing the search*/
+    .ui-autocomplete-loading {
+        background: white url('../../Content/Images/loading.gif') right center no-repeat;
+    }
+</style>
+
+@model HPE.Kruta.Web.Models.JqGridModel
+
+
+
+<div>
+    <!-- default paging, sorting and filtering logic will be applied -->
+    @Html.Trirand().JQGrid(Model.JQGridSample, "JQGridSample")
+
+    <!-- this JQDatePicker will be used internally by the grid as DatePicker control for searching and editing -->
+    <!-- Datepickers can be used standalone too - when you set the DisplayMode to Standalone (it is the default) -->
+
+    @(Html.Trirand().JQDatePicker(
+            new JQDatePicker
+            {
+                DisplayMode = DatePickerDisplayMode.ControlEditor,
+                DateFormat = "yyyy/mm/dd",
+                MinDate = new DateTime(1995, 1, 1),
+                MaxDate = DateTime.Now
+            }, "DatePicker")
+    )
+
+
+    <!-- this JQAutoComplete control will be used internally by the grid as AutoComplete control for searching and editing -->
+    <!-- AutoComplete can be used standalone too - when you set the DisplayMode to Standalone (it is the default) -->
+    @(Html.Trirand().JQAutoComplete(
+            new JQAutoComplete
+            {
+                DisplayMode = AutoCompleteDisplayMode.ControlEditor,
+                DataUrl = Url.Action("AutoCompleteEmployeeName", "grid"),
+                AutoCompleteMode = AutoCompleteMode.BeginsWith
+            }, "AutoComplete")
+    )
+
+</div>

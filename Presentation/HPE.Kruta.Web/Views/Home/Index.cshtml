@@ -1,5 +1,5 @@
-﻿@using Kendo.Mvc.Extensions;
-@using Kendo.Mvc.UI;
+﻿@model HPE.Kruta.Web.Models.JqGridModel
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -25,10 +25,10 @@
                 </div>
                 <div class="row">
                     <br />
-                    <b>TODO Grid</b>
+                    <b>JQGrid</b>
                 </div>
                 <div class="row">
-                    
+                    @Html.Partial("_jqGridPartial", Model)
                 </div>
             </div>
         </p>

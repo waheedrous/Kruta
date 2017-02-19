@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JqGridModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -190,6 +191,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Trirand\ui.jqcombobox.css" />
     <Content Include="Content\Trirand\ui.jqdropdownlist.css" />
     <Content Include="Content\Trirand\ui.jqgrid-bootstrap.css" />
@@ -226,6 +228,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Trirand\i18n\grid.locale-en.js" />
     <Content Include="Scripts\Trirand\i18n\jquery.jqGrid.min.js" />
     <Content Include="Scripts\Trirand\jquery.jqAutoComplete.min.js" />
     <Content Include="Scripts\Trirand\jquery.jqChart.exporting.min.js" />
@@ -256,6 +259,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_TelerikPartial.cshtml" />
+    <Content Include="Views\Home\_jqGridPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
