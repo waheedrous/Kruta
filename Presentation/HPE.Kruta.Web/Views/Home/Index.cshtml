@@ -13,23 +13,16 @@
         <p>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">@Html.CheckBox("checkAll", false)</div>
-                    <div class="col-sm-4">Document name</div>
-                    <div class="col-sm-4">Status</div>
+                    @Html.Partial("_DocumentQueuePartial")
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">@Html.CheckBox("doc1Chekcbox", false)</div>
-                    <div class="col-sm-4">
-                        <a class="" href="javascript:void(0);">Document 1</a>
-                    </div>
-                    <div class="col-sm-4">Un-assigned</div>
+                    @Html.Partial("_QueueDetailsPartial")
                 </div>
             </div>
         </p>
         <p></p>
         <p>
-            <a class="btn btn-default" href="javascript:void(0);">Route</a>
-            <a class="btn btn-default" href="javascript:void(0);">Assign</a>
+
         </p>
     </div>
 </div>
