@@ -3,6 +3,7 @@ namespace HPE.Kruta.Model
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    [Serializable]
     [Table("QueueHistory")]
     public partial class QueueHistory
     {

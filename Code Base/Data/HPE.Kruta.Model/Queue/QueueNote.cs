@@ -4,6 +4,7 @@ namespace HPE.Kruta.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    [Serializable]
     [Table("QueueNote")]
     public partial class QueueNote
     {

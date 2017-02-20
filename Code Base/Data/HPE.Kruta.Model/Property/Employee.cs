@@ -1,9 +1,11 @@
 namespace HPE.Kruta.Model
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    [Serializable]
     [Table("Employee")]
     public partial class Employee
     {
