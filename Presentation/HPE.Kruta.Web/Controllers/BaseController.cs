@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HPE.Kruta.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +10,8 @@ namespace HPE.Kruta.Web.Controllers
 {
     public class BaseController : Controller
     {
+        public QueueManager _queueManager = new QueueManager();
+
         public int LoggedInUserId
         {
             get

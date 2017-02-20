@@ -1,1 +1,39 @@
-﻿
+﻿<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common-bootstrap.min.css" />
+<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.bootstrap.min.css" />
+<script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
+
+<div>
+    @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
+      .Name("DocumentQueue")
+      .Columns(columns =>
+      {
+          columns.Bound("QueueID").Title("ID").Width(150);
+          columns.Bound(c => c.Document.DocumentNumber).Title("Document Number").Width(200);
+          //columns.Bound("ReceivedDateTime").Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
+          //columns.Bound("RecordedDateTime").Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
+          //columns.Bound("ParcelNumber").Title("Parcel Number").Width(200);
+          //columns.Bound("DocumentNumber").Title("Document Number").Width(200);
+          //columns.Bound("DocumentTypeCode").Title("Document Type").Width(200);
+          //columns.Bound("DepartmentName").Title("Queue/Department").Width(200);
+          //columns.Bound("EmployeeName").Title("Assigned To").Width(200);
+          //columns.Bound("QueueStatusDescription").Title("Status").Width(200);
+          //columns.Bound("DocumentStatusDescription").Title("Document Status").Width(200);
+          //columns.Bound("DepartmentName").Title("Flagged").Width(200);
+      })
+      .Scrollable()
+      .Sortable()
+      .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+      .Pageable(pageable => pageable
+                            //.PageSizes(new string[] { "5", "10", "20", "50", "All" })
+                            .PageSizes(true)
+                            .ButtonCount(5))
+      .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Sort(sort => sort.Add("QueueID").Ascending())
+                                .PageSize(10)
+                                .Read(read => read.Action("Queues_Read", "Home")))
+      .Resizable(resize => resize.Columns(true))
+      .Reorderable(reorder => reorder.Columns(true))
+    )
+</div>
