@@ -8,6 +8,12 @@ namespace HPE.Kruta.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
+            QueueNoteManager m1 = new QueueNoteManager();
+
+            m1.Add(13, "test from the app");
+
+
             QueueManager m = new QueueManager();
 
             var q = m.Get(12, true);
