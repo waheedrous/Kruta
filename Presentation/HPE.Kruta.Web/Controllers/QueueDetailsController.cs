@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using HPE.Kruta.Model;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace HPE.Kruta.Web.Controllers
 {
@@ -8,6 +10,21 @@ namespace HPE.Kruta.Web.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult Temp_DisplayQueueDetails(int queueID)
+        {
+            Queue queueModel = _queueManager.Get(queueID, true);
+            //return PartialView("_QueueDetailsPartial.cshtml", queueModel);
+
+            JsonResult result = new JsonResult();
+            var serializer = new JavaScriptSerializer();
+
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            result.Data = serializer.Serialize(queueModel);
+
+            return result;
         }
     }
 }

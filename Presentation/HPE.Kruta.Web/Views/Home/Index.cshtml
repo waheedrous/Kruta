@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HPE.Kruta.Model.Queue
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -16,7 +18,7 @@
                     @Html.Partial("_DocumentQueuePartial")
                 </div>
                 <div class="row">
-                    @Html.Partial("_QueueDetailsPartial")
+                    @Html.Partial("_QueueDetailsPartial", Model)
                 </div>
             </div>
         </p>

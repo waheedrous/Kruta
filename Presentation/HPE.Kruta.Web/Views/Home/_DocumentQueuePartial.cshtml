@@ -4,6 +4,9 @@
 <script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
 
 <div>
+
+    <a href="javascript:DisplayQueueDetails(12);">Display details for QueueID 12</a>
+
     @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
       .Name("DocumentQueue")
       .Columns(columns =>
@@ -37,3 +40,22 @@
       .Reorderable(reorder => reorder.Columns(true))
     )
 </div>
+
+<script>
+    function DisplayQueueDetails(queueID) {
+        $.ajax({
+            type: 'GET',
+            url: '/QueueDetails/Temp_DisplayQueueDetails/?queueID=' + queueID,
+            data: {},
+            success: function (result) {
+                if (result) {
+                    var viewModel = JSON && JSON.parse(result) || $.parseJSON(result);
+                    $("#QueueIDLabel").text(viewModel.QueueID);
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>

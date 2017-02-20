@@ -1,4 +1,9 @@
-﻿<p>Queue Details</p>
+﻿@model HPE.Kruta.Model.Queue
+
+<p>Queue Details for QueueID: </p>
+<p id="QueueIDLabel">
+    @Html.DisplayFor(m => m.QueueID)
+</p>
 <div class="col-sm-4">
     Document Details
 
