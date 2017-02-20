@@ -1,9 +1,6 @@
 ﻿using HPE.Kruta.DataAccess;
-using System;
-using System.Collections.Generic;
+using HPE.Kruta.Model;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HPE.Kruta.Domain.User
 {
@@ -11,10 +8,33 @@ namespace HPE.Kruta.Domain.User
     {
         public bool IsValid(string username, string password)
         {
+            Employee emp = VerifyUser(username, password);
+
+            return emp != null;
+        }
+
+        public Employee VerifyUser(string username, string password)
+        {
+            Employee emp = null;
+
             using (var db = new ModelDBContext()) // use your DbConext
             {
-                return db.Employees.ToList().Any(u => u.UserName == username && 
-                                           password == System.Configuration.ConfigurationManager.AppSettings["GenericPassword"]);
+                var emps = db.Employees.ToList()?.Where(u => u.UserName == username &&
+                                                       password == System.Configuration.ConfigurationManager.AppSettings["GenericPassword"]);
+
+                if (emps != null && emps.Count() > 0)
+                {
+                    emp = emps.First();
+                }
+            }
+
+            if (emp != null)
+            {
+                return emp;
+            }
+            else
+            {
+                return null;
             }
         }
     }

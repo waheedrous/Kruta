@@ -1,7 +1,9 @@
-﻿using HPE.Kruta.Web.Models;
+﻿using HPE.Kruta.Domain.User;
+using HPE.Kruta.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,7 +12,7 @@ using System.Web.Mvc;
 namespace HPE.Kruta.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         public AccountController()
         {
@@ -37,7 +39,10 @@ namespace HPE.Kruta.Web.Controllers
                 return View(model);
             }
 
-            if (new Domain.User.UserManager().IsValid(model.Username, model.Password))
+            UserManager userManager = new UserManager();
+            var user = userManager.VerifyUser(model.Username, model.Password);
+
+            if (user != null)
             {
                 var ident = new ClaimsIdentity(
                   new[] {
@@ -50,6 +55,8 @@ namespace HPE.Kruta.Web.Controllers
                       //new Claim(ClaimTypes.Role, "AnotherRole"),
                   },
                   DefaultAuthenticationTypes.ApplicationCookie);
+                ident.AddClaim(new Claim(ClaimTypes.GivenName, user.EmployeeName));
+                ident.AddClaim(new Claim(ClaimTypes.Sid, user.EmployeeID.ToString()));
 
                 HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = model.RememberMe }, ident);
                 return RedirectToLocal(returnUrl);
@@ -93,7 +100,7 @@ namespace HPE.Kruta.Web.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        
+
         #endregion
     }
 }
