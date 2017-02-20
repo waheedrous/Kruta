@@ -1,10 +1,7 @@
-﻿using HPE.Kruta.Web.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using System;
 
 namespace HPE.Kruta.Web
 {
