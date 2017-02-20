@@ -31,7 +31,7 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Queue> Queues { get; set; }
 
-        public virtual DocumentStatu DocumentStatu { get; set; }
+        public virtual DocumentStatus DocumentStatu { get; set; }
 
         public virtual DocumentSubType DocumentSubType { get; set; }
     }
