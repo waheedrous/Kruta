@@ -2,9 +2,9 @@
 
 namespace HPE.Kruta.Web.Controllers
 {
-    public class HomeController : BaseController
+    public class QueueDetailsController : BaseController
     {
-        [Authorize]
+        [ChildActionOnly]
         public ActionResult Index()
         {
             return View();

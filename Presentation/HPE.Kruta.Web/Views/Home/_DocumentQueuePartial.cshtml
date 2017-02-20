@@ -32,7 +32,7 @@
                                 .Ajax()
                                 .Sort(sort => sort.Add("QueueID").Ascending())
                                 .PageSize(10)
-                                .Read(read => read.Action("Queues_Read", "Home")))
+                                .Read(read => read.Action("Queues_Read", "DocumentQueue")))
       .Resizable(resize => resize.Columns(true))
       .Reorderable(reorder => reorder.Columns(true))
     )
