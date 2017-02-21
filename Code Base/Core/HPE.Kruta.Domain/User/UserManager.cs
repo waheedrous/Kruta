@@ -1,9 +1,6 @@
 ﻿using HPE.Kruta.DataAccess;
-using System;
-using System.Collections.Generic;
+using HPE.Kruta.Model;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HPE.Kruta.Domain.User
 {
@@ -11,11 +8,25 @@ namespace HPE.Kruta.Domain.User
     {
         public bool IsValid(string username, string password)
         {
-            using (var db = new ModelDBContext()) // use your DbConext
+            Employee emp = VerifyUser(username, password);
+
+            return emp != null;
+        }
+
+        public Employee VerifyUser(string username, string password)
+        {
+            Employee emp = null;
+            // This should be temp solution and it may be replaced with an actual database driven password in the future
+            string genericPassword = System.Configuration.ConfigurationManager.AppSettings["GenericPassword"];
+
+            using (var db = new ModelDBContext())
             {
-                return db.Employees.ToList().Any(u => u.UserName == username && 
-                                           password == System.Configuration.ConfigurationManager.AppSettings["GenericPassword"]);
+                emp = db.Employees.First(u => u.UserName == username &&
+                                              password == genericPassword);
             }
+
+            // It will be null if the username/password are wrong, the check for null should happen on the caller side
+            return emp;
         }
     }
 }

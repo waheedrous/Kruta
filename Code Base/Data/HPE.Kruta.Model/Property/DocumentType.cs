@@ -4,8 +4,8 @@ namespace HPE.Kruta.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
+    [Serializable]
     [Table("DocumentType")]
     public partial class DocumentType
     {

@@ -4,12 +4,12 @@ namespace HPE.Kruta.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    public partial class DocumentStatu
+    [Serializable]
+    public partial class DocumentStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DocumentStatu()
+        public DocumentStatus()
         {
             Documents = new HashSet<Document>();
         }

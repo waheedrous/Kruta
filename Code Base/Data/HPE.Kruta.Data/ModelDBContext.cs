@@ -13,7 +13,7 @@ namespace HPE.Kruta.DataAccess
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<DocumentStatu> DocumentStatus { get; set; }
+        public virtual DbSet<DocumentStatus> DocumentStatus { get; set; }
         public virtual DbSet<DocumentSubType> DocumentSubTypes { get; set; }
         public virtual DbSet<DocumentType> DocumentTypes { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
@@ -49,7 +49,7 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.DocumentNumber)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DocumentStatu>()
+            modelBuilder.Entity<DocumentStatus>()
                 .Property(e => e.Description)
                 .IsUnicode(false);
 

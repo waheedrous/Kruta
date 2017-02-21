@@ -1,38 +1,18 @@
-﻿using HPE.Kruta.Web.Models;
+﻿using HPE.Kruta.Domain.User;
+using HPE.Kruta.Web.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private ApplicationSignInManager _signInManager;
-
         public AccountController()
         {
-        }
-
-        public AccountController(ApplicationSignInManager signInManager)
-        {
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
         }
 
         //
@@ -49,14 +29,17 @@ namespace HPE.Kruta.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            if (new Domain.User.UserManager().IsValid(model.Username, model.Password))
+            UserManager userManager = new UserManager();
+            var user = userManager.VerifyUser(model.Username, model.Password);
+
+            if (user != null)
             {
                 var ident = new ClaimsIdentity(
                   new[] {
@@ -69,8 +52,10 @@ namespace HPE.Kruta.Web.Controllers
                       //new Claim(ClaimTypes.Role, "AnotherRole"),
                   },
                   DefaultAuthenticationTypes.ApplicationCookie);
+                ident.AddClaim(new Claim(ClaimTypes.GivenName, user.EmployeeName));
+                ident.AddClaim(new Claim(ClaimTypes.Sid, user.EmployeeID.ToString()));
 
-                HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = model.RememberMe }, ident);
                 return RedirectToLocal(returnUrl);
             }
             // invalid username or password
@@ -91,35 +76,16 @@ namespace HPE.Kruta.Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
             base.Dispose(disposing);
         }
 
         #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
             get
             {
                 return HttpContext.GetOwinContext().Authentication;
-            }
-        }
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
             }
         }
 
@@ -132,34 +98,6 @@ namespace HPE.Kruta.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
-            }
-
-            public ChallengeResult(string provider, string redirectUri, string userId)
-            {
-                LoginProvider = provider;
-                RedirectUri = redirectUri;
-                UserId = userId;
-            }
-
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-            }
-        }
         #endregion
     }
 }

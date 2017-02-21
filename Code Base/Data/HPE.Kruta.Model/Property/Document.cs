@@ -4,8 +4,8 @@ namespace HPE.Kruta.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
+    [Serializable]
     [Table("Document")]
     public partial class Document
     {
@@ -31,7 +31,7 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Queue> Queues { get; set; }
 
-        public virtual DocumentStatu DocumentStatu { get; set; }
+        public virtual DocumentStatus DocumentStatu { get; set; }
 
         public virtual DocumentSubType DocumentSubType { get; set; }
     }
