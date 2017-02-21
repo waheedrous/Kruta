@@ -17,10 +17,13 @@ namespace HPE.Kruta.Domain
                 {
                     queue = db.Queues.Where(q => q.QueueID == queueID)
                         .Include(q => q.Document)
-                        .Include(q => q.Property)
-                        .Include(q => q.QueueStatus)
+                        .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
-                        .Include(q => q.QueueNotes)
+                        //.Include(q => q.Property)
+                        //.Include(q => q.QueueStatus)
+                        .Include(q => q.Department)
+                        //.Include(q => q.Employee
+                        //.Include(q => q.QueueNotes)
                         .First();
 
                 }
@@ -45,11 +48,13 @@ namespace HPE.Kruta.Domain
                 {
                     queues = db.Queues
                         .Include(q => q.Document)
-                        .Include(q => q.Property)
-                        .Include(q => q.QueueStatus)
+                        .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
+                        //.Include(q => q.Property)
+                        //.Include(q => q.QueueStatus)
+                        .Include(q => q.Department)
+                        //.Include(q => q.Employee)
                         .ToList();
-
                 }
                 else
                 {
@@ -87,5 +92,5 @@ namespace HPE.Kruta.Domain
 
     }
 
-    
+
 }

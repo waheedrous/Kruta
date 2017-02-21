@@ -12,10 +12,11 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Document()
         {
-            Queues = new HashSet<Queue>();
+            //Queues = new HashSet<Queue>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int DocumentID { get; set; }
 
         [Required]
@@ -28,11 +29,13 @@ namespace HPE.Kruta.Model
 
         public int? DocumentStatusID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Queue> Queues { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Queue> Queues { get; set; }
 
-        public virtual DocumentStatus DocumentStatu { get; set; }
+        [ForeignKey("DocumentStatusID")]
+        public virtual DocumentStatus DocumentStatus { get; set; }
 
+        [ForeignKey("DocumentSubTypeID")]
         public virtual DocumentSubType DocumentSubType { get; set; }
     }
 }

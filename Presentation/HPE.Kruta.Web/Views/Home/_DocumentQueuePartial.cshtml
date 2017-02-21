@@ -13,6 +13,7 @@
       {
           columns.Bound("QueueID").Title("ID").Width(150);
           columns.Bound(c => c.Document.DocumentNumber).Title("Document Number").Width(200);
+          columns.Bound(c => c.Department.DepartmentName).Title("Department Name").Width(200);
           //columns.Bound("ReceivedDateTime").Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
           //columns.Bound("RecordedDateTime").Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
           //columns.Bound("ParcelNumber").Title("Parcel Number").Width(200);

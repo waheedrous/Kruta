@@ -14,11 +14,13 @@ namespace HPE.Kruta.Web.Controllers
             return View();
         }
 
+        //[HttpGet]
         public ActionResult Queues_Read([DataSourceRequest]DataSourceRequest request)
         {
             IQueryable<Queue> queues = _queueManager.List(true).AsQueryable();
             DataSourceResult result = queues.ToDataSourceResult(request);
 
+            //return Json(result, JsonRequestBehavior.AllowGet);
             return Json(result);
         }
     }

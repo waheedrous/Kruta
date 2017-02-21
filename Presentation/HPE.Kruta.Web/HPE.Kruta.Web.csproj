@@ -237,8 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DocumentQueue\" />
-    <Folder Include="Views\QueueDetails\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -18,8 +18,8 @@ namespace HPE.Kruta.Web.Controllers
 
             var q = m.Get(12, true);
 
-            string a = q.Property.ParcelNumber;
-            string a1 = q.Document.DocumentSubType.DocumentType.Description;
+            //string a = q.Property.ParcelNumber;
+            //string a1 = q.Document.DocumentSubType.DocumentType.Description;
 
             return View();
         }

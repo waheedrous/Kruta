@@ -12,9 +12,10 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DocumentSubType()
         {
-            Documents = new HashSet<Document>();
+            //Documents = new HashSet<Document>();
         }
 
+        [Key]
         public int DocumentSubTypeID { get; set; }
 
         [StringLength(4)]
@@ -25,9 +26,10 @@ namespace HPE.Kruta.Model
 
         public int? DocumentTypeID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Document> Documents { get; set; }
 
+        [ForeignKey("DocumentTypeID")]
         public virtual DocumentType DocumentType { get; set; }
     }
 }

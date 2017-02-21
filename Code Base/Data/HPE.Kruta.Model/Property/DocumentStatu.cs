@@ -11,7 +11,7 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DocumentStatus()
         {
-            Documents = new HashSet<Document>();
+            //Documents = new HashSet<Document>();
         }
 
         [Key]
@@ -21,7 +21,7 @@ namespace HPE.Kruta.Model
         [StringLength(20)]
         public string Description { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Document> Documents { get; set; }
     }
 }
