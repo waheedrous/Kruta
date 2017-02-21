@@ -62,5 +62,33 @@ namespace HPE.Kruta.Domain
 
             return queues;
         }
+
+        public int Update(Queue queue)
+        {
+            using (var db = new ModelDBContext())
+            {
+                db.SaveChanges();
+
+            }
+
+            return queue.QueueID;
+        }
+
+        public int RouteQueue(Queue queue)
+        {
+            using (var db = new ModelDBContext())
+            {
+
+                var currentQueue = db.Queues.Where(q => q.QueueID == queue.QueueID).First();
+
+                db.SaveChanges();
+
+            }
+
+            return queue.QueueID;
+        }
+
     }
+
+    
 }
