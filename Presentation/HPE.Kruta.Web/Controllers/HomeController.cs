@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         [Authorize]
         public ActionResult Index()
