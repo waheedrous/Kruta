@@ -79,10 +79,10 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.UserName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Employee>()
-                .HasMany(e => e.QueueHistories)
-                .WithOptional(e => e.Employee)
-                .HasForeignKey(e => e.AssignedFromEmployeeID);
+            //modelBuilder.Entity<Employee>()
+            //    .HasMany(e => e.QueueHistories)
+            //    .WithOptional(e => e.Employee)
+            //    .HasForeignKey(e => e.AssignedFromEmployeeID);
 
             modelBuilder.Entity<Property>()
                 .Property(e => e.ParcelNumber)
@@ -101,10 +101,10 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<PropertyClass>()
-                .HasMany(e => e.Properties)
-                .WithOptional(e => e.PropertyClass)
-                .HasForeignKey(e => e.PropertyClassID);
+            //modelBuilder.Entity<PropertyClass>()
+            //    .HasMany(e => e.Properties)
+            //    .WithOptional(e => e.PropertyClass)
+            //    .HasForeignKey(e => e.PropertyClassID);
 
             modelBuilder.Entity<QueueStatus>()
                 .Property(e => e.Description)
@@ -115,10 +115,10 @@ namespace HPE.Kruta.DataAccess
             //    .WithOptional(e => e.QueueStatus)
             //    .HasForeignKey(e => e.QueueStatusID);
 
-            modelBuilder.Entity<Employee>()
-                .HasMany(e => e.QueueNotes)
-                .WithOptional(e => e.Employee)
-                .HasForeignKey(e => e.CreatedBy);
+            //modelBuilder.Entity<Employee>()
+            //    .HasMany(e => e.QueueNotes)
+            //    .WithOptional(e => e.Employee)
+            //    .HasForeignKey(e => e.CreatedBy);
 
             modelBuilder.Entity<QueueNote>()
                 .Property(e => e.Note)

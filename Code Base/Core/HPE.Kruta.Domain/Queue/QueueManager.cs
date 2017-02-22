@@ -19,10 +19,10 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.Document)
                         .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
-                        //.Include(q => q.Property)
-                        //.Include(q => q.QueueStatus)
+                        .Include(q => q.Property)
+                        .Include(q => q.QueueStatus)
                         .Include(q => q.Department)
-                        //.Include(q => q.Employee
+                        .Include(q => q.Employee)
                         //.Include(q => q.QueueNotes)
                         .First();
 
@@ -50,10 +50,10 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.Document)
                         .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
-                        //.Include(q => q.Property)
-                        //.Include(q => q.QueueStatus)
+                        .Include(q => q.Property)
+                        .Include(q => q.QueueStatus)
                         .Include(q => q.Department)
-                        //.Include(q => q.Employee)
+                        .Include(q => q.Employee)
                         .ToList();
                 }
                 else

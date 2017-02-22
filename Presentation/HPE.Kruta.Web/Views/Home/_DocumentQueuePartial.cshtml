@@ -11,19 +11,17 @@
       .Name("DocumentQueue")
       .Columns(columns =>
       {
-          columns.Bound("QueueID").Title("ID").Width(150);
+          columns.Bound(c => c.QueueID).Title("ID").Width(150);
+          columns.Bound(c => c.ReceivedDateTime).Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
+          columns.Bound(c => c.Document.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
+          columns.Bound(c => c.Property.ParcelNumber).Title("Parcel Number").Width(200);
           columns.Bound(c => c.Document.DocumentNumber).Title("Document Number").Width(200);
-          columns.Bound(c => c.Department.DepartmentName).Title("Department Name").Width(200);
-          //columns.Bound("ReceivedDateTime").Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
-          //columns.Bound("RecordedDateTime").Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
-          //columns.Bound("ParcelNumber").Title("Parcel Number").Width(200);
-          //columns.Bound("DocumentNumber").Title("Document Number").Width(200);
-          //columns.Bound("DocumentTypeCode").Title("Document Type").Width(200);
-          //columns.Bound("DepartmentName").Title("Queue/Department").Width(200);
-          //columns.Bound("EmployeeName").Title("Assigned To").Width(200);
-          //columns.Bound("QueueStatusDescription").Title("Status").Width(200);
-          //columns.Bound("DocumentStatusDescription").Title("Document Status").Width(200);
-          //columns.Bound("DepartmentName").Title("Flagged").Width(200);
+          columns.Bound(c => c.Document.DocumentSubType.Code).Title("Document Type").Width(200);
+          columns.Bound(c => c.Department.DepartmentName).Title("Queue/Department").Width(200);
+          columns.Bound(c => c.Employee.EmployeeName).Title("Assigned To").Width(200);
+          columns.Bound(c => c.QueueStatus.Description).Title("Status").Width(200);
+          columns.Bound(c => c.Document.DocumentStatus.Description).Title("Document Status").Width(200);
+          columns.Bound(c => c.Department.DepartmentCode).Title("Flagged").Width(200);
       })
       .Scrollable()
       .Sortable()

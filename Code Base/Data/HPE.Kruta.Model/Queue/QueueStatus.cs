@@ -11,7 +11,7 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public QueueStatus()
         {
-            Queues = new HashSet<Queue>();
+            //Queues = new HashSet<Queue>();
         }
 
         [Key]
@@ -21,7 +21,7 @@ namespace HPE.Kruta.Model
         [StringLength(20)]
         public string Description { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Queue> Queues { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Queue> Queues { get; set; }
     }
 }

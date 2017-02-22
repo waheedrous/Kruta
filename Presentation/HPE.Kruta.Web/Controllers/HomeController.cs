@@ -9,14 +9,14 @@ namespace HPE.Kruta.Web.Controllers
         public ActionResult Index()
         {
 
-            QueueNoteManager m1 = new QueueNoteManager();
+            //QueueNoteManager m1 = new QueueNoteManager();
 
-            m1.Add(13, "test from the app");
+            //m1.Add(13, "test from the app");
 
 
-            QueueManager m = new QueueManager();
+            //QueueManager m = new QueueManager();
 
-            var q = m.Get(12, true);
+            //var q = m.Get(12, true);
 
             //string a = q.Property.ParcelNumber;
             //string a1 = q.Document.DocumentSubType.DocumentType.Description;
