@@ -4,6 +4,7 @@ namespace HPE.Kruta.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Xml.Serialization;
 
     [Serializable]
     [Table("Queue")]
@@ -12,8 +13,8 @@ namespace HPE.Kruta.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Queue()
         {
-            //QueueHistories = new HashSet<QueueHistory>();
-            //QueueNotes = new HashSet<QueueNote>();
+            QueueHistories = new HashSet<QueueHistory>();
+            QueueNotes = new HashSet<QueueNote>();
         }
 
         [Key]
@@ -46,10 +47,10 @@ namespace HPE.Kruta.Model
         [ForeignKey("QueueStatusID")]
         public virtual QueueStatus QueueStatus { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<QueueHistory> QueueHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QueueHistory> QueueHistories { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<QueueNote> QueueNotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QueueNote> QueueNotes { get; set; }
     }
 }

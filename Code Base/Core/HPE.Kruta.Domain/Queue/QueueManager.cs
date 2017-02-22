@@ -44,6 +44,8 @@ namespace HPE.Kruta.Domain
             List<Queue> queues;
             using (var db = new ModelDBContext())
             {
+                db.Configuration.ProxyCreationEnabled = false;
+                //db.Configuration.LazyLoadingEnabled = false;
                 if (includeDetails)
                 {
                     queues = db.Queues
