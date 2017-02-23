@@ -21,7 +21,7 @@ namespace HPE.Kruta.Domain.User
 
             using (var db = new ModelDBContext())
             {
-                emp = db.Employees.First(u => u.UserName == username &&
+                emp = db.Employees.FirstOrDefault(u => u.UserName == username &&
                                               password == genericPassword);
             }
 
