@@ -71,6 +71,9 @@ namespace HPE.Kruta.Domain
         {
             using (var db = new ModelDBContext())
             {
+                //var currentQueue = db.Queues.Where(q => q.QueueID == queue.QueueID).First();
+
+                db.Queues.Add(queue);
                 db.SaveChanges();
 
             }
@@ -78,18 +81,22 @@ namespace HPE.Kruta.Domain
             return queue.QueueID;
         }
 
-        public int RouteQueue(Queue queue)
+        public void AssignEmployeeBulk(List<int> queueIDs, int employeeID)
         {
             using (var db = new ModelDBContext())
             {
+                var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
 
-                var currentQueue = db.Queues.Where(q => q.QueueID == queue.QueueID).First();
+                foreach (Queue q in queueList)
+                {
+                    q.EmployeeID = employeeID;
+                }
 
-                db.SaveChanges();
+                db.SaveChanges();   
 
             }
 
-            return queue.QueueID;
+           
         }
 
     }
