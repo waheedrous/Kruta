@@ -8,7 +8,16 @@
       .Name("DocumentQueue")
       .Columns(columns =>
       {
-          columns.Bound(c => c.QueueID).Title("ID").Width(150);
+          columns.Bound(c => c.QueueID)
+                 .ClientTemplate("<input type='checkbox' id='chkSelect' value='#= QueueID #' />")
+                 .Filterable(cc => cc.Enabled(false))
+                 .Width(30)
+                 .Title("")
+                 .HtmlAttributes(new { style = "text-align: center" })
+                 .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='chkSelectAll' /></span>")
+                 .HeaderHtmlAttributes(new { style = "text-align: center" })
+                 .Sortable(false);
+          columns.Bound(c => c.QueueID).Title("ID").Width(150).Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false)));
           columns.Bound(c => c.ReceivedDateTime).Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.Property.ParcelNumber).Title("Parcel Number").Width(200);
@@ -20,9 +29,10 @@
           columns.Bound(c => c.Document.DocumentStatus.Description).Title("Document Status").Width(200);
           columns.Bound(c => c.Department.DepartmentCode).Title("Flagged").Width(200);
       })
-      .Scrollable()
+      .Scrollable(s => s.Height("auto"))
       .Sortable()
       .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+      .Selectable()
       .Pageable(pageable => pageable
                             .PageSizes(new string[] { "5", "10", "20", "50", "All" })
                             //.PageSizes(true)
