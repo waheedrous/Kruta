@@ -20,6 +20,14 @@ namespace HPE.Kruta.Model
         [Key]
         public int QueueID { get; set; }
 
+        public DateTime? RecordedDateTime
+        {
+            get
+            {
+                return Document.RecordedDateTime;
+            }
+        }
+
         public int? QueueStatusID { get; set; }
 
         public int? PropertyID { get; set; }

@@ -4,16 +4,13 @@
 <script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
 
 <div>
-
-    <a href="javascript:DisplayQueueDetails(12);">Display details for QueueID 12</a>
-
     @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
       .Name("DocumentQueue")
       .Columns(columns =>
       {
           columns.Bound(c => c.QueueID).Title("ID").Width(150);
           columns.Bound(c => c.ReceivedDateTime).Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
-          columns.Bound(c => c.Document.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
+          columns.Bound(c => c.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.Property.ParcelNumber).Title("Parcel Number").Width(200);
           columns.Bound(c => c.Document.DocumentNumber).Title("Document Number").Width(200);
           columns.Bound(c => c.Document.DocumentSubType.Code).Title("Document Type").Width(200);
@@ -27,8 +24,8 @@
       .Sortable()
       .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
       .Pageable(pageable => pageable
-                            //.PageSizes(new string[] { "5", "10", "20", "50", "All" })
-                            .PageSizes(true)
+                            .PageSizes(new string[] { "5", "10", "20", "50", "All" })
+                            //.PageSizes(true)
                             .ButtonCount(5))
       .DataSource(dataSource => dataSource
                                 .Ajax()
@@ -39,22 +36,3 @@
       .Reorderable(reorder => reorder.Columns(true))
     )
 </div>
-
-<script>
-    function DisplayQueueDetails(queueID) {
-        $.ajax({
-            type: 'GET',
-            url: '/QueueDetails/Temp_DisplayQueueDetails/?queueID=' + queueID,
-            data: {},
-            success: function (result) {
-                if (result) {
-                    var viewModel = JSON && JSON.parse(result) || $.parseJSON(result);
-                    $("#QueueIDLabel").text(viewModel.QueueID);
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-            }
-        });
-    }
-</script>
