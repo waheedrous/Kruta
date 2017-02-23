@@ -29,13 +29,13 @@ namespace HPE.Kruta.Model
 
         public int? DepartmentID { get; set; }
 
-        //[ForeignKey("DepartmentID")]
-        //public virtual Department Department { get; set; }
+        [ForeignKey("DepartmentID")]
+        public virtual Department Department { get; set; }
 
-        ////[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        ////public virtual ICollection<Queue> Queues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Queue> Queues { get; set; }
 
-        //[ForeignKey("PropertyClassID")]
-        //public virtual PropertyClass PropertyClass { get; set; }
+        [ForeignKey("PropertyClassID")]
+        public virtual PropertyClass PropertyClass { get; set; }
     }
 }

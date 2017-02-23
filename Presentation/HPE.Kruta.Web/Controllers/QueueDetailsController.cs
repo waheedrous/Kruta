@@ -13,18 +13,18 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult Temp_DisplayQueueDetails(int queueID)
+        public ActionResult Temp_DisplayQueueDetails(int queueID)
         {
             Queue queueModel = _queueManager.Get(queueID, true);
-            //return PartialView("_QueueDetailsPartial.cshtml", queueModel);
+            return PartialView("_QueueDetailsPartial", queueModel);
 
-            JsonResult result = new JsonResult();
-            var serializer = new JavaScriptSerializer();
+            //JsonResult result = new JsonResult();
+            //var serializer = new JavaScriptSerializer();
 
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            result.Data = serializer.Serialize(queueModel);
+            //result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            //result.Data = serializer.Serialize(queueModel);
 
-            return result;
+            //return result;
         }
     }
 }

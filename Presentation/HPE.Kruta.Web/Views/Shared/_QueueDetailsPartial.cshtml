@@ -1,0 +1,26 @@
+﻿@model HPE.Kruta.Model.Queue
+
+   
+
+<div class="col-sm-4">
+    Document Details<br /><br />
+
+    Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime )<br />
+    Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
+    Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br /><br />
+
+    Grantor: Shirley Temple<br />
+    Grantee: Mr. McDonald<br />
+</div>
+<div class="col-sm-4">
+    Property Detials<br /><br />
+
+    Parcel Number: @Html.DisplayFor(m => m.Property.ParcelNumber)<br />
+    Legal Description: @Html.DisplayFor(m => m.Property.FullLegalDescription)<br />
+    <br />
+    Class Code: @Html.DisplayFor(m => m.Property.PropertyClass.Description)<br /> <br />
+</div>
+<div class="col-sm-4">
+    AE 12/1/1990 12:10: Hey
+    TL 12/1/1990 2:40PM: Hello
+</div>
