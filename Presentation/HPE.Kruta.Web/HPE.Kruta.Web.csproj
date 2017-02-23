@@ -234,7 +234,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_DocumentQueuePartial.cshtml" />
-    <Content Include="Views\Home\_QueueDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\_QueueDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

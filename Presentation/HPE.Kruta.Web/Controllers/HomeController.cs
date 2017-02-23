@@ -1,4 +1,5 @@
 ﻿using HPE.Kruta.Domain;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
@@ -16,10 +17,11 @@ namespace HPE.Kruta.Web.Controllers
 
             //QueueManager m = new QueueManager();
 
-            //var q = m.Get(12, true);
+            //m.AssignEmployeeBulk(new List<int> {12,13,14,15,16 } , 3);
 
             //string a = q.Property.ParcelNumber;
             //string a1 = q.Document.DocumentSubType.DocumentType.Description;
+
 
             return View();
         }

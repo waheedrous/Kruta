@@ -20,6 +20,7 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
                         .Include(q => q.Property)
+                        .Include(q => q.Property.PropertyClass)
                         .Include(q => q.QueueStatus)
                         .Include(q => q.Department)
                         .Include(q => q.Employee)
