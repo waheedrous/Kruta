@@ -3,7 +3,12 @@
 <script src="//kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
 <script src="//kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
 
-<div>
+<div class="row">
+    <input id="AssignCommand" type="button" value="Assign" />
+    <input id="RefreshCommand" type="button" value="Refresh" />
+</div>
+<div class="row">
+
     @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
       .Name("DocumentQueue")
       .Columns(columns =>
