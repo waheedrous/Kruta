@@ -5,7 +5,7 @@
 <div class="col-sm-4">
     Document Details<br /><br />
 
-    Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime )<br />
+    @*Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime )<br />*@
     Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
     Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br /><br />
 
