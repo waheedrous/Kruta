@@ -49,15 +49,15 @@ namespace HPE.Kruta.Domain
                 //db.Configuration.LazyLoadingEnabled = false;
                 if (includeDetails)
                 {
-                    queues = db.Queues
-                        .Include(q => q.Document)
-                        .Include(q => q.Document.DocumentStatus)
-                        .Include(q => q.Document.DocumentSubType.DocumentType)
-                        .Include(q => q.Property)
-                        .Include(q => q.QueueStatus)
-                        .Include(q => q.Department)
-                        .Include(q => q.Employee)
-                        .ToList();
+                    ; queues = db.Queues
+                         .Include(q => q.Document)
+                         .Include(q => q.Document.DocumentStatus)
+                         .Include(q => q.Document.DocumentSubType.DocumentType)
+                         .Include(q => q.Property)
+                         .Include(q => q.QueueStatus)
+                         .Include(q => q.Department)
+                         .Include(q => q.Employee)
+                         .ToList();
                 }
                 else
                 {

@@ -29,3 +29,93 @@ textarea {
     padding-top: 15px;
     color: #9d9d9d;
 }
+
+
+
+
+/* Custom Stylesheet for Master Layout */
+.custom-navbar, footer {
+    margin-bottom: 0;
+    background-color: #2E3D5E;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-navbar ul > li > a,
+footer {
+    color: white;
+}
+
+.custom-navbar ul > li > a:focus,
+.custom-navbar ul > li > a:hover,
+.custom-navbar ul > li.active > a,
+.custom-navbar .open > a,
+.custom-navbar .open > a:hover,
+.custom-navbar .open > a:focus {
+    background-color: #8CBA26;
+    color: black;
+}
+
+.dropdown-menu {
+    background-color: #2E3D5E;
+}
+
+.navbar-brand {
+    font-size: 2em;
+    color: white;
+    margin-right: 30px;
+}
+
+.custom-navbar ul.navbar-right > li > a,
+.custom-navbar ul.navbar-right > li > p {
+    color: lightgray;
+}
+
+.custom-navbar ul.navbar-right > li > a:focus,
+.custom-navbar ul.navbar-right > li > a:hover,
+.custom-navbar ul.navbar-right > li.active > a {
+    color: black;
+}
+
+.custom-navbar ul.navbar-right {
+    margin-right: 15px;
+}
+
+
+
+
+
+
+
+
+
+/*The following styling section is for the Queue details partial main container*/ 
+.container-collapse {
+        /*position: absolute;*/
+        bottom: 50px;
+        width: 100%;
+        display: inline-block;
+        
+    }
+
+.inner{
+        background-color: #F1F3F9;
+      border: hidden;
+      margin: 10px 0;
+      height: 230px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      font-family:Arial;
+}
+
+.row {
+        overflow: hidden;
+        border-left-width: 100px;
+    }
+
+#demo {
+    background-color:#D1D8E9;
+    
+    }
+

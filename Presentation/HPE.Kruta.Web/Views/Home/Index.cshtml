@@ -4,18 +4,19 @@
     ViewBag.Title = "Home Page";
 }
 
-@System.Web.Optimization.Scripts.Render("~/Scripts/DocumentQueue.js")
 
-<div class="jumbotron">
-    <h1>KRUTA</h1>
-    <p class="lead">Documents work list management system</p>
-</div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-1 sidenav">
+        @section Sidebar {
+            <p>Put you sidebar stuff here!</p>
+        }
+    </div>
+
+    <div class="col-md-11" style="padding-right:60px;padding-left:60px">
         Home > Document > Queue
         <p>
-            <div class="container">
+            <div class="container-fluid" >
                 <div class="row">
                     @Html.Partial("_DocumentQueuePartial")
                 </div>

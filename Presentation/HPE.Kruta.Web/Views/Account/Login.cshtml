@@ -2,52 +2,98 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "";
+}
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+<style>
+
+body {
+    background-color: white;
 }
 
-<h2>@ViewBag.Title.</h2>
+#loginbox {
+    margin-top: 100px;
+    width:50%;
+}
+
+#loginbox > div:first-child {        
+    padding-bottom: 10px;    
+}
+
+.iconmelon {
+    display: block;
+    margin: auto;
+}
+
+#form > div {
+    margin-bottom: 25px;
+}
+
+#form > div:last-child {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.panel {    
+    background-color: transparent;
+}
+
+.panel-body {
+    padding-top: 50px;
+    background-color: rgba(2555,255,255,.3);
+}
+input, select, textarea { 
+    max-width:280px;
+}
+</style>
+
+<div class="container">    
+        
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <div class="panel-title text-center"><h2 style="font-weight:bolder">Login</h2></div>
+            </div> 
+                             <div class="panel-body" >
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                    </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                                  @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                                 <br />
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
+                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                 <br />
+                <div class="input-group">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <div class="col-sm-12 controls">
+                        <input type="submit" value="Log in" class="btn btn-info" style="width:30%"/>
                     </div>
                 </div>
+              </div>
+           </div>
             }
+
         </section>
     </div>
-    <div class="col-md-4">
-
-    </div>
 </div>
+        </div>
+    </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

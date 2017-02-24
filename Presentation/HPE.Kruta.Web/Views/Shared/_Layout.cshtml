@@ -11,8 +11,8 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+      <nav class="navbar navbar-fixed-top custom-navbar">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -24,21 +24,40 @@
                         <img src="~/Images/HPE_log_left_wht.png" alt="Hewlett Packard Enterprise logo">
                     </a>*@
             </div>
+              <!-- Menu Start -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            ARCC <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Property</a></li>
+                            <li><a href="#">Legay Entity</a></li>
+                            <li>@Html.ActionLink("Document Queue", "Index", "Home")</li>
+                        </ul>
+                    </li>
+                    <li><a href="#">A&amp;C</a></li>
+                    <li><a href="#">TTC</a></li>
+                    <li><a href="#">Configuration</a></li>
                 </ul>
+                 <!-- Login Start -->
                 @Html.Partial("_LoginPartial")
-            </div>
+                <!-- Login End -->
         </div>
     </div>
-    <div class="container body-content">
+              </nav>
+    <!-- Navigation Section End -->
+    <div class="container-fluid body-content">
+        @RenderSection("sidebar", required: false)
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - HPE - KRUTA</p>
-        </footer>
     </div>
+
+    <hr />
+    <footer class="navbar-fixed-bottom container-fluid text-right">
+        <p>&copy; @DateTime.Now.Year - HPE - IPTS</p>
+    </footer>
 
     @RenderSection("scripts", required: false)
 

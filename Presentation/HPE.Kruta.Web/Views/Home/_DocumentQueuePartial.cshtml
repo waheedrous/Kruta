@@ -2,11 +2,82 @@
 <link rel="stylesheet" href="//kendo.cdn.telerik.com/2017.1.118/styles/kendo.bootstrap.min.css" />
 <script src="//kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
 <script src="//kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
+<style>
+.k-grid-header .k-header {
+                    background-color:#D1D8E9;
+                    font-weight: 700 !important;
+                        }
+.k-grid tr td {
+    border-right:0 !important;
+    border-left:0 !important;
+    border-top:0 !important;
+}
+.k-alt {
+    background-color:#F1F3F9;
+    border-right:0 !important;
+    border-left:0 !important;
+    border-top:0 !important;
+}
+.success {
+       background-color: #4CAF50;
+}
+        /* Green */
+.success:hover {
+       background-color: #46a049;
+}
+.warning {
+       background-color: #ff9800;
+    }
 
-<div class="row">
-    <input id="AssignCommand" type="button" value="Assign" />
-    <input id="RefreshCommand" type="button" value="Refresh" />
+</style>
+
+<div class="container-fluid text-right">
+                    <b class="custom-title-left" style="float:left;color:#2E3D5E">Document Queue</b>
+                    <div class="btn-group" style="padding-bottom:5px">
+                        <button type="button" class="btn warning" style="border: none; background-color: #8CBA26;color:white; padding: 8px 60px; text-align: center; font-size: 16px; float: left;"
+                            data-toggle="modal" data-target="#assignModal">
+                            ASSIGN</button>
+                    </div>
 </div>
+<!-- Modal Start 1 -->
+<div class="modal fade" id="assignModal" role="dialog">
+    <div class="modal-dialog" style="padding-top:15%">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content" style="background-color:#F1F3F9;width:80%">
+            <div class="modal-header" style="background-color:#2E3D5E;padding-top:10px">
+                <button type="button" class="close" style="color:white" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title"  style="color:white;font-size:medium">Assign Document(s) To</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <form>
+                        <div class="form-group" style="padding-top:15px">
+                           
+                            <label for="routingControlStaff">Assign To :</label>
+                            <select class="form-control form-control-custom" id="routingControlStaff">
+                                <option value="tianxuLi" selected="selected">Tianxu Li</option>
+                                <option value="amandaElish">Amanda Elish</option>
+                                <option value="rawanShreim">Rawan Shreim</option>
+                                <option value="annaPavlenko">Anna Pavlenko</option>
+                                <option value="summerZhang">Summer Zhang</option>
+                                <option value="salahAhmad">Salah Ahmad</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning" data-dismiss="modal" style="background-color:#91A2C9; padding: 8px 30px;">Assign</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<div class="container-fluid">
 <div class="row">
 
     @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
@@ -51,3 +122,4 @@
       .Reorderable(reorder => reorder.Columns(true))
     )
 </div>
+    </div>
