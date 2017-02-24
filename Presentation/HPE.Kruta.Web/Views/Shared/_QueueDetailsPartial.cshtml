@@ -1,11 +1,14 @@
 ﻿@model HPE.Kruta.Model.Queue
 
-   
+
 
 <div class="col-sm-4">
     <b>Document Details</b><br /><br />
 
-    Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime )<br />
+    @if (Model != null && Model.Document != null)
+    {
+        <text>Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime)<br /></text>
+    }
     Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
     Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br /><br />
 
@@ -21,15 +24,18 @@
 </div>
 
 <div class="col-sm-4">
-    @foreach (var note in Model.QueueNotes)
+    @if (Model != null && Model.QueueNotes != null)
     {
-        <table>
-            <tr>
-                <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", "WA", note.CreatedOn, note.Note)</td>
-               
-               
+        foreach (var note in Model.QueueNotes)
+        {
+            <table>
+                <tr>
+                    <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", "WA", note.CreatedOn, note.Note)</td>
 
-            </tr>
-        </table>
+
+
+                </tr>
+            </table>
+        }
     }
 </div>
