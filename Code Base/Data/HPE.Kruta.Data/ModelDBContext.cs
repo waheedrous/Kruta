@@ -115,10 +115,10 @@ namespace HPE.Kruta.DataAccess
             //    .WithOptional(e => e.QueueStatus)
             //    .HasForeignKey(e => e.QueueStatusID);
 
-            //modelBuilder.Entity<Employee>()
-            //    .HasMany(e => e.QueueNotes)
-            //    .WithOptional(e => e.Employee)
-            //    .HasForeignKey(e => e.CreatedBy);
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.QueueNotes)
+                .WithOptional(e => e.Employee)
+                .HasForeignKey(e => e.CreatedBy);
 
             modelBuilder.Entity<QueueNote>()
                 .Property(e => e.Note)

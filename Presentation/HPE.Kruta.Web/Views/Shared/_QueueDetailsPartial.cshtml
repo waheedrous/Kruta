@@ -1,144 +1,35 @@
 ﻿@model HPE.Kruta.Model.Queue
 
-@*<p>Queue Details for QueueID: </p>*@
-<p id="QueueIDLabel">
-    @Html.DisplayFor(m => m.QueueID)
-</p>
-@*<div class="container-fluid">*@
-   @* <div class="row content">*@
+   
 
-<div class="container-collapse">
+<div class="col-sm-4">
+    <b>Document Details</b><br /><br />
 
-    <a href="#demo" class="btn btn-info" style="background-color:#2E3D5E; border:hidden" data-toggle="collapse">Queue Details</a>
-    <div id="demo" class="collapse">
-        <div class="container-fluid">
-            <div class="row">
-               
-                <div class="col-sm-3">
-                    <div class="inner" style="border:solid; border-color:#91A2C9; border-width:1px;">
-                        <div class="row" style="padding-right:20px; padding-left:20px; box-shadow: 0px 24px 3px -24px #91A2C9;">
-                    <h4 style=" font-weight: 700 !important;">Document Details </h4>
-                    <br />
-                            </div>
-                  <div class="row" style="padding-right:20px; padding-left:20px;">
-                    <h5>Recorded Date: 1/1/1900 </h5>
-                    <h5>Document Number: AE1234567 </h5>
-                    <h5>Document Type: Deed </h5>
-                    <br />
-                    <h5>Grantor: Shirley Temple </h5>
-                    <h5>Grantee: Mr. McDonald </h5>
-                 </div>
-                    </div>
-                </div>
-                
-               
-                <div class="col-sm-3" >
-                    <div class="inner" style="border:solid; border-color:#91A2C9; border-width:1px;">
-                    <div class="row" style="padding-right:20px; padding-left:20px; box-shadow: 0px 24px 3px -24px #91A2C9; font-weight: 700 !important;">
-                    <h4 style=" font-weight: 700 !important;">Property Details </h4>
-                    <br />
-                        </div>
-                        <div class="row" style="padding-right:20px; padding-left:20px; ">
-                    <h5>Parcel Number: 9011185058 </h5>
-                    <h5>Legal Description: 427 Island Ave Unit 429 Lot 603 </h5>
-                    <br />
-                    <h5>Class Code: Single Family</h5>
-                            </div>
-                    </div>
-                </div>
-                
-                <div class="col-sm-3">
-                    <div class="inner" style="border:solid; border-color:#91A2C9; border-width:1px;">
-                        <div class="row" style="padding-right:20px; padding-left:20px; box-shadow: 0px 24px 3px -24px #91A2C9;">
-                            <h4 style=" font-weight: 700 !important;"> Notes</h4></br>
-                            </div>
-                        <div class="row" style="padding-right:20px; padding-left:20px; ">
-                            <h5>AE 12/1/1990 12:10 PM: Hi </h5>
-                            <h5>TL 12/1/1990 2:40 PM: Hello</h5>
-                            </div>
-                    </div>
-                </div>
-                
-                <div class="col-sm-3">
-                 <div class="inner" style="background-color:#D1D8E9">
-                   <div class="dropdown" style="padding-left:20%">
-                  <label style="font-weight: 700 !important;font-size:large">Document Status:</label> 
-                       <div class="btn-group">
-                                               <button id="DropdownButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" 
-                                                style="border: none; background-color: #F1F3F9;color:Black; padding: 8px 30px; text-align: center; font-size: 13px; float: left;">
-                                                    Not Reviewed
-                                        <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" style="background-color: #F1F3F9">
-                                                    <li><a href="#">Verify</a></li>
-                                                    <li><a href="#">Unverify</a></li>
-                                                    <li><a href="#">Discarded</a></li>
-                                                </ul>
-                                   
-                       
-                                            
-                    </div>
-                       </div>
-                     <div style="padding-top:35%;padding-left:30%">
-                                 <button id="Save" type="button" class="btn btn-info" style="border: none; background-color: #8CBA26;color:white; 
-                                text-align: center; padding: 8px 25px; font-size: 16px;">Save</button>
-                                <button id="Route" type="button" class="btn btn-info" style="border: none; background-color: #8CBA26;color:white; 
-                                text-align: center; padding: 8px 25px; font-size: 16px;"
-                                data-toggle="modal" data-target="#routeModal">Route</button>
-                         </div>
+    Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime )<br />
+    Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
+    Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br /><br />
 
-
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
-        <!-- Modal Start 2 -->
-        <div class="modal fade" id="routeModal" role="dialog">
-            <div class="modal-dialog" style="padding-top:15%">
+<div class="col-sm-4">
+    <b>Property Detials</b><br /><br />
 
-                <!-- Modal Content Start -->
-     <div class="modal-content" style="background-color:#F1F3F9;width:80%">
-            <div class="modal-header" style="background-color:#2E3D5E;padding-top:10px">
-                <button type="button" class="close" style="color:white" data-dismiss="modal">&times;</button>
-                <h6 class="modal-title"  style="color:white;font-size:medium">Route Document To</h6>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Form Start -->
-                        <div class="container">
-                            <form>
-                                <div class="form-group">
-                                    <label for="departments">Departments:</label>
-                                    <select class="form-control form-control-custom" id="departments">
-                                        <option value="ar" selected="selected">ARCC</option>
-                                        <option value="ac">A&C</option>
-                                        <option value="ttc">TTC</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="departmentStaff">Department Staff:</label>
-                                    <select class="form-control form-control-custom" id="departmentStaff">
-                                        <option value="tianxuLi" selected="selected">Tianxu Li</option>
-                                        <option value="mehmetTumer">Mehmet Tumer</option>
-                                        <option value="harshitaPrakash">Harshita Prakash</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Form End -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning" data-dismiss="modal" style="background-color:#91A2C9; padding: 8px 30px;">Route</button>
-                        
-                    </div>
-                </div>
-                <!-- Modal Content End -->
+    Parcel Number: @Html.DisplayFor(m => m.Property.ParcelNumber)<br />
+    Legal Description: @Html.DisplayFor(m => m.Property.FullLegalDescription)<br />
+    <br />
+    Class Code: @Html.DisplayFor(m => m.Property.PropertyClass.Description)<br /> <br />
+</div>
 
-            </div>
-        </div>
-        <!-- Modal End 2 -->
-    @*</div>*@
+<div class="col-sm-4">
+    @foreach (var note in Model.QueueNotes)
+    {
+        <table>
+            <tr>
+                <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", "WA", note.CreatedOn, note.Note)</td>
+               
+               
 
-        
+            </tr>
+        </table>
+    }
+</div>
