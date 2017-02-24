@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
+    [Authorize]
     public class DocumentQueueController : BaseController
     {
         [ChildActionOnly]
@@ -32,6 +33,14 @@ namespace HPE.Kruta.Web.Controllers
 
             //return Json(result, JsonRequestBehavior.AllowGet);
             //return Json(result);
+        }
+
+        [HttpGet]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Queues_BatchAssign(string selectedQueueIds, string empId)
+        {
+            return 1 < 2 ? Json(new { Success = true }, JsonRequestBehavior.AllowGet)
+                         : Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
     }
 }
