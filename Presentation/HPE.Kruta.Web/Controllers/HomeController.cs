@@ -25,5 +25,10 @@ namespace HPE.Kruta.Web.Controllers
 
             return View();
         }
+
+        public void LoadAssignToList()
+        {
+            //TODO
+        }
     }
 }

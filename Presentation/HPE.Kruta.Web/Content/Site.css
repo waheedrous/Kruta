@@ -119,3 +119,32 @@ footer {
     
     }
 
+.k-grid-header .k-header {
+                    background-color:#D1D8E9;
+                    font-weight: 700 !important;
+                        }
+.k-grid tr td {
+    border-right:0 !important;
+    border-left:0 !important;
+    border-top:0 !important;
+}
+.k-alt {
+    background-color:#F1F3F9;
+    border-right:0 !important;
+    border-left:0 !important;
+    border-top:0 !important;
+}
+.success {
+       background-color: #4CAF50;
+}
+        /* Green */
+.success:hover {
+       background-color: #46a049;
+}
+.warning {
+       background-color: #ff9800;
+    }
+
+.btn {
+    text-transform: uppercase;
+}
