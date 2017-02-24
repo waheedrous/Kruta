@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B083BE62-5447-47DC-B609-E11905D05F63}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HPE.KRUTA.UnitTest</RootNamespace>
-    <AssemblyName>HPE.KRUTA.UnitTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>HPE.Kruta.UnitTest</RootNamespace>
+    <AssemblyName>HPE.Kruta.UnitTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -20,6 +20,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +57,24 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\HPE.Kruta.Web\HPE.Kruta.Web.csproj">
+      <Project>{4c283b30-0706-44a9-90cc-2ec8ba48d73e}</Project>
+      <Name>HPE.Kruta.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Common\HPE.Kruta.Common\HPE.Kruta.Common.csproj">
+      <Project>{bcac8f87-883d-4acf-b10d-7d1d58c69506}</Project>
+      <Name>HPE.Kruta.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Core\HPE.Kruta.Domain\HPE.Kruta.Domain.csproj">
+      <Project>{18a165d3-b274-4cef-a630-b741ae284c76}</Project>
+      <Name>HPE.Kruta.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code Base\Data\HPE.Kruta.Model\HPE.Kruta.Model.csproj">
+      <Project>{555f6284-4841-4129-be20-c7b6fa49a526}</Project>
+      <Name>HPE.Kruta.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

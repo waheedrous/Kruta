@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4D43651F-705C-4F11-B585-AD7686BD4671}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Base", "Code Base", "{DCC8D20E-E258-40D7-9F01-99B39DA32974}"
@@ -23,39 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPE.Kruta.Model", "Code Bas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{920C9D88-35BF-4756-B75A-476CA1476355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPE.KRUTA.UnitTest", "HPE.KRUTA.UnitTest\HPE.KRUTA.UnitTest.csproj", "{B083BE62-5447-47DC-B609-E11905D05F63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPE.Kruta.UnitTest", "Test\HPE.KRUTA.UnitTest\HPE.Kruta.UnitTest.csproj", "{B083BE62-5447-47DC-B609-E11905D05F63}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.sdcounty.ca.gov/tfs/cosdcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Code\u0020Base\\Common\\HPE.Kruta.Common\\HPE.Kruta.Common.csproj
-		SccProjectTopLevelParentUniqueName1 = HPE.Kruta.sln
-		SccProjectName1 = Code\u0020Base/Common/HPE.Kruta.Common
-		SccLocalPath1 = Code\u0020Base\\Common\\HPE.Kruta.Common
-		SccProjectUniqueName2 = Code\u0020Base\\Core\\HPE.Kruta.Domain\\HPE.Kruta.Domain.csproj
-		SccProjectTopLevelParentUniqueName2 = HPE.Kruta.sln
-		SccProjectName2 = Code\u0020Base/Core/HPE.Kruta.Domain
-		SccLocalPath2 = Code\u0020Base\\Core\\HPE.Kruta.Domain
-		SccProjectUniqueName3 = Code\u0020Base\\Data\\HPE.Kruta.Data\\HPE.Kruta.DataAccess.csproj
-		SccProjectTopLevelParentUniqueName3 = HPE.Kruta.sln
-		SccProjectName3 = Code\u0020Base/Data/HPE.Kruta.Data
-		SccLocalPath3 = Code\u0020Base\\Data\\HPE.Kruta.Data
-		SccProjectUniqueName4 = Code\u0020Base\\Data\\HPE.Kruta.Model\\HPE.Kruta.Model.csproj
-		SccProjectTopLevelParentUniqueName4 = HPE.Kruta.sln
-		SccProjectName4 = Code\u0020Base/Data/HPE.Kruta.Model
-		SccLocalPath4 = Code\u0020Base\\Data\\HPE.Kruta.Model
-		SccProjectUniqueName5 = Presentation\\HPE.Kruta.Web\\HPE.Kruta.Web.csproj
-		SccProjectTopLevelParentUniqueName5 = HPE.Kruta.sln
-		SccProjectName5 = Presentation/HPE.Kruta.Web
-		SccLocalPath5 = Presentation\\HPE.Kruta.Web
-		SccProjectUniqueName6 = HPE.KRUTA.UnitTest\\HPE.KRUTA.UnitTest.csproj
-		SccProjectTopLevelParentUniqueName6 = HPE.Kruta.sln
-		SccProjectName6 = HPE.KRUTA.UnitTest
-		SccLocalPath6 = HPE.KRUTA.UnitTest
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -90,15 +62,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4C283B30-0706-44A9-90CC-2EC8BA48D73E} = {4D43651F-705C-4F11-B585-AD7686BD4671}
 		{6CA12DCD-6091-4399-BDF7-3EB1908D563E} = {DCC8D20E-E258-40D7-9F01-99B39DA32974}
 		{3F58D324-DAB3-4101-AC26-76F9AC7D154E} = {DCC8D20E-E258-40D7-9F01-99B39DA32974}
-		{4A88AD06-F02B-4344-A0D0-863DAF32E35B} = {DCC8D20E-E258-40D7-9F01-99B39DA32974}
-		{920C9D88-35BF-4756-B75A-476CA1476355} = {DCC8D20E-E258-40D7-9F01-99B39DA32974}
 		{18A165D3-B274-4CEF-A630-B741AE284C76} = {6CA12DCD-6091-4399-BDF7-3EB1908D563E}
 		{95BB07A7-1962-43A6-819A-C208EDB7C1B1} = {3F58D324-DAB3-4101-AC26-76F9AC7D154E}
-		{555F6284-4841-4129-BE20-C7B6FA49A526} = {3F58D324-DAB3-4101-AC26-76F9AC7D154E}
+		{4A88AD06-F02B-4344-A0D0-863DAF32E35B} = {DCC8D20E-E258-40D7-9F01-99B39DA32974}
 		{BCAC8F87-883D-4ACF-B10D-7D1D58C69506} = {4A88AD06-F02B-4344-A0D0-863DAF32E35B}
+		{4C283B30-0706-44A9-90CC-2EC8BA48D73E} = {4D43651F-705C-4F11-B585-AD7686BD4671}
+		{555F6284-4841-4129-BE20-C7B6FA49A526} = {3F58D324-DAB3-4101-AC26-76F9AC7D154E}
 		{B083BE62-5447-47DC-B609-E11905D05F63} = {920C9D88-35BF-4756-B75A-476CA1476355}
 	EndGlobalSection
 EndGlobal
