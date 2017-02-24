@@ -101,10 +101,10 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<PropertyClass>()
-            //    .HasMany(e => e.Properties)
-            //    .WithOptional(e => e.PropertyClass)
-            //    .HasForeignKey(e => e.PropertyClassID);
+            modelBuilder.Entity<PropertyClass>()
+                .HasMany(e => e.Properties)
+                .WithOptional(e => e.PropertyClass)
+                .HasForeignKey(e => e.PropertyClassID);
 
             modelBuilder.Entity<QueueStatus>()
                 .Property(e => e.Description)
