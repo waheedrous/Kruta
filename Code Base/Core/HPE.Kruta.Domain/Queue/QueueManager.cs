@@ -1,5 +1,6 @@
 ﻿using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -96,8 +97,33 @@ namespace HPE.Kruta.Domain
                 db.SaveChanges();   
 
             }
+        }
 
-           
+        public void RouteQueueBulk(List<int> queueIDs, int departmentID, int employeeID)
+        {
+            using (var db = new ModelDBContext())
+            {
+                var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
+
+                foreach (Queue q in queueList)
+                {
+                    var queueHistory = new QueueHistory();
+                    queueHistory.QueneID = q.QueueID;
+                    queueHistory.RoutedFromDepartmentID = q.DepartmentID;
+                    queueHistory.RoutedToDepartmentID = departmentID;
+                    queueHistory.AssignedFromEmployeeID = employeeID;
+                    queueHistory.EventDatetime = DateTime.Now;
+
+                    db.QueueHistories.Add(queueHistory);
+
+
+                    q.DepartmentID = departmentID;
+
+                }
+
+                db.SaveChanges();
+
+            }
         }
 
     }
