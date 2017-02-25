@@ -7,27 +7,25 @@
 
 
 <div class="row">
-    <div class="col-md-1 sidenav">
+@*    <div class="col-md-1 sidenav">
         @section Sidebar {
             <p>Put you sidebar stuff here!</p>
         }
-    </div>
+    </div>*@
 
-    <div class="col-md-11" style="padding-right:60px;padding-left:60px">
+    <div class="col-md-12">
         Home > Document > Queue
-        <p>
-            <div class="container-fluid">
-                <div class="row">
-                    @Html.Partial("_DocumentQueuePartial")
-                </div>
-                <div class="row">
-                    @Html.Partial("_QueueDetailsPartial", Model)
-                </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                @Html.Partial("_DocumentQueuePartial")
             </div>
-        </p>
-        <p></p>
-        <p>
+            <div class="row">
+                @Html.Partial("_QueueDetailsPartial", Model)
+            </div>
+        </div>
 
-        </p>
+        <p></p>
+        <p></p>
     </div>
 </div>

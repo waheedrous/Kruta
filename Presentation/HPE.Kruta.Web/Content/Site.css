@@ -51,8 +51,15 @@ footer {
 .custom-navbar .open > a,
 .custom-navbar .open > a:hover,
 .custom-navbar .open > a:focus {
-    background-color: #8CBA26;
-    color: black;
+    background-color: #2E3D5E;
+    color: white;
+    font-size: 20px;
+    -webkit-transition: font 0.5s ease;
+    -moz-transition: font 0.5s ease;
+    -o-transition: font 0.5s ease;
+    -ms-transition: font 0.5s ease;
+    transition: font 0.5s ease;
+    
 }
 
 .dropdown-menu {
@@ -68,16 +75,22 @@ footer {
 .custom-navbar ul.navbar-right > li > a,
 .custom-navbar ul.navbar-right > li > p {
     color: lightgray;
+    margin-right: 15px;
 }
 
 .custom-navbar ul.navbar-right > li > a:focus,
 .custom-navbar ul.navbar-right > li > a:hover,
 .custom-navbar ul.navbar-right > li.active > a {
-    color: black;
+    color: white;
 }
 
 .custom-navbar ul.navbar-right {
-    margin-right: 15px;
+    margin-right: 30px;
+}
+
+.custom-body {
+    padding-right: 60px;
+    padding-left: 135px
 }
 
 
@@ -114,11 +127,60 @@ footer {
         border-left-width: 100px;
     }
 
-#demo {
+.custom-demo {
     background-color:#D1D8E9;
     
     }
+.custom-queueDetailsbtn {
+    background-color: #2E3D5E;
+    border: hidden;
+    }
 
+.custom-inner {
+    border:solid; 
+    border-color:#91A2C9; 
+    border-width:1px;
+    }
+.custom-row-1 {
+    padding-right: 20px;
+    padding-left: 20px;
+    box-shadow: 0px 24px 3px -24px #91A2C9;
+    }
+
+.custom-row-2 {
+    padding-right: 20px; 
+    padding-left: 20px;
+    }
+
+.custom-docstatusdropdown {
+    padding-left: 20%
+    }
+
+.custom-drp {
+    border: none; 
+    background-color: #F1F3F9; 
+    color: Black; 
+    padding: 8px 30px; 
+    text-align: center; 
+    font-size: 13px; 
+    float: left;
+    }
+.SR-btn-group {
+    padding-top: 35%; 
+    padding-left: 30%
+    }
+
+.custom-btn-SR{
+    border: none; 
+    background-color: #8CBA26; 
+    color: white; 
+    text-align: center; 
+    padding: 8px 25px; 
+    font-size: 16px;
+}
+
+
+/*The following styling is for DOcument Queue Container*/
 .k-grid-header .k-header {
                     background-color:#D1D8E9;
                     font-weight: 700 !important;
@@ -147,4 +209,66 @@ footer {
 
 .btn {
     text-transform: uppercase;
+}
+
+
+
+
+
+/*Queue Detail Grid and button*/
+
+
+.custom-btn {
+    border: none;
+    background-color: #8CBA26;
+    color:white;
+    padding: 8px 60px;
+    text-align: center;
+    font-size: 16px;
+    float: left;
+}
+
+.custom-Queue {
+    float:left;
+    color:#2E3D5E;
+    padding-top:1%;
+}
+
+.custom-btnGrup {
+    padding-bottom:5px;
+}
+
+.custom-popupMain {
+padding-top:15%;
+}
+
+.custom-popupMain-Content {
+    background-color:#F1F3F9;
+    width:80%;
+}
+.custom-popupMain-Header {
+    background-color:#2E3D5E;
+    padding-top:10px;
+    padding:10px;
+}
+.custom-popupMain-Close-Btn {
+    color:white;
+}
+.custom-popupMain-Title {
+    color:white;
+    font-size:medium;
+}
+.custom-popupMain-Hr {
+    color:white;
+    font-size:medium;
+} 
+
+.custom-popupMain-Form {
+    padding-top:15px;
+}
+
+.custom-popupMain-Footer-Btn {
+    background-color:#91A2C9;
+    padding: 8px 30px;
+
 }

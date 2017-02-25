@@ -2,40 +2,143 @@
 
 
 
-<div class="col-sm-4">
-    <b>Document Details</b><br /><br />
+<div class="container-collapse">
 
-    @if (Model != null && Model.Document != null)
-    {
-        <text>Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime)<br /></text>
-    }
-    Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
-    Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br /><br />
+    <a href="#demo" class="btn btn-info custom-queueDetailsbtn" data-toggle="collapse">Queue Details</a>
+    <div id="demo" class="collapse custom-demo">
+        <div class="container-fluid">
+            <div class="row">
 
+                <div class="col-sm-3">
+                    <div class="inner custome-inner">
+                        <div class="row custom-row-1">
+                            <h4>Document Details </h4>
+                            <br />
+                        </div>
+                        <div class="row custom-row-2">
+                            @if (Model != null && Model.Document != null)
+                            {
+                                <text>Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime)<br /></text>
+                            }
+                            Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
+                            Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="inner custom-inner">
+                        <div class="row custom-row-1">
+
+                            <h4>Property Details </h4>
+                            <br />
+                        </div>
+                        <div class="row custom-row-2">
+                            Parcel Number: @Html.DisplayFor(m => m.Property.ParcelNumber)<br />
+                            Legal Description: @Html.DisplayFor(m => m.Property.FullLegalDescription)<br />
+                            <br />
+                            Class Code: @Html.DisplayFor(m => m.Property.PropertyClass.Description)<br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="inner custom-inner">
+                        <div class="row custom-row-1">
+                            <h4 style="font-weight: 700 !important;">Notes</h4>
+                            </br>
+                        </div>
+                        <div class="row custom-row-2">
+                            @if (Model != null && Model.QueueNotes != null)
+                            {
+                                foreach (var note in Model.QueueNotes)
+                                {
+                                <table>
+                                    <tr>
+                                        <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", "WA", note.CreatedOn, note.Note)</td>
+
+
+
+                                    </tr>
+                                </table>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inner" style="background-color: #D1D8E9">
+                        <div class="dropdown custom-docstatusdropdown">
+                            Document Status:
+                       <div class="btn-group">
+                           <button class="btn btn-primary dropdown-toggle custom-drp" type="button" data-toggle="dropdown">
+                               Not Reviewed
+                                        <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu" style="background-color: #F1F3F9">
+                               <li><a href="#">Verify</a></li>
+                               <li><a href="#">Unverify</a></li>
+                               <li><a href="#">Discarded</a></li>
+                           </ul>
+                       </div>
+                        </div>
+                        <div class="SR-btn-group">
+                            <button id="Save" type="button" class="btn btn-info custom-btn-SR">
+                                Save</button>
+                            <button id="Route" type="button" class="btn btn-info custom-btn-SR"
+                                data-toggle="modal" data-target="#routeModal">
+                                Route</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
-<div class="col-sm-4">
-    <b>Property Detials</b><br /><br />
+<!-- Modal Start 2 -->
+<div class="modal fade" id="routeModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
 
-    Parcel Number: @Html.DisplayFor(m => m.Property.ParcelNumber)<br />
-    Legal Description: @Html.DisplayFor(m => m.Property.FullLegalDescription)<br />
-    <br />
-    Class Code: @Html.DisplayFor(m => m.Property.PropertyClass.Description)<br /> <br />
-</div>
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">ROUTE DOCUMENT TO</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <form>
+                        <div class="form-group">
+                            <label for="departments">Departments:</label>
+                            <select class="form-control form-control-custom" id="departments">
+                                <option value="ar" selected="selected">ARCC</option>
+                                <option value="ac">A&C</option>
+                                <option value="ttc">TTC</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departmentStaff">Department Staff:</label>
+                            <select class="form-control form-control-custom" id="departmentStaff">
+                                <option value="tianxuLi" selected="selected">Tianxu Li</option>
+                                <option value="mehmetTumer">Mehmet Tumer</option>
+                                <option value="harshitaPrakash">Harshita Prakash</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning custom-popupMain-Footer-Btn">Route</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
 
-<div class="col-sm-4">
-    @if (Model != null && Model.QueueNotes != null)
-    {
-        foreach (var note in Model.QueueNotes)
-        {
-            <table>
-                <tr>
-                    <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", "WA", note.CreatedOn, note.Note)</td>
-
-
-
-                </tr>
-            </table>
-        }
-    }
+    </div>
 </div>
