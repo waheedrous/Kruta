@@ -204,6 +204,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="App_Data\KRUTA.pdf" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\HPE_log_left_wht.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -241,9 +242,7 @@
     <Content Include="Views\Home\_DocumentQueuePartial.cshtml" />
     <Content Include="Views\Shared\_QueueDetailsPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />

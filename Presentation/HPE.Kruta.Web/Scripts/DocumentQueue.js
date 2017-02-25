@@ -139,11 +139,18 @@ function DisplayQueueDetails(queueID) {
         datatype: "json",
         data: { queueID: queueID },
         success: function (data) {
-            $('#QueueDetailsSection').html(data);
-            $('#queueDetailsCommand').click();
+            doDisplayQueueDetails(data);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
         }
     });
+}
+
+function doDisplayQueueDetails(data) {
+    $('#QueueDetailsSection').html(data);
+    $('#queueDetailsCommand').click();
+    var docPath = '/App_Data/KRUTA.pdf';
+
+
 }
