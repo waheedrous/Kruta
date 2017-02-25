@@ -7,15 +7,15 @@
 
 
 <div class="row">
-@*    <div class="col-md-1 sidenav">
-        @section Sidebar {
-            <p>Put you sidebar stuff here!</p>
-        }
-    </div>*@
+    @*    <div class="col-md-1 sidenav">
+            @section Sidebar {
+                <p>Put you sidebar stuff here!</p>
+            }
+        </div>*@
 
     <div class="col-md-12">
         Home > Document > Queue
-        
+
         <div class="container-fluid">
             <div class="row">
                 @Html.Partial("_DocumentQueuePartial")
@@ -29,3 +29,94 @@
         <p></p>
     </div>
 </div>
+<div class="modal fade" id="assignModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">Assign Document(s) To</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="routingControlStaff">Assign To :</label>
+                        @Html.DropDownList("RoutingControlStaffList", ViewBag.RoutingControlStaffList as SelectList, new { @class = "form-control form-control-custom", @id = "routingControlStaffList" })
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showConfirmModal();">Assign</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- information Modal Start -->
+<div class="modal fade" id="informationModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr" id="informationModalTitle">Notification</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <p id="informationModalMessage">Please select at least one document from the queue.</p>
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="informationModalOk" class="btn btn-warning custom-popupMain-Footer-Btn" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- information Modal End -->
+<!-- Confirmation Modal Start -->
+<div class="modal fade" id="confirmationModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr" id="modalTitle">Confirmation</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <p id="modalMessage">Are you sure you want to assign the selected queue(s)?</p>
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                @*<button type="submit" class="btn btn-warning" data-dismiss="modal" style="background-color:#91A2C9; padding: 8px 30px;">Ok</button>*@
+                <button id="btnYesConfirmYesNo"
+                        type="button" class="btn btn-primary">
+                    Yes
+                </button>
+                <button id="btnNoConfirmYesNo"
+                        type="button" class="btn btn-default">
+                    No
+                </button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- Confirmation Modal End -->
