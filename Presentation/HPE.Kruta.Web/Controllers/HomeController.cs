@@ -1,6 +1,7 @@
 ﻿using HPE.Kruta.Domain;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace HPE.Kruta.Web.Controllers
 {
@@ -22,13 +23,14 @@ namespace HPE.Kruta.Web.Controllers
             //string a = q.Property.ParcelNumber;
             //string a1 = q.Document.DocumentSubType.DocumentType.Description;
 
-
+            LoadAssignToList();
             return View();
         }
 
         public void LoadAssignToList()
         {
-            //TODO
+            var emps = _userManager.List().OrderBy(o => o.EmployeeName);
+            ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
         }
     }
 }

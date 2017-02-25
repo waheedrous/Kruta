@@ -1,6 +1,8 @@
 ﻿using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
 using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace HPE.Kruta.Domain.User
 {
@@ -27,6 +29,18 @@ namespace HPE.Kruta.Domain.User
 
             // It will be null if the username/password are wrong, the check for null should happen on the caller side
             return emp;
+        }
+
+        public List<Employee> List()
+        {
+            List<Employee> employees;
+
+            using (var db = new ModelDBContext())
+            {
+                employees = db.Employees.ToList();
+            }
+
+            return employees;
         }
     }
 }
