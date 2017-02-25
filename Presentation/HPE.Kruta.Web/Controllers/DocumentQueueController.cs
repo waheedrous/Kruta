@@ -2,6 +2,7 @@
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -19,9 +20,8 @@ namespace HPE.Kruta.Web.Controllers
         //[HttpGet]
         public ActionResult Queues_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<Queue> queues = _queueManager.List(true).AsQueryable();
+            IQueryable<Queue> queues = this._queueManager.List(true).AsQueryable();
             DataSourceResult result = queues.ToDataSourceResult(request);
-
 
             var list = JsonConvert.SerializeObject(result, Formatting.None,
                 new JsonSerializerSettings()
@@ -36,11 +36,16 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        //[ValidateAntiForgeryToken]
         public ActionResult Queues_BatchAssign(string selectedQueueIds, string empId)
         {
-            return 1 < 2 ? Json(new { Success = true }, JsonRequestBehavior.AllowGet)
-                         : Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrWhiteSpace(selectedQueueIds) || string.IsNullOrWhiteSpace(empId))
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            List<int> queueIds = selectedQueueIds.Split(',').Select(int.Parse).ToList();
+
+            this._queueManager.AssignEmployeeBulk(queueIds, int.Parse(empId));
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

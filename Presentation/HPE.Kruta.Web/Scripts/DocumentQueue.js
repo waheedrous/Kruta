@@ -76,13 +76,14 @@ function asyncShowConfirmModal(yesFunction, noFunction) {
 function yesFunction() {
     // call the assign method
     // show the succss informaion
-    var selectedQueueIds = "";
+    var selectedQueueIdsTemp = [];
     $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0 && element.checked) {
-            selectedQueueIds = selectedQueueIds + element.value + ',';
+            selectedQueueIdsTemp.push(element.value);
         }
     });
 
+    var selectedQueueIds = selectedQueueIdsTemp.join(', ');
     var empId = $('#routingControlStaffList :selected').val();
 
     $.ajax({

@@ -40,11 +40,11 @@
           columns.Bound(c => c.Property.ParcelNumber).Title("Parcel Number").Width(200);
           columns.Bound(c => c.Document.DocumentNumber).Title("Document Number").Width(200);
           columns.Bound(c => c.Document.DocumentSubType.Code).Title("Document Type").Width(200);
-          columns.Bound(c => c.Department.DepartmentName).Title("Queue/Department").Width(200);
-          columns.Bound(c => c.Employee.EmployeeName).Title("Assigned To").Width(200);
+          columns.Bound(c => c.Department.DepartmentName).ClientTemplate(" #= Department ? Department.DepartmentName : '' # ").Title("Queue/Department").Width(200);
+          columns.Bound(c => c.Employee.EmployeeName).ClientTemplate(" #= Employee ? Employee.EmployeeName : '' # ").Title("Assigned To").Width(200);
           columns.Bound(c => c.QueueStatus.Description).Title("Status").Width(200);
           columns.Bound(c => c.Document.DocumentStatus.Description).Title("Document Status").Width(200);
-          columns.Bound(c => c.Department.DepartmentCode).Title("Flagged").Width(200);
+          columns.Bound(c => c.Department.DepartmentCode).ClientTemplate(" #= Department ? Department.DepartmentCode : '' # ").Title("Flagged").Width(200);
       })
       .Scrollable()
       .Sortable()

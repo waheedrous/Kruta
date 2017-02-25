@@ -9,6 +9,8 @@ namespace HPE.Kruta.Domain
 {
     public class QueueManager
     {
+        public const string ASSIGNED_QUEUE_STATUS = "Assigned";
+
         public Queue Get(int queueID, bool includeDetails)
         {
             Queue queue;
@@ -50,15 +52,15 @@ namespace HPE.Kruta.Domain
                 //db.Configuration.LazyLoadingEnabled = false;
                 if (includeDetails)
                 {
-                     queues = db.Queues
-                         .Include(q => q.Document)
-                         .Include(q => q.Document.DocumentStatus)
-                         .Include(q => q.Document.DocumentSubType.DocumentType)
-                         .Include(q => q.Property)
-                         .Include(q => q.QueueStatus)
-                         .Include(q => q.Department)
-                         .Include(q => q.Employee)
-                         .ToList();
+                    queues = db.Queues
+                        .Include(q => q.Document)
+                        .Include(q => q.Document.DocumentStatus)
+                        .Include(q => q.Document.DocumentSubType.DocumentType)
+                        .Include(q => q.Property)
+                        .Include(q => q.QueueStatus)
+                        .Include(q => q.Department)
+                        .Include(q => q.Employee)
+                        .ToList();
                 }
                 else
                 {
@@ -88,14 +90,18 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
+                var assignedQueueStatus = db.QueueStatus.FirstOrDefault(q => string.Compare(q.Description, ASSIGNED_QUEUE_STATUS, StringComparison.OrdinalIgnoreCase) == 0);
 
-                foreach (Queue q in queueList)
+                if (assignedQueueStatus != null)
                 {
-                    q.EmployeeID = employeeID;
+                    foreach (Queue q in queueList)
+                    {
+                        q.QueueStatusID = assignedQueueStatus.QueueStatusID;
+                        q.EmployeeID = employeeID;
+                    }
+
+                    db.SaveChanges();
                 }
-
-                db.SaveChanges();   
-
             }
         }
 
