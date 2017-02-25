@@ -1,10 +1,19 @@
 ﻿$(document).ready(function () {
     AttachSelectAllToControl();
+    AttachToggleSelectAll();
+    AttachDocumentQueueCommands();
+});
 
+function AttachDocumentQueueCommands() {
+    $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
+    $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
+}
+
+function AttachToggleSelectAll() {
     $('body').on('click', 'input[id*=chkSelect]', function () {
         toggleSelectAll($(this).closest('table'));
     })
-});
+}
 
 function AttachSelectAllToControl() {
     $(document).on('change', '#chkSelectAll', function () {
@@ -95,7 +104,7 @@ function yesFunction() {
         success: function (data) {
             if (data.Success) {
                 ShowInformationModal('Notification', 'The selected queue(s) assigned successfully.');
-                $("#DocumentQueue").data("kendoGrid").dataSource.read();
+                RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
             }
@@ -117,4 +126,8 @@ function ShowInformationModal(title, msg) {
     inform.find("#informationModalOk").off('click').click(function () {
         inform.modal("hide");
     });
+}
+
+function RefreshDocumentQueue() {
+    $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
