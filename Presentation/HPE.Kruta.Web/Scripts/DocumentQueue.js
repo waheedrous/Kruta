@@ -94,6 +94,7 @@ function yesFunction() {
         success: function (data) {
             if (data.Success) {
                 ShowInformationModal('Notification', 'The selected queue(s) assigned successfully.');
+                $("#DocumentQueue").data("kendoGrid").dataSource.read();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
             }
@@ -106,7 +107,6 @@ function yesFunction() {
 function noFunction() {
     // nothing for now
 }
-
 
 function ShowInformationModal(title, msg) {
     var inform = $("#informationModal");
