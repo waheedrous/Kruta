@@ -131,3 +131,19 @@ function ShowInformationModal(title, msg) {
 function RefreshDocumentQueue() {
     $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
+
+function DisplayQueueDetails(queueID) {
+    $.ajax({
+        url: "/QueueDetails/DisplayQueueDetails",
+        type: "GET",
+        datatype: "json",
+        data: { queueID: queueID },
+        success: function (data) {
+            $('#QueueDetailsSection').html(data);
+            $('#queueDetailsCommand').click();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+        }
+    });
+}

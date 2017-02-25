@@ -4,6 +4,7 @@ using System.Web.Script.Serialization;
 
 namespace HPE.Kruta.Web.Controllers
 {
+    [Authorize]
     public class QueueDetailsController : BaseController
     {
         [ChildActionOnly]
@@ -13,7 +14,7 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Temp_DisplayQueueDetails(int queueID)
+        public ActionResult DisplayQueueDetails(int queueID)
         {
             Queue queueModel = _queueManager.Get(queueID, true);
             return PartialView("_QueueDetailsPartial", queueModel);
