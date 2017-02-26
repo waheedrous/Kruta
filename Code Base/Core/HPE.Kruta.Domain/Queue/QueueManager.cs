@@ -17,8 +17,8 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 if (includeDetails)
-                {
-                    queue = db.Queues.Where(q => q.QueueID == queueID)
+                {   
+                    var query = db.Queues.Where(q => q.QueueID == queueID)
                         .Include(q => q.Document)
                         .Include(q => q.Document.DocumentStatus)
                         .Include(q => q.Document.DocumentSubType.DocumentType)
@@ -27,8 +27,9 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.QueueStatus)
                         .Include(q => q.Department)
                         .Include(q => q.Employee)
-                        .Include(q => q.QueueNotes)
-                        .First();
+                        .Include(q => q.QueueNotes);
+                    //.First();
+                    queue = query.First(); 
 
                 }
                 else
