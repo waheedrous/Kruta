@@ -45,7 +45,7 @@
                     <h4 style="font-weight: 700 !important;">Notes</h4>
                     </br>
                 </div>
-                <div class="row custom-row-2">
+                <div class="row custom-row-2" style="overflow-y: scroll; height:100px;">
                     @if (Model != null && Model.QueueNotes != null)
                             {
                                 foreach (var note in Model.QueueNotes)
@@ -68,23 +68,28 @@
                         <div class="dropdown custom-docstatusdropdown">
                             Document Status:
                     
-                          @Html.DropDownList("QueueStatuses")
+                            @if (ViewBag.QueueStatuses != null)
+                            {
+                                @Html.DropDownList("QueueStatuses")
+                                @Html.Hidden("modelIDVal", Model.QueueID);
+                                @Html.Hidden("documentIDVal", Model.DocumentID);
+                            }
 
+                            @*@Html.DropDownList("QueueStatuses", ViewBag.QueueStatuses as SelectList, new { @class = "form-control form-control-custom", @id = "Value" })*@
                             @Html.TextArea("Notes")
 
                            <br />
 
                            <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus()"  class="btn btn-info custom-btn-SR"/>
-                         
+                            <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="" class="btn btn-info custom-btn-SR" />
+                       
 
                        
                        </div>
                         </div>
                         <div class="SR-btn-group">
                            
-                            <button id="Route" type="button" class="btn btn-info custom-btn-SR"
-                                data-toggle="modal" data-target="#routeModal">
-                                Route</button>
+                          
                         </div>
 
 
@@ -137,17 +142,20 @@
 </div>
 
 <script>
+
     function SaveQueueStatus()
     {
 
         var noteVal = $('#Notes').val();
         var statusVal = $('#QueueStatuses').val();
+        var modelIDVal = $('#modelIDVal').val();
+        var documentIDVal = $('#documentIDVal').val();
         
-        SubmitQueueStatus(@Model.QueueID ,statusVal, noteVal);
+        SubmitQueueStatus(modelIDVal, documentIDVal, statusVal, noteVal);
 
     }
 
-    function SubmitQueueStatus(queueIDVal, status, note) {
+    function SubmitQueueStatus(queueIDVal, documentIDVal, status, note) {
         $.ajax({
             url: '/QueueDetails/SaveStatus',
             contentType: "application/json; charset=utf-8",
@@ -156,17 +164,19 @@
             data: {queueID : queueIDVal, queueStatusID: status, notes: note },
             success: function (data) {
                 if (data.Success) {
-                    alert('Status Successfully Changed!')
-                    //ShowInformationModal('Notification', 'Status saved successfully.');   
+                    DisplayQueueDetails(queueIDVal, documentIDVal);
+                    RefreshDocumentQueue();
+                    ShowInformationModal('Notification', 'Status saved successfully.');
+                    
                 }
-            
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr.responseText);
             }
         });
-     
+
     }
-        
- 
+
+
 </script>

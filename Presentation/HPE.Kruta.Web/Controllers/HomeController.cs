@@ -12,9 +12,9 @@ namespace HPE.Kruta.Web.Controllers
         public ActionResult Index()
         {
 
-            DocumentManager dm = new DocumentManager();
+            //DocumentManager dm = new DocumentManager();
 
-            dm.GetDocumentPath(2);
+            //dm.GetDocumentPath(2);
 
             //QueueNoteManager m1 = new QueueNoteManager();
 
@@ -36,6 +36,8 @@ namespace HPE.Kruta.Web.Controllers
         {
             var emps = _userManager.List().OrderBy(o => o.EmployeeName);
             ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
+
+
         }
     }
 }

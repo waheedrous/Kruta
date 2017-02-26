@@ -165,7 +165,7 @@ function DisplayQueueDetails(queueID, documentID) {
         data: { queueID: queueID },
         success: function (data) {
             $('#queueDetailsSection').html(data);
-            OpenDocument(documentID);
+           // OpenDocument(documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);

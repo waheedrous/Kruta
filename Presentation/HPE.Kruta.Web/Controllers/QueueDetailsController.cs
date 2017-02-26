@@ -21,6 +21,7 @@ namespace HPE.Kruta.Web.Controllers
         {
             Queue queueModel = _queueManager.Get(queueID, true);
 
+
             QueueStatusManager statusManager = new QueueStatusManager();
 
             IEnumerable<SelectListItem> statusList = from s in statusManager.List()
@@ -32,6 +33,8 @@ namespace HPE.Kruta.Web.Controllers
                                                      };
 
             ViewBag.QueueStatuses = statusList;
+
+
 
             return PartialView("_QueueDetailsPartial", queueModel);
 
