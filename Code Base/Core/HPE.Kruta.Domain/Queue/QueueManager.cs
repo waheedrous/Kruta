@@ -27,7 +27,7 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.QueueStatus)
                         .Include(q => q.Department)
                         .Include(q => q.Employee)
-                        .Include(q => q.QueueNotes);
+                        .Include(q => q.QueueNotes.Select(qn => qn.Employee));
                     //.First();
                     queue = query.First(); 
 

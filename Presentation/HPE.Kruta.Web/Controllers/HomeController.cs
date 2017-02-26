@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using System.IO;
 
 namespace HPE.Kruta.Web.Controllers
 {
@@ -10,6 +11,10 @@ namespace HPE.Kruta.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
+            DocumentManager dm = new DocumentManager();
+
+            dm.GetDocumentPath(2);
 
             //QueueNoteManager m1 = new QueueNoteManager();
 

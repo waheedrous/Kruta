@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Property\DocumentManager.cs" />
     <Compile Include="Queue\QueueManager.cs" />
     <Compile Include="Queue\QueueNoteManager.cs" />
     <Compile Include="User\UserManager.cs" />
