@@ -7,6 +7,7 @@
 function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
+    $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
 }
 
 function AttachToggleSelectAll() {
@@ -38,16 +39,40 @@ function toggleSelectAll(table) {
     }
 
     var selectallCheckbox = $('input[id=chkSelectAll]');
+    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
     if (selectallCheckbox) {
         var checkboxCount = table.find('input[id*=chkSelect]').length;
-        var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
         if (checkedCount == checkboxCount) {
             selectallCheckbox.prop('checked', true);
         }
         else {
             selectallCheckbox.prop('checked', false);
+        }
+    }
+
+    // handle the queue detail button appearance and behavior
+    var queueDetailsCommand = $('#queueDetailsCommand');
+    if (selectallCheckbox.prop('checked') == false) {
+        if (checkedCount == 1) {
+            if (queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.removeClass('disabled');
+            }
+        }
+        else {
+            if (!queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.addClass('disabled');
+                // hide the queue detail section when disabling the button
+                $('#queueDetailsSection').collapse('hide');
+            }
+        }
+    }
+    else {
+        if (!queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.addClass('disabled');
+            // hide the queue detail section when disabling the button
+            $('#queueDetailsSection').collapse('hide');
         }
     }
 }
@@ -132,14 +157,15 @@ function RefreshDocumentQueue() {
     $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
 
-function DisplayQueueDetails(queueID) {
+function DisplayQueueDetails(queueID, documentID) {
     $.ajax({
         url: "/QueueDetails/DisplayQueueDetails",
         type: "GET",
         datatype: "json",
         data: { queueID: queueID },
         success: function (data) {
-            doDisplayQueueDetails(data);
+            $('#queueDetailsSection').html(data);
+            OpenDocument(documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
@@ -147,10 +173,31 @@ function DisplayQueueDetails(queueID) {
     });
 }
 
-function doDisplayQueueDetails(data) {
-    $('#QueueDetailsSection').html(data);
-    $('#queueDetailsCommand').click();
-    var docPath = '/App_Data/KRUTA.pdf';
+function OpenDocument(documentID) {
+    $.ajax({
+        url: "/QueueDetails/GetDocumentPath",
+        type: "GET",
+        datatype: "json",
+        data: { documentID: documentID },
+        success: function (data) {
+            if (data.DocumentPath) {
+                // check if the section is already extended  to prevent opening the window another time when collapsing the panel
+                if (!$('#queueDetailsCommand').hasClass('collapsed')) {
+                    window.open(data.DocumentPath, "_blank", "", true);
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
-
+function QueueDetailsCommandClick() {
+    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
+        if (index > 0 && element.checked) {
+            DisplayQueueDetails(this.value, this.getAttribute('data-docid'));
+            return;
+        }
+    });
 }

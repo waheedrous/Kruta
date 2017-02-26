@@ -51,5 +51,17 @@ namespace HPE.Kruta.Web.Controllers
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetDocumentPath(string documentID)
+        {
+            string documentPath = null;
+            if (!string.IsNullOrWhiteSpace(documentID))
+            {
+                DocumentManager documentManager = new DocumentManager();
+                documentPath = documentManager.GetDocumentPath(int.Parse(documentID));
+            }
+            return Json(new { DocumentPath = documentPath }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
