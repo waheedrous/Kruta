@@ -54,9 +54,18 @@ function toggleSelectAll(table) {
 
     // handle the queue detail button appearance and behavior
     var queueDetailsCommand = $('#queueDetailsCommand');
-    if (checkedCount == 1) {
-        if (queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.removeClass('disabled');
+    if (selectallCheckbox.prop('checked') == false) {
+        if (checkedCount == 1) {
+            if (queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.removeClass('disabled');
+            }
+        }
+        else {
+            if (!queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.addClass('disabled');
+                // hide the queue detail section when disabling the button
+                $('#queueDetailsSection').collapse('hide');
+            }
         }
     }
     else {
