@@ -1,4 +1,4 @@
-namespace HPE.Kruta.Model
+            namespace HPE.Kruta.Model
 {
     using System;
     using System.Collections.Generic;

@@ -1,9 +1,12 @@
 ﻿@model HPE.Kruta.Model.Queue
 
-
-
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@System.Web.Optimization.Scripts.Render("~/Scripts/DocumentQueue.js")
 <div class="container-collapse">
 
+   
     <a href="#demo" class="btn btn-info custom-queueDetailsCommand" data-toggle="collapse" id="queueDetailsCommand">Queue Details</a>
     <div id="demo" class="collapse custom-demo">
         <div class="container-fluid">
@@ -72,21 +75,21 @@
                     <div class="inner" style="background-color: #D1D8E9">
                         <div class="dropdown custom-docstatusdropdown">
                             Document Status:
-                       <div class="btn-group">
-                           <button class="btn btn-primary dropdown-toggle custom-drp" type="button" data-toggle="dropdown">
-                               Not Reviewed
-                                        <span class="caret"></span>
-                           </button>
-                           <ul class="dropdown-menu" style="background-color: #F1F3F9">
-                               <li><a href="#">Verify</a></li>
-                               <li><a href="#">Unverify</a></li>
-                               <li><a href="#">Discarded</a></li>
-                           </ul>
+                    
+                          @Html.DropDownList("QueueStatuses")
+
+                            @Html.TextArea("Notes")
+
+                           <br />
+
+                           <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus()"  class="btn btn-info custom-btn-SR"/>
+                         
+
+                       
                        </div>
                         </div>
                         <div class="SR-btn-group">
-                            <button id="Save" type="button" class="btn btn-info custom-btn-SR">
-                                Save</button>
+                           
                             <button id="Route" type="button" class="btn btn-info custom-btn-SR"
                                 data-toggle="modal" data-target="#routeModal">
                                 Route</button>
@@ -142,3 +145,38 @@
 
     </div>
 </div>
+
+<script>
+    function SaveQueueStatus()
+    {
+
+        var noteVal = $('#Notes').val();
+        var statusVal = $('#QueueStatuses').val();
+        
+        SubmitQueueStatus(@Model.QueueID ,statusVal, noteVal);
+
+    }
+
+    function SubmitQueueStatus(queueIDVal, status, note) {
+        $.ajax({
+            url: '/QueueDetails/SaveStatus',
+            contentType: "application/json; charset=utf-8",
+            type: 'GET',
+            dataType: 'json',
+            data: {queueID : queueIDVal, queueStatusID: status, notes: note },
+            success: function (data) {
+                if (data.Success) {
+                    alert('Status Successfully Changed!')
+                    //ShowInformationModal('Notification', 'Status saved successfully.');   
+                }
+            
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.responseText);
+            }
+        });
+     
+    }
+        
+ 
+</script>

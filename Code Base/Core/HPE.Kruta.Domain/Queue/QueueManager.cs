@@ -133,6 +133,21 @@ namespace HPE.Kruta.Domain
             }
         }
 
+        public int UpdateQueueStatus(int queueID, int queueStatusID)
+        {
+            using (var db = new ModelDBContext())
+            {
+                var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
+
+                currentQueue.QueueStatusID = queueStatusID;
+
+                db.SaveChanges();
+
+            }
+
+            return queueID;
+        }
+
     }
 
 

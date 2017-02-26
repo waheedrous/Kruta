@@ -11,11 +11,11 @@ namespace HPE.Kruta.Domain
     public class QueueNoteManager
     {
 
-        public int Add(int queueID, string note)
+        public int Add(int queueID, string note, int employeeID)
         {
             //todo: get employee id from session
 
-            QueueNote queueNote = new QueueNote() { QueueID = queueID, Note = note, CreatedOn = DateTime.Now, CreatedBy = 2 };
+            QueueNote queueNote = new QueueNote() { QueueID = queueID, Note = note, CreatedOn = DateTime.Now, CreatedBy = employeeID };
 
             using (var db = new ModelDBContext())
             {
