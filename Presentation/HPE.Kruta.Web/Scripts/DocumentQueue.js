@@ -132,14 +132,14 @@ function RefreshDocumentQueue() {
     $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
 
-function DisplayQueueDetails(queueID) {
+function DisplayQueueDetails(queueID, documentID) {
     $.ajax({
         url: "/QueueDetails/DisplayQueueDetails",
         type: "GET",
         datatype: "json",
         data: { queueID: queueID },
         success: function (data) {
-            doDisplayQueueDetails(data);
+            doDisplayQueueDetails(data, documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
@@ -147,10 +147,22 @@ function DisplayQueueDetails(queueID) {
     });
 }
 
-function doDisplayQueueDetails(data) {
-    $('#QueueDetailsSection').html(data);
+function doDisplayQueueDetails(dataToDisplay, documentID) {
+    $('#QueueDetailsSection').html(dataToDisplay);
     $('#queueDetailsCommand').click();
-    var docPath = '/App_Data/KRUTA.pdf';
 
-
+    $.ajax({
+        url: "/QueueDetails/GetDocumentPath",
+        type: "GET",
+        datatype: "json",
+        data: { documentID: documentID },
+        success: function (data) {
+            if (data.DocumentPath) {
+                window.open(data.DocumentPath, "_blank", "", true);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+        }
+    });
 }

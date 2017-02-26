@@ -21,11 +21,7 @@ namespace HPE.Kruta.Domain
 
             string documentsFolder =  Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "../../Documents/"));
 
-            string newFilePath = documentsFolder + documentNumber + ".pdf";
-
-            File.Copy(documentsFolder + "sample10.pdf", newFilePath, true);
-
-            return newFilePath;
+            return @"\Documents\2017-123.pdf";
         }
     }
 }

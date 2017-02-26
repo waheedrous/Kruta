@@ -1,4 +1,5 @@
-﻿using HPE.Kruta.Model;
+﻿using HPE.Kruta.Domain;
+using HPE.Kruta.Model;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -26,6 +27,18 @@ namespace HPE.Kruta.Web.Controllers
             //result.Data = serializer.Serialize(queueModel);
 
             //return result;
+        }
+
+        [HttpGet]
+        public ActionResult GetDocumentPath(string documentID)
+        {
+            string documentPath = null;
+            if (!string.IsNullOrWhiteSpace(documentID))
+            {
+                DocumentManager documentManager = new DocumentManager();
+                documentPath = documentManager.GetDocumentPath(int.Parse(documentID));
+            }
+            return Json(new { DocumentPath = documentPath }, JsonRequestBehavior.AllowGet);
         }
     }
 }
