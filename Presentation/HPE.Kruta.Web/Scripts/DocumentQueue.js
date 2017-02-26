@@ -7,7 +7,7 @@
 function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
-    //$("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
+    $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
 }
 
 function AttachToggleSelectAll() {
@@ -52,6 +52,7 @@ function toggleSelectAll(table) {
         }
     }
 
+    // handle the queue detail button appearance and behavior
     var queueDetailsCommand = $('#queueDetailsCommand');
     if (checkedCount == 1) {
         if (queueDetailsCommand.hasClass('disabled')) {
@@ -61,6 +62,8 @@ function toggleSelectAll(table) {
     else {
         if (!queueDetailsCommand.hasClass('disabled')) {
             queueDetailsCommand.addClass('disabled');
+            // hide the queue detail section when disabling the button
+            $('#queueDetailsSection').collapse('hide');
         }
     }
 }
@@ -152,7 +155,8 @@ function DisplayQueueDetails(queueID, documentID) {
         datatype: "json",
         data: { queueID: queueID },
         success: function (data) {
-            doDisplayQueueDetails(data, documentID);
+            $('#queueDetailsSection').html(data);
+            OpenDocument(documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
@@ -160,10 +164,7 @@ function DisplayQueueDetails(queueID, documentID) {
     });
 }
 
-function doDisplayQueueDetails(dataToDisplay, documentID) {
-    $('#QueueDetailsSection').html(dataToDisplay);
-    $('#queueDetailsCommand').click();
-
+function OpenDocument(documentID) {
     $.ajax({
         url: "/QueueDetails/GetDocumentPath",
         type: "GET",
@@ -171,7 +172,10 @@ function doDisplayQueueDetails(dataToDisplay, documentID) {
         data: { documentID: documentID },
         success: function (data) {
             if (data.DocumentPath) {
-                window.open(data.DocumentPath, "_blank", "", true);
+                // check if the section is already extended  to prevent opening the window another time when collapsing the panel
+                if (!$('#queueDetailsCommand').hasClass('collapsed')) {
+                    window.open(data.DocumentPath, "_blank", "", true);
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -180,11 +184,10 @@ function doDisplayQueueDetails(dataToDisplay, documentID) {
     });
 }
 
-function QueueDetailsCommandClick()
-{
+function QueueDetailsCommandClick() {
     $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0 && element.checked) {
-            //DisplayQueueDetails(this.value, this.getAttribute('data-docid'));
+            DisplayQueueDetails(this.value, this.getAttribute('data-docid'));
             return;
         }
     });
