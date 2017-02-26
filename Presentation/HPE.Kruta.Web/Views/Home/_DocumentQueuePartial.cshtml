@@ -24,7 +24,7 @@
       .Columns(columns =>
       {
           columns.Bound(c => c.QueueID)
-                 .ClientTemplate("<input type='checkbox' id='chkSelect' value='#= QueueID #' />")
+                 .ClientTemplate("<input type='checkbox' id='chkSelect' value='#= QueueID #' data-docid='#= DocumentID #' />")
                  .Filterable(cc => cc.Enabled(false))
                  .Width(30)
                  .Title("")

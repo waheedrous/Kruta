@@ -7,6 +7,7 @@
 function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
+    //$("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
 }
 
 function AttachToggleSelectAll() {
@@ -38,16 +39,28 @@ function toggleSelectAll(table) {
     }
 
     var selectallCheckbox = $('input[id=chkSelectAll]');
+    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
     if (selectallCheckbox) {
         var checkboxCount = table.find('input[id*=chkSelect]').length;
-        var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
         if (checkedCount == checkboxCount) {
             selectallCheckbox.prop('checked', true);
         }
         else {
             selectallCheckbox.prop('checked', false);
+        }
+    }
+
+    var queueDetailsCommand = $('#queueDetailsCommand');
+    if (checkedCount == 1) {
+        if (queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.removeClass('disabled');
+        }
+    }
+    else {
+        if (!queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.addClass('disabled');
         }
     }
 }
@@ -163,6 +176,16 @@ function doDisplayQueueDetails(dataToDisplay, documentID) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+        }
+    });
+}
+
+function QueueDetailsCommandClick()
+{
+    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
+        if (index > 0 && element.checked) {
+            //DisplayQueueDetails(this.value, this.getAttribute('data-docid'));
+            return;
         }
     });
 }
