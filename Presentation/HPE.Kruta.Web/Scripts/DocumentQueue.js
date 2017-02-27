@@ -110,15 +110,17 @@ function asyncShowConfirmModal(yesFunction, noFunction) {
 function yesFunction() {
     // call the assign method
     // show the succss informaion
-    var selectedQueueIdsTemp = [];
+    var selectedQueueIds = [];
     $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0 && element.checked) {
-            selectedQueueIdsTemp.push(element.value);
+            selectedQueueIds.push(element.value);
         }
     });
 
-    var selectedQueueIds = selectedQueueIdsTemp.join(', ');
+    //var selectedQueueIds = selectedQueueIds.join(', ');
     var empId = $('#routingControlStaffList :selected').val();
+
+    jQuery.ajaxSettings.traditional = true
 
     $.ajax({
         url: "/DocumentQueue/Queues_BatchAssign",
@@ -165,7 +167,7 @@ function DisplayQueueDetails(queueID, documentID) {
         data: { queueID: queueID },
         success: function (data) {
             $('#queueDetailsSection').html(data);
-           // OpenDocument(documentID);
+            // OpenDocument(documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
@@ -198,6 +200,36 @@ function QueueDetailsCommandClick() {
         if (index > 0 && element.checked) {
             DisplayQueueDetails(this.value, this.getAttribute('data-docid'));
             return;
+        }
+    });
+}
+
+function SaveQueueStatus() {
+
+    var noteVal = $('#Notes').val();
+    var statusVal = $('#QueueStatuses').val();
+    var modelIDVal = $('#modelIDVal').val();
+    var documentIDVal = $('#documentIDVal').val();
+
+    SubmitQueueStatus(modelIDVal, documentIDVal, statusVal, noteVal);
+}
+
+function SubmitQueueStatus(queueIDVal, documentIDVal, status, note) {
+    $.ajax({
+        url: '/QueueDetails/SaveStatus',
+        contentType: "application/json; charset=utf-8",
+        type: 'GET',
+        dataType: 'json',
+        data: { queueID: queueIDVal, queueStatusID: status, notes: note },
+        success: function (data) {
+            if (data.Success) {
+                DisplayQueueDetails(queueIDVal, documentIDVal);
+                RefreshDocumentQueue();
+                ShowInformationModal('Notification', 'Status saved successfully.');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
         }
     });
 }

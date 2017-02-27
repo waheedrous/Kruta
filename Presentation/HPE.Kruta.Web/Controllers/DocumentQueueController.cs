@@ -17,7 +17,6 @@ namespace HPE.Kruta.Web.Controllers
             return View();
         }
 
-        //[HttpGet]
         public ActionResult Queues_Read([DataSourceRequest]DataSourceRequest request)
         {
             IQueryable<Queue> queues = this._queueManager.List(true).AsQueryable();
@@ -30,20 +29,15 @@ namespace HPE.Kruta.Web.Controllers
                 });
 
             return Content(list, "application/json");
-
-            //return Json(result, JsonRequestBehavior.AllowGet);
-            //return Json(result);
         }
 
         [HttpGet]
-        public ActionResult Queues_BatchAssign(string selectedQueueIds, string empId)
+        public ActionResult Queues_BatchAssign(List<int> selectedQueueIds, int empId)
         {
-            if (string.IsNullOrWhiteSpace(selectedQueueIds) || string.IsNullOrWhiteSpace(empId))
+            if (selectedQueueIds == null || selectedQueueIds.Count == 0 || empId == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-            List<int> queueIds = selectedQueueIds.Split(',').Select(int.Parse).ToList();
-
-            this._queueManager.AssignEmployeeBulk(queueIds, int.Parse(empId));
+            this._queueManager.AssignEmployeeBulk(selectedQueueIds, empId);
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
