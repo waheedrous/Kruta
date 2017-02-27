@@ -15,13 +15,13 @@ function AttachToggleSelectAll() {
         toggleSelectAll($(this).closest('table'));
 
         //Select the grid row when checking one of the checkboxes
-        var cb = $(this);
-        if (cb.prop('checked')) {
-            cb.closest('tr').addClass('k-state-selected');
-        }
-        else {
-            cb.closest('tr').removeClass('k-state-selected');
-        }
+        //var cb = $(this);
+        //if (cb.prop('checked')) {
+        //    cb.closest('tr').addClass('k-state-selected');
+        //}
+        //else {
+        //    cb.closest('tr').removeClass('k-state-selected');
+        //}
     })
 }
 
