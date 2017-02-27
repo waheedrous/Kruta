@@ -1,7 +1,9 @@
 namespace HPE.Kruta.Model
 {
+    using Newtonsoft.Json;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
+
 
     [Serializable]
     [Table("QueueHistory")]
@@ -9,7 +11,7 @@ namespace HPE.Kruta.Model
     {
         public int QueueHistoryID { get; set; }
 
-        public int? QueneID { get; set; }
+        public int? QueueID { get; set; }
 
         public int? RoutedToDepartmentID { get; set; }
 
@@ -19,12 +21,16 @@ namespace HPE.Kruta.Model
 
         public DateTime? EventDatetime { get; set; }
 
+        [JsonIgnore]
         public virtual Department Department { get; set; }
 
+        [JsonIgnore]
         public virtual Department Department1 { get; set; }
 
+        [JsonIgnore]
         public virtual Employee Employee { get; set; }
 
+        [JsonIgnore]
         public virtual Queue Queue { get; set; }
     }
 }

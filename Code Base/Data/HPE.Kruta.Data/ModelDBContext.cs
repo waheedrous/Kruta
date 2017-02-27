@@ -35,15 +35,20 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.DepartmentName)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<Department>()
-            //    .HasMany(e => e.QueueHistories)
-            //    .WithOptional(e => e.Department)
-            //    .HasForeignKey(e => e.RoutedToDepartmentID);
+            modelBuilder.Entity<Department>()
+                .HasMany(e => e.QueueHistories)
+                .WithOptional(e => e.Department)
+                .HasForeignKey(e => e.RoutedToDepartmentID);
 
-            //modelBuilder.Entity<Department>()
-            //    .HasMany(e => e.QueueHistories1)
-            //    .WithOptional(e => e.Department1)
-            //    .HasForeignKey(e => e.RoutedFromDepartmentID);
+            modelBuilder.Entity<Department>()
+                .HasMany(e => e.QueueHistories1)
+                .WithOptional(e => e.Department1)
+                .HasForeignKey(e => e.RoutedFromDepartmentID);
+
+            modelBuilder.Entity<Queue>()
+                .HasMany(e => e.QueueHistories)
+                .WithOptional(e => e.Queue)
+                .HasForeignKey(e => e.QueueID);
 
             modelBuilder.Entity<Document>()
                 .Property(e => e.DocumentNumber)
@@ -79,10 +84,10 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.UserName)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<Employee>()
-            //    .HasMany(e => e.QueueHistories)
-            //    .WithOptional(e => e.Employee)
-            //    .HasForeignKey(e => e.AssignedFromEmployeeID);
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.QueueHistories)
+                .WithOptional(e => e.Employee)
+                .HasForeignKey(e => e.AssignedFromEmployeeID);
 
             modelBuilder.Entity<Property>()
                 .Property(e => e.ParcelNumber)
@@ -110,10 +115,10 @@ namespace HPE.Kruta.DataAccess
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<QueueStatus>()
-            //    .HasMany(e => e.Queues)
-            //    .WithOptional(e => e.QueueStatus)
-            //    .HasForeignKey(e => e.QueueStatusID);
+            modelBuilder.Entity<QueueStatus>()
+                .HasMany(e => e.Queues)
+                .WithOptional(e => e.QueueStatus)
+                .HasForeignKey(e => e.QueueStatusID);
 
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.QueueNotes)

@@ -113,7 +113,7 @@ namespace HPE.Kruta.Domain
                 var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
 
                 var queueHistory = new QueueHistory();
-                queueHistory.QueneID = queueID;
+                queueHistory.QueueID = queueID;
                 queueHistory.RoutedFromDepartmentID = currentQueue.DepartmentID;
                 queueHistory.RoutedToDepartmentID = departmentID;
                 queueHistory.AssignedFromEmployeeID = currentQueue.EmployeeID;
