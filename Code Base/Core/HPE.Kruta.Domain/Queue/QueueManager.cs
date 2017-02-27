@@ -17,7 +17,7 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 if (includeDetails)
-                {   
+                {
                     var query = db.Queues.Where(q => q.QueueID == queueID)
                         .Include(q => q.Document)
                         .Include(q => q.Document.DocumentStatus)
@@ -29,7 +29,7 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.Employee)
                         .Include(q => q.QueueNotes.Select(qn => qn.Employee));
                     //.First();
-                    queue = query.First(); 
+                    queue = query.First();
 
                 }
                 else
@@ -106,40 +106,34 @@ namespace HPE.Kruta.Domain
             }
         }
 
-        public void RouteQueueBulk(List<int> queueIDs, int departmentID, int employeeID)
-        {
-            using (var db = new ModelDBContext())
-            {
-                var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
-
-                foreach (Queue q in queueList)
-                {
-                    var queueHistory = new QueueHistory();
-                    queueHistory.QueneID = q.QueueID;
-                    queueHistory.RoutedFromDepartmentID = q.DepartmentID;
-                    queueHistory.RoutedToDepartmentID = departmentID;
-                    queueHistory.AssignedFromEmployeeID = employeeID;
-                    queueHistory.EventDatetime = DateTime.Now;
-
-                    db.QueueHistories.Add(queueHistory);
-
-
-                    q.DepartmentID = departmentID;
-
-                }
-
-                db.SaveChanges();
-
-            }
-        }
-
-        public int UpdateQueueStatus(int queueID, int queueStatusID)
+        public void RouteQueue(int queueID, int departmentID)
         {
             using (var db = new ModelDBContext())
             {
                 var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
 
-                currentQueue.QueueStatusID = queueStatusID;
+                var queueHistory = new QueueHistory();
+                queueHistory.QueneID = queueID;
+                queueHistory.RoutedFromDepartmentID = currentQueue.DepartmentID;
+                queueHistory.RoutedToDepartmentID = departmentID;
+                queueHistory.AssignedFromEmployeeID = currentQueue.EmployeeID;
+                queueHistory.EventDatetime = DateTime.Now;
+
+                db.QueueHistories.Add(queueHistory);
+
+                currentQueue.DepartmentID = departmentID;
+
+                db.SaveChanges();
+            }
+        }
+
+        public int UpdateQueueDocumentStatus(int queueID, int documentStatusID)
+        {
+            using (var db = new ModelDBContext())
+            {
+                var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
+
+                currentQueue.Document.DocumentStatusID = documentStatusID;
 
                 db.SaveChanges();
 
@@ -147,8 +141,5 @@ namespace HPE.Kruta.Domain
 
             return queueID;
         }
-
     }
-
-
 }

@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property\Department.cs" />
     <Compile Include="Property\Document.cs" />
-    <Compile Include="Property\DocumentStatu.cs" />
+    <Compile Include="Property\DocumentStatus.cs" />
     <Compile Include="Property\DocumentSubType.cs" />
     <Compile Include="Property\DocumentType.cs" />
     <Compile Include="Property\Employee.cs" />

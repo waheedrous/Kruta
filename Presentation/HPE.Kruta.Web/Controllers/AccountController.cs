@@ -36,8 +36,8 @@ namespace HPE.Kruta.Web.Controllers
                 return View(model);
             }
 
-            UserManager userManager = new UserManager();
-            var user = userManager.VerifyUser(model.Username, model.Password);
+            //UserManager userManager = new UserManager();
+            var user = _userManager.VerifyUser(model.Username, model.Password);
 
             if (user != null)
             {

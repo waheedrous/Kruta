@@ -68,20 +68,19 @@
                         <div class="dropdown custom-docstatusdropdown">
                             Document Status:
                     
-                            @if (ViewBag.QueueStatuses != null)
+                            @if (ViewBag.DocumentStatuses != null)
                             {
-                                @Html.DropDownList("QueueStatuses")
+                                @Html.DropDownList("DocumentStatuses")
                                 @Html.Hidden("modelIDVal", Model.QueueID);
                                 @Html.Hidden("documentIDVal", Model.DocumentID);
                             }
 
-                            @*@Html.DropDownList("QueueStatuses", ViewBag.QueueStatuses as SelectList, new { @class = "form-control form-control-custom", @id = "Value" })*@
                             @Html.TextArea("Notes")
 
                            <br />
 
-                           <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus()"  class="btn btn-info custom-btn-SR"/>
-                            <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="" class="btn btn-info custom-btn-SR" />
+                           <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();"  class="btn btn-info custom-btn-SR"/>
+                            <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn btn-info custom-btn-SR" />
                        
 
                        
@@ -114,26 +113,17 @@
                     <form>
                         <div class="form-group">
                             <label for="departments">Departments:</label>
-                            <select class="form-control form-control-custom" id="departments">
-                                <option value="ar" selected="selected">ARCC</option>
-                                <option value="ac">A&C</option>
-                                <option value="ttc">TTC</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="departmentStaff">Department Staff:</label>
-                            <select class="form-control form-control-custom" id="departmentStaff">
-                                <option value="tianxuLi" selected="selected">Tianxu Li</option>
-                                <option value="mehmetTumer">Mehmet Tumer</option>
-                                <option value="harshitaPrakash">Harshita Prakash</option>
-                            </select>
+                            @if (ViewBag.DepartmentsList != null)
+                            {
+                                @Html.DropDownList("DepartmentsList", ViewBag.DepartmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                            }
                         </div>
                     </form>
                 </div>
                 <!-- Form End -->
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-warning custom-popupMain-Footer-Btn">Route</button>
+                <button type="submit" class="btn btn-warning custom-popupMain-Footer-Btn" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to route the current Document?');">Route</button>
             </div>
         </div>
         <!-- Modal Content End -->

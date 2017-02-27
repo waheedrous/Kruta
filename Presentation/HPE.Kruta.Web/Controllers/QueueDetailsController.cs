@@ -1,4 +1,5 @@
 ﻿using HPE.Kruta.Domain;
+using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Model;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,30 +22,21 @@ namespace HPE.Kruta.Web.Controllers
         {
             Queue queueModel = _queueManager.Get(queueID, true);
 
+            DocumentManager documentManager = new DocumentManager();
 
-            QueueStatusManager statusManager = new QueueStatusManager();
+            var documentStatuses = documentManager.ListDocumentStatus(false).OrderBy(o => o.Description);
+            ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
 
-            IEnumerable<SelectListItem> statusList = from s in statusManager.List()
-                                                     select new SelectListItem
-                                                     {
-                                                         Selected = queueModel.QueueStatusID == s.QueueStatusID,
-                                                         Text = s.Description,
-                                                         Value = s.QueueStatusID.ToString()
-                                                     };
-
-            ViewBag.QueueStatuses = statusList;
-
-
+            var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
+            ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
 
             return PartialView("_QueueDetailsPartial", queueModel);
-
         }
 
-
         [HttpGet]
-        public ActionResult SaveStatus(int queueID, int queueStatusID, string notes )
+        public ActionResult SaveStatus(int queueID, int documentStatusID, string notes )
         {
-            _queueManager.UpdateQueueStatus(queueID, queueStatusID);
+            _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
 
             if (!string.IsNullOrEmpty(notes))
             {
@@ -56,15 +48,26 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetDocumentPath(string documentID)
+        public ActionResult GetDocumentPath(int documentID)
         {
             string documentPath = null;
-            if (!string.IsNullOrWhiteSpace(documentID))
+            if (documentID > 0)
             {
                 DocumentManager documentManager = new DocumentManager();
-                documentPath = documentManager.GetDocumentPath(int.Parse(documentID));
+                documentPath = documentManager.GetDocumentPath(documentID);
             }
             return Json(new { DocumentPath = documentPath }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult RouteQueue(int queueID, int departmentID)
+        {
+            if (queueID == 0 || departmentID == 0)
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            this._queueManager.RouteQueue(queueID, departmentID);
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

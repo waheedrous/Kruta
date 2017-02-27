@@ -84,14 +84,22 @@ function doAssign() {
     }
     else {
         // show the Assign Modal
-        var confirm = $("#assignModal");
+        var assignModal = $("#assignModal");
         $('#routingControlStaffList').prop('selectedIndex', 0);
-        confirm.modal('show');
+        assignModal.modal('show');
     }
 }
 
-function showConfirmModal() {
-    asyncShowConfirmModal(yesFunction, noFunction);
+function showAssignConfirmModal() {
+    asyncShowConfirmModal(yesAssignFunction, noFunction);
+}
+
+function showRouteConfirmModal(title, msg) {
+    $("#routeModal").modal("hide");
+    var confirmationModal = $("#confirmationModal");
+    confirmationModal.find("#confirmationModalTitle").html(title);
+    confirmationModal.find("#confirmationModalMessage").html(msg);
+    asyncShowConfirmModal(yesRouteFunction, noFunction);
 }
 
 function asyncShowConfirmModal(yesFunction, noFunction) {
@@ -107,7 +115,7 @@ function asyncShowConfirmModal(yesFunction, noFunction) {
     });
 }
 
-function yesFunction() {
+function yesAssignFunction() {
     // call the assign method
     // show the succss informaion
     var selectedQueueIds = [];
@@ -143,6 +151,33 @@ function yesFunction() {
 }
 function noFunction() {
     // nothing for now
+}
+
+function yesRouteFunction() {
+    // call the route method
+    // show the succss informaion
+
+    var queueID = $('#modelIDVal').val();
+    var departmentID = $('#departmentsList :selected').val();
+
+    $.ajax({
+        url: "/QueueDetails/RouteQueue",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        datatype: "json",
+        data: { queueID: queueID, departmentID: departmentID },
+        success: function (data) {
+            if (data.Success) {
+                ShowInformationModal('Notification', 'The selected document has been routed successfully.');
+                RefreshDocumentQueue();
+            } else {
+                ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+        }
+    });
 }
 
 function ShowInformationModal(title, msg) {
@@ -207,23 +242,19 @@ function QueueDetailsCommandClick() {
 function SaveQueueStatus() {
 
     var noteVal = $('#Notes').val();
-    var statusVal = $('#QueueStatuses').val();
+    var statusVal = $('#DocumentStatuses').val();
     var modelIDVal = $('#modelIDVal').val();
     var documentIDVal = $('#documentIDVal').val();
 
-    SubmitQueueStatus(modelIDVal, documentIDVal, statusVal, noteVal);
-}
-
-function SubmitQueueStatus(queueIDVal, documentIDVal, status, note) {
     $.ajax({
         url: '/QueueDetails/SaveStatus',
         contentType: "application/json; charset=utf-8",
         type: 'GET',
         dataType: 'json',
-        data: { queueID: queueIDVal, queueStatusID: status, notes: note },
+        data: { queueID: modelIDVal, documentStatusID: statusVal, notes: noteVal },
         success: function (data) {
             if (data.Success) {
-                DisplayQueueDetails(queueIDVal, documentIDVal);
+                DisplayQueueDetails(modelIDVal, documentIDVal);
                 RefreshDocumentQueue();
                 ShowInformationModal('Notification', 'Status saved successfully.');
             }
@@ -232,4 +263,11 @@ function SubmitQueueStatus(queueIDVal, documentIDVal, status, note) {
             console.log(xhr.responseText);
         }
     });
+}
+
+function SaveRouteStatus() {
+    // show the route modal
+    var routeModal = $("#routeModal");
+    routeModal.find('#departmentsList').prop('selectedIndex', 0);
+    routeModal.modal('show');
 }
