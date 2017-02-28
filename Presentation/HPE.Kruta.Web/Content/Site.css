@@ -51,14 +51,8 @@ footer {
 .custom-navbar .open > a,
 .custom-navbar .open > a:hover,
 .custom-navbar .open > a:focus {
-    background-color: #2E3D5E;
+    background-color: #496197;
     color: white;
-    font-size: 20px;
-    -webkit-transition: font 0.5s ease;
-    -moz-transition: font 0.5s ease;
-    -o-transition: font 0.5s ease;
-    -ms-transition: font 0.5s ease;
-    transition: font 0.5s ease;
     
 }
 
@@ -66,15 +60,24 @@ footer {
     background-color: #2E3D5E;
 }
 
+.dropdown-menu > li {
+    margin-top: 10px;
+}
+
 .navbar-brand {
+    margin-right: 30px;
     font-size: 2em;
     color: white;
-    margin-right: 30px;
+}
+
+.navbar-header {
+    padding-left: 45px;
+    
 }
 
 .custom-navbar ul.navbar-right > li > a,
 .custom-navbar ul.navbar-right > li > p {
-    color: lightgray;
+    color: white;
     margin-right: 15px;
 }
 
@@ -90,8 +93,18 @@ footer {
 
 .custom-body {
     padding-right: 60px;
-    padding-left: 135px
+    padding-left: 60px
 }
+
+
+
+
+
+
+
+
+
+
 
 html {
   overflow-y: scroll;
@@ -121,17 +134,28 @@ html {
 .row {
         overflow: hidden;
         border-left-width: 100px;
+        padding-top:10px;
     }
 
-.custom-queueDetailsSection {
+.custom-queueDetails {
     background-color:#D1D8E9;
     
     }
 .custom-queueDetailsCommand {
     background-color: #2E3D5E;
     border: hidden;
+    color: white; 
+    text-align: center; 
     }
-
+.cust-bn:hover,
+.cust-bn:focus {
+    background-color: #2E3D5E;
+    color:white;
+}
+/*.cust-bn:active {
+    background-color: #2E3D5E;
+    color:white;
+}*/
 .custom-inner {
     border:solid; 
     border-color:#91A2C9; 
@@ -140,12 +164,15 @@ html {
 .custom-row-1 {
     padding-right: 20px;
     padding-left: 20px;
-    box-shadow: 0px 24px 3px -24px #91A2C9;
+    box-shadow: 0px 15px 3px -15px #91A2C9;
+    height:40px;
+    padding-top:3px;
     }
 
 .custom-row-2 {
     padding-right: 20px; 
     padding-left: 20px;
+    padding-top:15px;
     }
 
 .custom-docstatusdropdown {
@@ -162,8 +189,8 @@ html {
     float: left;
     }
 .SR-btn-group {
-    padding-top: 35%; 
-    padding-left: 30%
+    padding-top: 33%; 
+    padding-left: 1%;
     }
 
 .custom-btn-SR{
@@ -172,8 +199,12 @@ html {
     color: white; 
     text-align: center; 
     padding: 8px 25px; 
-    font-size: 16px;
+    font-size: 16px;  
 }
+.cust-warning:hover{
+    background-color: #8CBA26;
+}
+
 
 
 /*The following styling is for DOcument Queue Container*/
@@ -208,9 +239,6 @@ html {
 }
 
 
-
-
-
 /*Queue Detail Grid and button*/
 
 
@@ -228,10 +256,13 @@ html {
     float:left;
     color:#2E3D5E;
     padding-top:1%;
+    font-size:14px;
+
 }
 
 .custom-btnGrup {
     padding-bottom:5px;
+    padding-left:10px
 }
 
 .custom-popupMain {
@@ -267,4 +298,10 @@ padding-top:15%;
     background-color:#91A2C9;
     padding: 8px 30px;
 
+}
+.custom-text-right {
+
+padding-top:10px;
+padding-left:0px;
+padding-right:0px;
 }

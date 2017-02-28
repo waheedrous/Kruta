@@ -219,6 +219,10 @@ function DisplayQueueDetails(queueID, documentID) {
     });
 }
 
+
+var childWindow;       // variable to hold the opened window.
+var currentDocNumber = "";  // variable to store the previous document number.
+
 function OpenDocument(documentID) {
     $.ajax({
         url: "/QueueDetails/GetDocumentPath",
@@ -229,7 +233,19 @@ function OpenDocument(documentID) {
             if (data.DocumentPath) {
                 // check if the section is already extended  to prevent opening the window another time when collapsing the panel
                 if (!$('#queueDetailsCommand').hasClass('collapsed')) {
-                    window.open(data.DocumentPath, "_blank", "", true);
+                    //alert(window.closed.toString());
+
+                    if (currentDocNumber == "") {                                           // open new tab/window if it's the 1st time opening the new tab/window.
+                        childWindow = window.open(data.DocumentPath, "_blank", "", true);
+                    }
+                    else if (childWindow.closed) {                                         // in case the opened tab/window was closed open a new one.
+                        childWindow = window.open(data.DocumentPath, "_blank", "", true);
+                    }
+                    else if (currentDocNumber != documentID && !childWindow.closed) {      // refresh the opened tab/window with new URL.
+                        childWindow.location.href = data.DocumentPath;
+                    }
+
+                    currentDocNumber = documentID;                                         // store the prior document number.
                 }
             }
         },

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HPE.Kruta.Domain;
 
 namespace HPE.KRUTA.UnitTest
 {
@@ -9,6 +10,9 @@ namespace HPE.KRUTA.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            DocumentManager doc = new DocumentManager();
+            var result = doc.GetDocumentPath(3);
+            Assert.IsNull(result);
         }
     }
 }
