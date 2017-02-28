@@ -1,4 +1,5 @@
-﻿using HPE.Kruta.DataAccess;
+﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,6 @@ namespace HPE.Kruta.Domain
 {
     public class QueueManager
     {
-        public const string ASSIGNED_QUEUE_STATUS = "Assigned";
-
         public Queue Get(int queueID, bool includeDetails)
         {
             Queue queue;
@@ -90,14 +89,15 @@ namespace HPE.Kruta.Domain
         {
             using (var db = new ModelDBContext())
             {
-                var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
-                var assignedQueueStatus = db.QueueStatus.FirstOrDefault(q => string.Compare(q.Description, ASSIGNED_QUEUE_STATUS, StringComparison.OrdinalIgnoreCase) == 0);
+                var newQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.New);
 
-                if (assignedQueueStatus != null)
+                if (newQueueStatus != null)
                 {
+                    var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
+
                     foreach (Queue q in queueList)
                     {
-                        q.QueueStatusID = assignedQueueStatus.QueueStatusID;
+                        q.QueueStatusID = newQueueStatus.QueueStatusID;
                         q.EmployeeID = employeeID;
                     }
 

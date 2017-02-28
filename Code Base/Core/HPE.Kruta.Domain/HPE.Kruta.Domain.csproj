@@ -64,6 +64,10 @@
     <Compile Include="User\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HPE.Kruta.Common\HPE.Kruta.Common.csproj">
+      <Project>{bcac8f87-883d-4acf-b10d-7d1d58c69506}</Project>
+      <Name>HPE.Kruta.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\HPE.Kruta.Data\HPE.Kruta.DataAccess.csproj">
       <Project>{95bb07a7-1962-43a6-819a-c208edb7c1b1}</Project>
       <Name>HPE.Kruta.DataAccess</Name>
