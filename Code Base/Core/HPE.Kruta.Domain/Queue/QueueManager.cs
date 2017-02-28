@@ -90,19 +90,17 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 var newQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.New);
+                var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
 
-                if (newQueueStatus != null)
+                foreach (Queue q in queueList)
                 {
-                    var queueList = db.Queues.Where(q => queueIDs.Contains(q.QueueID)).ToList();
-
-                    foreach (Queue q in queueList)
-                    {
+                    if (newQueueStatus != null)
                         q.QueueStatusID = newQueueStatus.QueueStatusID;
-                        q.EmployeeID = employeeID;
-                    }
 
-                    db.SaveChanges();
+                    q.EmployeeID = employeeID;
                 }
+
+                db.SaveChanges();
             }
         }
 
@@ -122,6 +120,11 @@ namespace HPE.Kruta.Domain
                 db.QueueHistories.Add(queueHistory);
 
                 currentQueue.DepartmentID = departmentID;
+                currentQueue.EmployeeID = null;
+
+                var inProgressQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.InProgress);
+                if (inProgressQueueStatus != null)
+                    currentQueue.QueueStatusID = inProgressQueueStatus.QueueStatusID;
 
                 db.SaveChanges();
             }

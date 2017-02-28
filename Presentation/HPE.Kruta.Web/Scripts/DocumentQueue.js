@@ -168,17 +168,21 @@ function yesRouteFunction() {
 
     var queueID = $('#modelIDVal').val();
     var departmentID = $('#departmentsList :selected').val();
+    var noteVal = $('#Notes').val();
+    var statusVal = $('#DocumentStatuses').val();
+    var documentIDVal = $('#documentIDVal').val();
 
     $.ajax({
-        url: "/QueueDetails/RouteQueue",
+        url: "/QueueDetails/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        data: { queueID: queueID, departmentID: departmentID },
+        data: { queueID: queueID, departmentID: departmentID, documentStatusID: statusVal, notes: noteVal },
         success: function (data) {
             if (data.Success) {
-                ShowInformationModal('Notification', 'The selected document has been routed successfully.');
+                //DisplayQueueDetails(modelIDVal, documentIDVal);
                 RefreshDocumentQueue();
+                ShowInformationModal('Notification', 'The selected document has been routed successfully.');
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
             }

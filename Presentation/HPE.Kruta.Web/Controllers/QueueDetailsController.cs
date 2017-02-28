@@ -36,15 +36,24 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult SaveStatus(int queueID, int documentStatusID, string notes )
         {
-            _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
+            SaveStatusInternal(queueID, documentStatusID, notes);
 
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void SaveStatusInternal(int queueID, int documentStatusID, string notes)
+        {
+            _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
+            SaveNotes(queueID, notes);
+        }
+
+        private void SaveNotes(int queueID, string notes)
+        {
             if (!string.IsNullOrEmpty(notes))
             {
                 QueueNoteManager queueNoteManager = new QueueNoteManager();
                 queueNoteManager.Add(queueID, notes, LoggedInUserId);
             }
-
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -60,10 +69,12 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult RouteQueue(int queueID, int departmentID)
+        public ActionResult RouteQueueAndSave(int queueID, int departmentID, int documentStatusID, string notes)
         {
             if (queueID == 0 || departmentID == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            SaveStatusInternal(queueID, documentStatusID, notes);
 
             this._queueManager.RouteQueue(queueID, departmentID);
 
