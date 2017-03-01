@@ -8,6 +8,8 @@ function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
     $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
+    
+    
 }
 
 function AttachToggleSelectAll() {
@@ -315,13 +317,14 @@ function AddNote() {
         success: function (data) {
             if (data.Success) {
                 DisplayQueueDetails(modelIDVal, documentIDVal);
-                //ShowInformationModal('Notification', 'Note added successfully.');
+                RefreshDocumentQueue();
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
         }
     });
+    
 }
 
 function SaveRouteStatus() {
@@ -330,3 +333,4 @@ function SaveRouteStatus() {
     routeModal.find('#departmentsList').prop('selectedIndex', 0);
     routeModal.modal('show');
 }
+

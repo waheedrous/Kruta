@@ -51,5 +51,6 @@ namespace HPE.Kruta.Domain
 
             return documentStatuses;
         }
+
     }
 }

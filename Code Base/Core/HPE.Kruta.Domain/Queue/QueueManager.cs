@@ -138,6 +138,10 @@ namespace HPE.Kruta.Domain
 
                 currentQueue.Document.DocumentStatusID = documentStatusID;
 
+                var inProgressQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.InProgress);
+                if (inProgressQueueStatus != null)
+                    currentQueue.QueueStatusID = inProgressQueueStatus.QueueStatusID;
+
                 db.SaveChanges();
 
             }

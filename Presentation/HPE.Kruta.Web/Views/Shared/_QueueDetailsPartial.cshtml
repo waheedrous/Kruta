@@ -71,7 +71,7 @@
                     </div>
 
 
-                    <input value="Add" id="btnSubmit" name="btnSubmit" type="Submit" onclick="AddNote();" class="btn cust-warning custom-btn-SR" style="padding:6px 5px;margin-left:90px;font-size:8pt;width:40px;text-transform: capitalize" />
+                    <input value="Add" id="btnSubmit1" name="btnSubmit1" type="Submit" onclick="AddNote();" class="btn cust-warning custom-btn-SR" style="padding:6px 5px;margin-left:90px;font-size:8pt;width:40px;text-transform: capitalize" />
                 </div>
 
             </div>
@@ -83,17 +83,33 @@
 
                     @if (ViewBag.DocumentStatuses != null)
                     {
- @Html.DropDownList("DocumentStatuses")
- @Html.Hidden("modelIDVal", Model.QueueID);
- @Html.Hidden("documentIDVal", Model.DocumentID);
+                         @Html.DropDownList("DocumentStatuses")
+                         @Html.Hidden("modelIDVal", Model.QueueID);
+                         @Html.Hidden("documentIDVal", Model.DocumentID);
+                         @Html.Hidden("documentStatusVal", Model.Document.DocumentStatusID);
+
                     }
 
+                    <script>
 
+                        $(function () {
+                            $("#DocumentStatuses").change(function () {
+                                if ( $('#DocumentStatuses').val() !=  $('#documentStatusVal').val())
+                                {
+                                    $('#btnSubmit').attr('disabled', null);
+                                }
+                                else {
+                                    $('#btnSubmit').attr('disabled', 'disabled');
+                                }
+                            });
+                        });
+
+                    </script>
 
                     <br />
 
                     <div class="SR-btn-group ">
-                        <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR" />
+                        <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR" disabled="disabled" />
 
                         <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn cust-warning custom-btn-SR" />
                     </div>

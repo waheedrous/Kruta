@@ -1,4 +1,5 @@
-﻿using HPE.Kruta.DataAccess;
+﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,20 @@ namespace HPE.Kruta.Domain
 
         public int Add(int queueID, string note, int employeeID)
         {
-            //todo: get employee id from session
 
             QueueNote queueNote = new QueueNote() { QueueID = queueID, Note = note, CreatedOn = DateTime.Now, CreatedBy = employeeID };
 
             using (var db = new ModelDBContext())
             {
                 db.QueueNotes.Add(queueNote);
+
+                var inProgressQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.InProgress);
+                if (inProgressQueueStatus != null)
+                {
+                    var queue = db.Queues.Where(q => q.QueueID == queueID).First();
+                    queue.QueueStatusID = inProgressQueueStatus.QueueStatusID;
+
+                }
                 db.SaveChanges();
             }
 
