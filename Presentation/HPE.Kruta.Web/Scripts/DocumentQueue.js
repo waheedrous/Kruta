@@ -181,7 +181,7 @@ function yesRouteFunction() {
         success: function (data) {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
-                RefreshDocumentQueue();
+                RefreshDocumentQueue(modelIDVal);
                 ShowInformationModal('Notification', 'The selected document has been routed successfully.');
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
@@ -203,8 +203,14 @@ function ShowInformationModal(title, msg) {
     });
 }
 
-function RefreshDocumentQueue() {
-    $("#DocumentQueue").data("kendoGrid").dataSource.read();
+function RefreshDocumentQueue(optionalQueueID) {
+    var documentQueue = $("#DocumentQueue");
+    documentQueue.data("kendoGrid").dataSource.read();
+
+    if (optionalQueueID && optionalQueueID > 0) {
+        var selectedQ = documentQueue.find('input:checkbox[id=chkSelect][value=' + optionalQueueID + ']');
+        selectedQ.che
+    }
 }
 
 function DisplayQueueDetails(queueID, documentID) {
