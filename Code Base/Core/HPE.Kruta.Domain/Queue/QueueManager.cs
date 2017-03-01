@@ -1,6 +1,7 @@
 ﻿using HPE.Kruta.Common.Enum;
 using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
+using HPE.Kruta.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -41,7 +42,6 @@ namespace HPE.Kruta.Domain
 
         }
 
-
         public List<Queue> List(bool includeDetails)
         {
 
@@ -66,6 +66,50 @@ namespace HPE.Kruta.Domain
                 {
                     queues = db.Queues.ToList();
                 }
+            }
+
+            return queues;
+        }
+
+        public List<QueueWithSequence> ListWithSequence()
+        {
+
+            List<QueueWithSequence> queues;
+            using (var db = new ModelDBContext())
+            {
+                var queueList = db.Queues
+                        .Include(q => q.Document)
+                        .Include(q => q.Document.DocumentStatus)
+                        .Include(q => q.Document.DocumentSubType.DocumentType)
+                        .Include(q => q.Property)
+                        .Include(q => q.QueueStatus)
+                        .Include(q => q.Department)
+                        .Include(q => q.Employee)
+                        .ToList();
+
+
+
+                queues = queueList.Select((q, seq) =>
+                                        new QueueWithSequence { QueueID = q.QueueID,
+                                                                Sequence = seq + 1,
+                                                                DepartmentID = q.DepartmentID,
+                                                                DepartmentName =  q.Department?.DepartmentName,
+                                                                DocumentStatus = q.Document?.DocumentStatus?.Description,
+                                                                DocumentID = q.DocumentID,
+                                                                DocumentNumber = q.Document?.DocumentNumber,
+                                                                DocumentStatusID = q.Document?.DocumentStatusID,
+                                                                DocumentType = q.Document?.DocumentSubType?.DocumentType?.Description,
+                                                                EmployeeID = q.EmployeeID,
+                                                                EmployeeName = q.Employee?.EmployeeName,
+                                                                ParcelNumber = q.Property?.ParcelNumber,
+                                                                PropertyID = q.PropertyID,
+                                                                QueueStatus = q.QueueStatus?.Description,
+                                                                QueueStatusID = q.QueueStatusID,
+                                                                ReceivedDateTime = q.ReceivedDateTime,
+                                                                RecordedDateTime = q.Document?.RecordedDateTime
+
+                                        }).ToList();
+              
             }
 
             return queues;
