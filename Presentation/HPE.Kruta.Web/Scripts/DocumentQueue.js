@@ -309,7 +309,7 @@ function AddNote() {
         success: function (data) {
             if (data.Success) {
                 DisplayQueueDetails(modelIDVal, documentIDVal);
-                ShowInformationModal('Notification', 'Note added successfully.');
+                //ShowInformationModal('Notification', 'Note added successfully.');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
