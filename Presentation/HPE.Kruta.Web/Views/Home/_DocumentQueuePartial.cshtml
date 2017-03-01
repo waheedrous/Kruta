@@ -53,7 +53,8 @@
       .Pageable(pageable => pageable
                             .PageSizes(new string[] { "5", "10", "20", "50", "All" })
                             //.PageSizes(true)
-                            .ButtonCount(5))
+                            .ButtonCount(5)
+                            .Refresh(true))
       .DataSource(dataSource => dataSource
                                 .Ajax()
                                 .Sort(sort => sort.Add("QueueID").Ascending())
