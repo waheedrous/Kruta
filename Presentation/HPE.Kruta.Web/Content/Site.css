@@ -147,6 +147,7 @@ html {
     color: white; 
     text-align: center; 
     }
+
 .cust-bn:hover,
 .cust-bn:focus {
     background-color: #2E3D5E;
@@ -164,9 +165,9 @@ html {
 .custom-row-1 {
     padding-right: 20px;
     padding-left: 20px;
-    box-shadow: 0px 15px 3px -15px #91A2C9;
-    height:40px;
-    padding-top:3px;
+    box-shadow: 0px 10px 3px -10px #91A2C9;
+    height:35px;
+    padding-top:0.3px;
     }
 
 .custom-row-2 {
@@ -189,7 +190,7 @@ html {
     float: left;
     }
 .SR-btn-group {
-    padding-top: 33%; 
+    padding-top: 57%; 
     padding-left: 1%;
     }
 
@@ -198,14 +199,24 @@ html {
     background-color: #8CBA26; 
     color: white; 
     text-align: center; 
-    padding: 8px 25px; 
+    padding: 6px 25px; 
     font-size: 16px;  
 }
 .cust-warning:hover{
     background-color: #8CBA26;
 }
 
+.form-inline {
+    padding-left:5px;
+    padding-top:20px;
+   
+    }
 
+textarea {
+    resize: none;
+    width:150%;
+    max-width:450px;
+}
 
 /*The following styling is for DOcument Queue Container*/
 .k-grid-header .k-header {
@@ -246,7 +257,7 @@ html {
     border: none;
     background-color: #8CBA26;
     color:white;
-    padding: 8px 60px;
+    padding: 6px 40px;
     text-align: center;
     font-size: 16px;
     float: left;
@@ -256,7 +267,7 @@ html {
     float:left;
     color:#2E3D5E;
     padding-top:1%;
-    font-size:14px;
+    font-size:16px;
 
 }
 

@@ -1,20 +1,20 @@
 ﻿@model HPE.Kruta.Model.Queue
 
 
-        <div class="container-fluid">
-            <div class="row">
+<div class="container-fluid">
+    <div class="row">
 
-                <div class="col-sm-3">
-                    <div class="inner custom-inner">
-                        <div class="row custom-row-1">
-                            <h5 style="font-weight: 700 !important;">Document Details </h5>
-                            <br />
-                        </div>
-                        <div class="row custom-row-2">
-                            @if (Model != null && Model.Document != null)
-                            {
-                            <text>Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime)<br /></text>
-                            }
+        <div class="col-sm-3">
+            <div class="inner custom-inner">
+                <div class="row custom-row-1">
+                    <h5 style="font-weight: 700 !important;">Document Details </h5>
+                    <br />
+                </div>
+                <div class="row custom-row-2">
+                    @if (Model != null && Model.Document != null)
+                    {
+ <text>Recorded Date: @String.Format("{0:MM-dd-yyyy}", Model.Document.RecordedDateTime)<br /></text>
+                    }
                     Document Number: @Html.DisplayFor(m => m.Document.DocumentNumber)<br />
                     Document Type: @Html.DisplayFor(m => m.Document.DocumentSubType.DocumentType.Description)<br />
                     <br />
@@ -43,61 +43,73 @@
             <div class="inner custom-inner">
                 <div class="row custom-row-1">
                     <h5 style="font-weight: 700 !important;">Notes</h5>
-                    <br/>
+                    <br />
                 </div>
-                <div class="row custom-row-2" style="overflow-y: scroll; height:100px;">
+                <div class="row custom-row-2" style="overflow-y: scroll; overflow-y: auto; height: 100px;width:340px;box-shadow: 0px 15px 3px -15px #91A2C9;">
                     @if (Model != null && Model.QueueNotes != null)
-                            {
-                                foreach (var note in Model.QueueNotes)
-                                {
-                            <table>
-                                <tr>
-                                    <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", note.Employee.EmployeeName, note.CreatedOn, note.Note)</td>
+                    {
+                        foreach (var note in Model.QueueNotes)
+                        {
+
+                        <table>
+                            <tr>
+                                <td>@string.Format("{0} {1:MM-dd-yyyy hh:mm}: {2}", note.Employee.EmployeeName, note.CreatedOn, note.Note)</td>
 
 
 
-                                </tr>
-                            </table>
-                                }
-                            }
-                    
-                        </div>
-                    </div>
+                            </tr>
+                        </table>
+                        }
+                    }
+
                 </div>
-                <div class="col-sm-3">
-                    <div class="inner" style="background-color: #D1D8E9">
-                        <div class="dropdown custom-docstatusdropdown">
-                           <label style="font-weight: 700 !important;"> Document Status: </label>
-                    
-                            @if (ViewBag.DocumentStatuses != null)
-                            {
-                                @Html.DropDownList("DocumentStatuses")
-                                @Html.Hidden("modelIDVal", Model.QueueID);
-                                @Html.Hidden("documentIDVal", Model.DocumentID);
-                            }
+                <form class="form-inline" style="padding-top:5px;">
+                    <div class="form-group"><label>New Note</label></div>
+                    <br />
+                    <div class="form-group">
+                        @Html.TextArea("Notes")
+                    </div>
 
-                            @Html.TextArea("Notes")
 
-                           <br />
-                            
-                            <div class="SR-btn-group ">
-                           <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();"  class="btn cust-warning custom-btn-SR"/>
-                             
-                            <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn cust-warning custom-btn-SR" />
-                       </div>
-
-                       </div>
-                       
-                        </div>
-                        
-                           
-                          
-                        
-
+                    <input value="Add" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR" style="padding:6px 5px;margin-left:90px;font-size:8pt;width:40px;text-transform: capitalize" />
+                </form>
 
             </div>
         </div>
+        <div class="col-sm-3">
+            <div class="inner" style="background-color: #D1D8E9">
+                <div class="dropdown custom-docstatusdropdown">
+                    <label style="font-weight: 700 !important;">Document Status: </label>
+
+                    @if (ViewBag.DocumentStatuses != null)
+                    {
+ @Html.DropDownList("DocumentStatuses")
+ @Html.Hidden("modelIDVal", Model.QueueID);
+ @Html.Hidden("documentIDVal", Model.DocumentID);
+                    }
+
+
+
+                    <br />
+
+                    <div class="SR-btn-group ">
+                        <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR" />
+
+                        <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn cust-warning custom-btn-SR" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
     </div>
+</div>
 
 <!-- Modal Start 2 -->
 <div class="modal fade" id="routeModal" role="dialog">
@@ -117,7 +129,7 @@
                             <label for="departments">Departments:</label>
                             @if (ViewBag.DepartmentsList != null)
                             {
-                                @Html.DropDownList("DepartmentsList", ViewBag.DepartmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+ @Html.DropDownList("DepartmentsList", ViewBag.DepartmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
                             }
                         </div>
                     </form>
