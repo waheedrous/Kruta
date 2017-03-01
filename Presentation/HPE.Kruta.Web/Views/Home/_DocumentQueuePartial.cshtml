@@ -4,16 +4,15 @@
 <script src="//kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
 @System.Web.Optimization.Scripts.Render("~/Scripts/DocumentQueue.js")
 
-
 <div class="container-fluid text-right custom-text-right">
     <b class="custom-title-left custom-Queue">Document Queue</b>
-     <div class="btn-group custom-btnGrup">
-        <button type="button" class="btn warning custom-btn" style="padding:6px 12px;" id="RefreshDocumentQueueCommand"><span class="glyphicon glyphicon-refresh"></span></button>
+    <div class="btn-group custom-btnGrup">
+        <button type="button" class="btn warning custom-btn" style="padding:6px 12px;" id="RefreshDocumentQueueCommand" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></button>
     </div>
     <div class="btn-group custom-btnGrup">
         <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand">Assign</button>
     </div>
-   
+
 </div>
 <!-- Modal Start 1 -->
 
@@ -53,14 +52,19 @@
       .Pageable(pageable => pageable
                             .PageSizes(new string[] { "5", "10", "20", "50", "All" })
                             //.PageSizes(true)
-                            .ButtonCount(5))
+                            .ButtonCount(5)
+                            .Refresh(true))
       .DataSource(dataSource => dataSource
                                 .Ajax()
                                 .Sort(sort => sort.Add("QueueID").Ascending())
                                 .PageSize(10)
-                                .Read(read => read.Action("Queues_Read", "DocumentQueue")))
+                                .Read(read => read.Action("Queues_Read", "DocumentQueue"))
+                                )
       .Resizable(resize => resize.Columns(true))
       .Reorderable(reorder => reorder.Columns(true))
+      .Events(events => events
+            .DataBound("onDataBound")
+        )
         )
     </div>
 </div>

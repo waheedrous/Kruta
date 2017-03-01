@@ -8,8 +8,6 @@ function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
     $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
-    
-    
 }
 
 function AttachToggleSelectAll() {
@@ -136,7 +134,6 @@ function yesAssignFunction() {
         }
     });
 
-    //var selectedQueueIds = selectedQueueIds.join(', ');
     var empId = $('#routingControlStaffList :selected').val();
 
     jQuery.ajaxSettings.traditional = true
@@ -183,8 +180,8 @@ function yesRouteFunction() {
         success: function (data) {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
-                RefreshDocumentQueue(modelIDVal);
                 ShowInformationModal('Notification', 'The selected document has been routed successfully.');
+                RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
             }
@@ -193,6 +190,7 @@ function yesRouteFunction() {
             console.log(xhr.responseText);
         }
     });
+
 }
 
 function ShowInformationModal(title, msg) {
@@ -202,17 +200,14 @@ function ShowInformationModal(title, msg) {
     inform.find("#informationModalMessage").html(msg);
     inform.find("#informationModalOk").off('click').click(function () {
         inform.modal("hide");
+
+        //var selectedQ2 = $('table[role = "grid"]').find('input[type="checkbox"][value=12]')
+        //selectedQ2.prop('checked', true);
     });
 }
 
-function RefreshDocumentQueue(optionalQueueID) {
-    var documentQueue = $("#DocumentQueue");
-    documentQueue.data("kendoGrid").dataSource.read();
-
-    if (optionalQueueID && optionalQueueID > 0) {
-        var selectedQ = documentQueue.find('input:checkbox[id=chkSelect][value=' + optionalQueueID + ']');
-        selectedQ.che
-    }
+function RefreshDocumentQueue() {
+    $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
 
 function DisplayQueueDetails(queueID, documentID) {
@@ -223,7 +218,6 @@ function DisplayQueueDetails(queueID, documentID) {
         data: { queueID: queueID },
         success: function (data) {
             $('#queueDetailsSection').html(data);
-            // OpenDocument(documentID);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
@@ -317,14 +311,13 @@ function AddNote() {
         success: function (data) {
             if (data.Success) {
                 DisplayQueueDetails(modelIDVal, documentIDVal);
-                RefreshDocumentQueue();
+                //ShowInformationModal('Notification', 'Note added successfully.');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
         }
     });
-    
 }
 
 function SaveRouteStatus() {
@@ -334,3 +327,13 @@ function SaveRouteStatus() {
     routeModal.modal('show');
 }
 
+function onDataBound() {
+    // maintain the selection of the checkbox after routing
+    var queueID = $('#modelIDVal').val();
+    if (queueID && queueID > 0) {
+        var selectedQ = $('table[role = "grid"]').find('input[type="checkbox"][value=' + queueID + ']');
+        if (selectedQ) {
+            selectedQ.prop('checked', true);
+        }
+    }
+}
