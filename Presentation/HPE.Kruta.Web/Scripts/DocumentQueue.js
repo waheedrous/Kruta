@@ -294,6 +294,30 @@ function SaveQueueStatus() {
     });
 }
 
+function AddNote() {
+
+    var noteVal = $('#Notes').val();
+    var modelIDVal = $('#modelIDVal').val();
+    var documentIDVal = $('#documentIDVal').val();
+
+    $.ajax({
+        url: '/QueueDetails/AddNote',
+        contentType: "application/json; charset=utf-8",
+        type: 'GET',
+        dataType: 'json',
+        data: { queueID: modelIDVal, notes: noteVal },
+        success: function (data) {
+            if (data.Success) {
+                DisplayQueueDetails(modelIDVal, documentIDVal);
+                ShowInformationModal('Notification', 'Note added successfully.');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
 function SaveRouteStatus() {
     // show the route modal
     var routeModal = $("#routeModal");

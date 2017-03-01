@@ -80,5 +80,16 @@ namespace HPE.Kruta.Web.Controllers
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult AddNote(int queueID, string notes)
+        {
+            if (queueID == 0 || string.IsNullOrWhiteSpace(notes))
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            SaveNotes(queueID, notes);
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
