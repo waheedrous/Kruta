@@ -7466,18 +7466,18 @@
         </member>
         <member name="F:Kendo.Mvc.UI.RenderingMode.SVG">
             <summary>
-            Renders the widget as VML, if available.
+            Renders the widget as inline SVG document, if available.
+            Note: Animations and most interactive features will be disabled.
             </summary>
         </member>
         <member name="F:Kendo.Mvc.UI.RenderingMode.VML">
             <summary>
-            Renders the widget as a Canvas element, if available.
+            Renders the widget as VML, if available.
             </summary>
         </member>
         <member name="F:Kendo.Mvc.UI.RenderingMode.Canvas">
             <summary>
-            Renders the widget as inline SVG document, if available.
-            Note: Animations and most interactive features will be disabled.
+            Renders the widget as a Canvas element, if available.
             </summary>
         </member>
         <member name="P:Kendo.Mvc.UI.ErrorBarsBase.Color">
@@ -21766,6 +21766,26 @@
             <param name="memberName">Member name</param>
             /// <param name="memberType">Member type</param>
         </member>
+        <member name="T:Kendo.Mvc.UI.TreeDataSourceResult">
+            <summary>
+            Provides the processed data after sorting, filtering and grouping are applied.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.TreeDataSourceResult.Data">
+            <summary>
+            The data collection.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.TreeDataSourceResult.AggregateResults">
+            <summary>
+            The result of the data aggregation.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.TreeDataSourceResult.Errors">
+            <summary>
+            A list of errors that occurred during the creation of the data result.
+            </summary>
+        </member>
         <member name="T:Kendo.Mvc.UI.Fluent.DataSourceTreeListModelDescriptorFactory`1">
             <summary>
             Defines the fluent interface for configuring the <see cref="T:Kendo.Mvc.UI.DataSource"/> Model definition.
@@ -27540,6 +27560,71 @@
             </code>
             </example>
         </member>
+        <member name="T:Kendo.Mvc.UI.DataSourceRequest">
+            <summary>
+            Provides information about paging, sorting, filtering and groping of data.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.Page">
+            <summary>
+            The current page.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.PageSize">
+            <summary>
+            The page size.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.Sorts">
+            <summary>
+            The sorting of the data.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.Filters">
+            <summary>
+            The filtering of the data.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.Groups">
+            <summary>
+            The grouping of the data.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceRequest.Aggregates">
+            <summary>
+            The data aggregation.
+            </summary>
+        </member>
+        <member name="T:Kendo.Mvc.UI.DataSourceRequestAttribute">
+            <summary>
+            Populates a DataSourceRequest object with information about paging, sorting, filtering and grouping of data.
+            </summary>
+        </member>
+        <member name="T:Kendo.Mvc.UI.DataSourceResult">
+            <summary>
+            Provides the processed data after paging, sorting, filtering and grouping are applied.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceResult.Data">
+            <summary>
+            The data collection.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceResult.Total">
+            <summary>
+            The total number of data entries.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceResult.AggregateResults">
+            <summary>
+            The result of the data aggregation.
+            </summary>
+        </member>
+        <member name="P:Kendo.Mvc.UI.DataSourceResult.Errors">
+            <summary>
+            A list of errors that occurred during the creation of the data result.
+            </summary>
+        </member>
         <member name="T:Kendo.Mvc.UI.Fluent.CrudOperationBuilderBase`1">
             <summary>
             Defines the fluent interface for configuring the <see cref="T:Kendo.Mvc.UI.CrudOperation"/> options.
@@ -30647,6 +30732,11 @@
             %&gt;
             </code>
             </example>
+        </member>
+        <member name="M:Kendo.Mvc.UI.Fluent.DateTimePickerBuilder.WeekNumber(System.Boolean)">
+            <summary>
+            If set to true a week of the year will be shown on the left side of the calendar. It is possible to define a template in order to customize what will be displayed.
+            </summary>
         </member>
         <member name="M:Kendo.Mvc.UI.Fluent.DateTimePickerBuilder.MonthTemplateId(System.String)">
             <summary>
@@ -44588,6 +44678,80 @@
             Provides extension methods to process DataSourceRequest.
             </summary>
         </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResult(System.Data.DataTable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty resullt.
+            </summary>
+            <param name="dataTable">An instance of <see cref="T:System.Data.DataTable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data after
+            paging, sorting, filtering and grouping are applied.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResultAsync(System.Data.DataTable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty resullt.
+            </summary>
+            <param name="dataTable">An instance of <see cref="T:System.Data.DataTable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A Task of <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data after
+            paging, sorting, filtering and grouping are applied.
+            It can be called with the "await" keyword for asynchronous operation.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResult(System.Collections.IEnumerable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="enumerable">An instance of <see cref="T:System.Collections.IEnumerable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data after
+            paging, sorting, filtering and grouping are applied.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResultAsync(System.Collections.IEnumerable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="enumerable">An instance of <see cref="T:System.Collections.IEnumerable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A Task of <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data
+            after paging, sorting, filtering and grouping are applied.
+            It can be called with the "await" keyword for asynchronous operation.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResult(System.Linq.IQueryable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="queryable">An instance of <see cref="T:System.Linq.IQueryable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data after paging, sorting, filtering and grouping are applied.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToDataSourceResultAsync(System.Linq.IQueryable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies paging, sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="queryable">An instance of <see cref="T:System.Linq.IQueryable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A Task of <see cref="T:Kendo.Mvc.UI.DataSourceResult"/> object, which contains the processed data
+            after paging, sorting, filtering and grouping are applied.
+            It can be called with the "await" keyword for asynchronous operation.
+            </returns>
+        </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Sort(System.Linq.IQueryable,System.Collections.Generic.IEnumerable{Kendo.Mvc.SortDescriptor})">
             <summary>
             Sorts the elements of a sequence using the specified sort descriptors.
@@ -44600,7 +44764,7 @@
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Page(System.Linq.IQueryable,System.Int32,System.Int32)">
             <summary>
-            Pages through the elements of a sequence until the specified 
+            Pages through the elements of a sequence until the specified
             <paramref name="pageIndex"/> using <paramref name="pageSize"/>.
             </summary>
             <param name="source">A sequence of values to page.</param>
@@ -44615,7 +44779,7 @@
             Projects each element of a sequence into a new form.
             </summary>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> whose elements are the result of invoking a 
+            An <see cref="T:System.Linq.IQueryable"/> whose elements are the result of invoking a
             projection selector on each element of <paramref name="source"/>.
             </returns>
             <param name="source"> A sequence of values to project. </param>
@@ -44628,7 +44792,7 @@
             <param name="source"> An <see cref="T:System.Linq.IQueryable"/> whose elements to group.</param>
             <param name="keySelector"> A function to extract the key for each element.</param>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> with <see cref="T:System.Linq.IGrouping`2"/> items, 
+            An <see cref="T:System.Linq.IQueryable"/> with <see cref="T:System.Linq.IGrouping`2"/> items,
             whose elements contains a sequence of objects and a key.
             </returns>
         </member>
@@ -44662,7 +44826,7 @@
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.OrderBy(System.Linq.IQueryable,System.Linq.Expressions.LambdaExpression,System.Nullable{System.ComponentModel.ListSortDirection})">
             <summary>
-            Calls <see cref="M:Kendo.Mvc.Extensions.QueryableExtensions.OrderBy(System.Linq.IQueryable,System.Linq.Expressions.LambdaExpression)"/> 
+            Calls <see cref="M:Kendo.Mvc.Extensions.QueryableExtensions.OrderBy(System.Linq.IQueryable,System.Linq.Expressions.LambdaExpression)"/>
             or <see cref="M:Kendo.Mvc.Extensions.QueryableExtensions.OrderByDescending(System.Linq.IQueryable,System.Linq.Expressions.LambdaExpression)"/> depending on the <paramref name="sortDirection"/>.
             </summary>
             <param name="source">The source.</param>
@@ -44679,7 +44843,7 @@
             <param name="source"> An <see cref="T:System.Linq.IQueryable"/> whose elements to group. </param>
             <param name="groupDescriptors">The group descriptors used for grouping.</param>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> with <see cref="T:Kendo.Mvc.Infrastructure.IGroup"/> items, 
+            An <see cref="T:System.Linq.IQueryable"/> with <see cref="T:Kendo.Mvc.Infrastructure.IGroup"/> items,
             whose elements contains a sequence of objects and a key.
             </returns>
         </member>
@@ -44687,30 +44851,30 @@
             <summary>
             Calculates the results of given aggregates functions on a sequence of elements.
             </summary>
-            <param name="source"> An <see cref="T:System.Linq.IQueryable"/> whose elements will 
+            <param name="source"> An <see cref="T:System.Linq.IQueryable"/> whose elements will
             be used for aggregate calculation.</param>
             <param name="aggregateFunctions">The aggregate functions.</param>
             <returns>Collection of <see cref="T:Kendo.Mvc.Infrastructure.AggregateResult"/>s calculated for each function.</returns>
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Where(System.Linq.IQueryable,System.Linq.Expressions.Expression)">
-            <summary> 
-            Filters a sequence of values based on a predicate. 
+            <summary>
+            Filters a sequence of values based on a predicate.
             </summary>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> that contains elements from the input sequence 
+            An <see cref="T:System.Linq.IQueryable"/> that contains elements from the input sequence
             that satisfy the condition specified by <paramref name="predicate"/>.
             </returns>
             <param name="source"> An <see cref="T:System.Linq.IQueryable"/> to filter.</param>
             <param name="predicate"> A function to test each element for a condition.</param>
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Where(System.Linq.IQueryable,System.Collections.Generic.IEnumerable{Kendo.Mvc.IFilterDescriptor})">
-            <summary> 
-            Filters a sequence of values based on a collection of <see cref="T:Kendo.Mvc.IFilterDescriptor"/>. 
+            <summary>
+            Filters a sequence of values based on a collection of <see cref="T:Kendo.Mvc.IFilterDescriptor"/>.
             </summary>
             <param name="source">The source.</param>
             <param name="filterDescriptors">The filter descriptors.</param>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> that contains elements from the input sequence 
+            An <see cref="T:System.Linq.IQueryable"/> that contains elements from the input sequence
             that satisfy the conditions specified by each filter descriptor in <paramref name="filterDescriptors"/>.
             </returns>
         </member>
@@ -44719,7 +44883,7 @@
             Returns a specified number of contiguous elements from the start of a sequence.
             </summary>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> that contains the specified number 
+            An <see cref="T:System.Linq.IQueryable"/> that contains the specified number
             of elements from the start of <paramref name="source"/>.
             </returns>
             <param name="source"> The sequence to return elements from.</param>
@@ -44728,11 +44892,11 @@
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Skip(System.Linq.IQueryable,System.Int32)">
             <summary>
-            Bypasses a specified number of elements in a sequence 
+            Bypasses a specified number of elements in a sequence
             and then returns the remaining elements.
             </summary>
             <returns>
-            An <see cref="T:System.Linq.IQueryable"/> that contains elements that occur 
+            An <see cref="T:System.Linq.IQueryable"/> that contains elements that occur
             after the specified index in the input sequence.
             </returns>
             <param name="source">
@@ -44761,9 +44925,9 @@
         </member>
         <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.Union(System.Linq.IQueryable,System.Linq.IQueryable)">
             <summary>
-            Produces the set union of two sequences by using the default equality comparer.        
+            Produces the set union of two sequences by using the default equality comparer.
             </summary>
-            <returns>        
+            <returns>
             An <see cref="T:System.Linq.IQueryable"/> that contains the elements from both input sequences, excluding duplicates.
             </returns>
             <param name="source">
@@ -44773,6 +44937,30 @@
             An <see cref="T:System.Linq.IQueryable"/> whose distinct elements form the first set for the union.
             </param>
             <exception cref="T:System.ArgumentNullException"> <paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToTreeDataSourceResult(System.Collections.IEnumerable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="enumerable">An instance of <see cref="T:System.Collections.IEnumerable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A <see cref="T:Kendo.Mvc.UI.TreeDataSourceResult"/> object, which contains the processed data after sorting, filtering and grouping are applied.
+            </returns>
+        </member>
+        <member name="M:Kendo.Mvc.Extensions.QueryableExtensions.ToTreeDataSourceResultAsync(System.Collections.IEnumerable,Kendo.Mvc.UI.DataSourceRequest)">
+            <summary>
+            Applies sorting, filtering and grouping using the information from the DataSourceRequest object.
+            If the collection is already paged, the method returns an empty result.
+            </summary>
+            <param name="enumerable">An instance of <see cref="T:System.Collections.IEnumerable"/>.</param>
+            <param name="request">An instance of <see cref="T:Kendo.Mvc.UI.DataSourceRequest"/>.</param>
+            <returns>
+            A Task of <see cref="T:Kendo.Mvc.UI.TreeDataSourceResult"/> object, which contains the processed data
+            after sorting, filtering and grouping are applied.
+            It can be called with the "await" keyword for asynchronous operation.
+            </returns>
         </member>
         <member name="M:Kendo.Mvc.PopulateSiteMapAttribute.#ctor(Kendo.Mvc.SiteMapDictionary)">
             <summary>
@@ -45557,6 +45745,11 @@
             Sets the maximal date, which can be selected in the calendar
             </summary>
         </member>
+        <member name="M:Kendo.Mvc.UI.Fluent.CalendarBuilder.WeekNumber(System.Boolean)">
+            <summary>
+            If set to true a week of the year will be shown on the left side of the calendar. It is possible to define a template in order to customize what will be displayed.
+            </summary>
+        </member>
         <member name="M:Kendo.Mvc.UI.Fluent.CalendarBuilder.Value(System.Nullable{System.DateTime})">
             <summary>
             Sets the value of the calendar
@@ -45754,6 +45947,12 @@
             </summary>
             <param name="allowSpinner"></param>
             <returns></returns>
+        </member>
+        <member name="M:Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder`1.Factor(System.Double)">
+            <summary>
+            Specifies the factor by which the value is multiplied. The obtained result is used as edit value. So, if 15 as string is entered in the NumericTextBox and the factor value is set to 100 the visual value will be 1500. On blur the visual value will be divided by 100 thus scaling the widget value to the original proportion.
+            </summary>
+            <param name="value">The value for Factor</param>
         </member>
         <member name="M:Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder`1.Format(System.String)">
             <summary>
@@ -48151,6 +48350,11 @@
             %&gt;
             </code>
             </example>
+        </member>
+        <member name="M:Kendo.Mvc.UI.Fluent.DatePickerBuilder.WeekNumber(System.Boolean)">
+            <summary>
+            If set to true a week of the year will be shown on the left side of the calendar. It is possible to define a template in order to customize what will be displayed.
+            </summary>
         </member>
         <member name="M:Kendo.Mvc.UI.Fluent.DatePickerBuilder.MonthTemplateId(System.String)">
             <summary>
@@ -66277,7 +66481,7 @@
         </member>
         <member name="M:Kendo.Mvc.UI.Fluent.TreeListColumnBuilder`1.Locked(System.Boolean)">
             <summary>
-            If set to true the column will be displayed as locked in the treelist. Also see Frozen Columns.
+            If set to true the column will be displayed as locked (frozen) in the treelist. Also see the information about Frozen Columns in the Grid Appearance article.
             </summary>
             <param name="value">The value that configures the locked.</param>
         </member>
