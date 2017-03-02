@@ -82,7 +82,10 @@ function doAssign() {
     }
 }
 
-function showAssignConfirmModal() {
+function showAssignConfirmModal(title, msg) {
+    var confirmationModal = $("#confirmationModal");
+    confirmationModal.find("#confirmationModalTitle").html(title);
+    confirmationModal.find("#confirmationModalMessage").html(msg);
     asyncShowConfirmModal(yesAssignFunction, noFunction);
 }
 
