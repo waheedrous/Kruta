@@ -34,7 +34,7 @@
                  .Width(30)
                  .Title("")
                  .HtmlAttributes(new { style = "text-align: center" })
-                 .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='chkSelectAll' /></span>")
+                 .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='selectAll' /></span>")
                  .HeaderHtmlAttributes(new { style = "text-align: center" })
                  .Sortable(false);
           columns.Bound(c => c.QueueID).Title("ID").Width(150).Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false)));

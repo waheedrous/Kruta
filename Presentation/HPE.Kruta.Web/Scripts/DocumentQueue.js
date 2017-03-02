@@ -12,6 +12,7 @@ function AttachDocumentQueueCommands() {
 
 function AttachToggleSelectAll() {
     $('body').on('click', 'input[id*=chkSelect]', function () {
+
         toggleSelectAll($(this).closest('table'));
 
         //Select the grid row when checking one of the checkboxes
@@ -26,7 +27,7 @@ function AttachToggleSelectAll() {
 }
 
 function AttachSelectAllToControl() {
-    $(document).on('change', '#chkSelectAll', function () {
+    $(document).on('change', '#selectAll', function () {
         selectAll(this);
     });
 }
@@ -47,7 +48,7 @@ function toggleSelectAll(table) {
         return;
     }
 
-    var selectallCheckbox = $('input[id=chkSelectAll]');
+    var selectallCheckbox = $('input[id=selectAll]');
     var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
     if (selectallCheckbox) {
@@ -63,18 +64,10 @@ function toggleSelectAll(table) {
 
     // handle the queue detail button appearance and behavior
     var queueDetailsCommand = $('#queueDetailsCommand');
-    if (selectallCheckbox.prop('checked') == false) {
-        if (checkedCount == 1) {
-            if (queueDetailsCommand.hasClass('disabled')) {
-                queueDetailsCommand.removeClass('disabled');
-            }
-        }
-        else {
-            if (!queueDetailsCommand.hasClass('disabled')) {
-                queueDetailsCommand.addClass('disabled');
-                // hide the queue detail section when disabling the button
-                $('#queueDetailsSection').collapse('hide');
-            }
+
+    if (checkedCount == 1) {
+        if (queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.removeClass('disabled');
         }
     }
     else {
