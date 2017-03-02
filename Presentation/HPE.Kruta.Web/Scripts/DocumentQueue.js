@@ -33,11 +33,14 @@ function AttachSelectAllToControl() {
 }
 
 function selectAll(cb) {
-    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
+    var table = $('table[role = "grid"]');
+    table.find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0) {
             element.checked = cb.checked;
         }
     });
+
+    toggleItemDetails(table);
 }
 
 function toggleSelectAll(table) {
@@ -49,9 +52,10 @@ function toggleSelectAll(table) {
     }
 
     var selectallCheckbox = $('input[id=selectAll]');
-    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
+
 
     if (selectallCheckbox) {
+        var checkedCount = table.find('input[id*=chkSelect]:checked').length;
         var checkboxCount = table.find('input[id*=chkSelect]').length;
 
         if (checkedCount == checkboxCount) {
@@ -62,21 +66,7 @@ function toggleSelectAll(table) {
         }
     }
 
-    // handle the queue detail button appearance and behavior
-    var queueDetailsCommand = $('#queueDetailsCommand');
-
-    if (checkedCount == 1) {
-        if (queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.removeClass('disabled');
-        }
-    }
-    else {
-        if (!queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.addClass('disabled');
-            // hide the queue detail section when disabling the button
-            $('#queueDetailsSection').collapse('hide');
-        }
-    }
+    toggleItemDetails(table);
 }
 
 function doAssign() {
@@ -327,6 +317,31 @@ function onDataBound() {
         var selectedQ = $('table[role = "grid"]').find('input[type="checkbox"][value=' + queueID + ']');
         if (selectedQ) {
             selectedQ.prop('checked', true);
+        }
+    }
+}
+
+function toggleItemDetails(table) {
+
+    if (!table) {
+        return;
+    }
+
+    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
+
+    // handle the queue detail button appearance and behavior
+    var queueDetailsCommand = $('#queueDetailsCommand');
+
+    if (checkedCount == 1) {
+        if (queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.removeClass('disabled');
+        }
+    }
+    else {
+        if (!queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.addClass('disabled');
+            // hide the queue detail section when disabling the button
+            $('#queueDetailsSection').collapse('hide');
         }
     }
 }
