@@ -310,7 +310,7 @@ function SaveRouteStatus() {
     routeModal.modal('show');
 }
 
-function onDataBound() {
+function onDocumentQueueDataBound() {
     // maintain the selection of the checkbox after routing
     var queueID = $('#modelIDVal').val();
     if (queueID && queueID > 0) {

@@ -68,7 +68,7 @@
       .Resizable(resize => resize.Columns(true))
       .Reorderable(reorder => reorder.Columns(true))
       .Events(events => events
-            .DataBound("onDataBound")
+            .DataBound("onDocumentQueueDataBound")
         )
         )
     </div>
