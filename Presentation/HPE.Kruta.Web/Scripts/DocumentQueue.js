@@ -342,6 +342,8 @@ function toggleItemDetails(table) {
             queueDetailsCommand.addClass('disabled');
             // hide the queue detail section when disabling the button
             $('#queueDetailsSection').collapse('hide');
+            // Clear the stored model ID (Queue ID) to avoid selecting it on onDocumentQueueDataBound after any grid action
+            $('#modelIDVal').val("");
         }
     }
 }
