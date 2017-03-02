@@ -93,20 +93,20 @@ namespace HPE.Kruta.Domain
                                         new QueueWithSequence { QueueID = q.QueueID,
                                                                 Sequence = seq + 1,
                                                                 DepartmentID = q.DepartmentID,
-                                                                DepartmentName =  q.Department?.DepartmentName,
-                                                                DocumentStatus = q.Document?.DocumentStatus?.Description,
+                                                                DepartmentName =  q.Department.DepartmentName,
+                                                                DocumentStatus = q.Document.DocumentStatus.Description,
                                                                 DocumentID = q.DocumentID,
-                                                                DocumentNumber = q.Document?.DocumentNumber,
-                                                                DocumentStatusID = q.Document?.DocumentStatusID,
-                                                                DocumentType = q.Document?.DocumentSubType?.DocumentType?.Description,
+                                                                DocumentNumber = q.Document.DocumentNumber,
+                                                                DocumentStatusID = q.Document.DocumentStatusID,
+                                                                DocumentType = q.Document.DocumentSubType.DocumentType.Description,
                                                                 EmployeeID = q.EmployeeID,
-                                                                EmployeeName = q.Employee?.EmployeeName,
-                                                                ParcelNumber = q.Property?.ParcelNumber,
+                                                                EmployeeName = q.Employee.EmployeeName,
+                                                                ParcelNumber = q.Property.ParcelNumber,
                                                                 PropertyID = q.PropertyID,
-                                                                QueueStatus = q.QueueStatus?.Description,
+                                                                QueueStatus = q.QueueStatus.Description,
                                                                 QueueStatusID = q.QueueStatusID,
                                                                 ReceivedDateTime = q.ReceivedDateTime,
-                                                                RecordedDateTime = q.Document?.RecordedDateTime
+                                                                RecordedDateTime = q.Document.RecordedDateTime
 
                                         }).ToList();
               

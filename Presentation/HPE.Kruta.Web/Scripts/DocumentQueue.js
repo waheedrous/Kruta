@@ -12,7 +12,6 @@ function AttachDocumentQueueCommands() {
 
 function AttachToggleSelectAll() {
     $('body').on('click', 'input[id*=chkSelect]', function () {
-
         toggleSelectAll($(this).closest('table'));
 
         //Select the grid row when checking one of the checkboxes
@@ -27,20 +26,17 @@ function AttachToggleSelectAll() {
 }
 
 function AttachSelectAllToControl() {
-    $(document).on('change', '#selectAll', function () {
+    $(document).on('change', '#chkSelectAll', function () {
         selectAll(this);
     });
 }
 
 function selectAll(cb) {
-    var table = $('table[role = "grid"]');
-    table.find('input[type="checkbox"]').each(function (index, element) {
+    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0) {
             element.checked = cb.checked;
         }
     });
-
-    toggleItemDetails(table);
 }
 
 function toggleSelectAll(table) {
@@ -51,11 +47,10 @@ function toggleSelectAll(table) {
         return;
     }
 
-    var selectallCheckbox = $('input[id=selectAll]');
-
+    var selectallCheckbox = $('input[id=chkSelectAll]');
+    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
 
     if (selectallCheckbox) {
-        var checkedCount = table.find('input[id*=chkSelect]:checked').length;
         var checkboxCount = table.find('input[id*=chkSelect]').length;
 
         if (checkedCount == checkboxCount) {
@@ -66,7 +61,29 @@ function toggleSelectAll(table) {
         }
     }
 
-    toggleItemDetails(table);
+    // handle the queue detail button appearance and behavior
+    var queueDetailsCommand = $('#queueDetailsCommand');
+    if (selectallCheckbox.prop('checked') == false) {
+        if (checkedCount == 1) {
+            if (queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.removeClass('disabled');
+            }
+        }
+        else {
+            if (!queueDetailsCommand.hasClass('disabled')) {
+                queueDetailsCommand.addClass('disabled');
+                // hide the queue detail section when disabling the button
+                $('#queueDetailsSection').collapse('hide');
+            }
+        }
+    }
+    else {
+        if (!queueDetailsCommand.hasClass('disabled')) {
+            queueDetailsCommand.addClass('disabled');
+            // hide the queue detail section when disabling the button
+            $('#queueDetailsSection').collapse('hide');
+        }
+    }
 }
 
 function doAssign() {
@@ -129,7 +146,7 @@ function yesAssignFunction() {
         data: { selectedQueueIds: selectedQueueIds, empId: empId },
         success: function (data) {
             if (data.Success) {
-                ShowInformationModal('Notification', 'The selected queue(s) assigned successfully.');
+                ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
                 RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
@@ -310,40 +327,13 @@ function SaveRouteStatus() {
     routeModal.modal('show');
 }
 
-function onDocumentQueueDataBound() {
+function onDataBound() {
     // maintain the selection of the checkbox after routing
     var queueID = $('#modelIDVal').val();
     if (queueID && queueID > 0) {
         var selectedQ = $('table[role = "grid"]').find('input[type="checkbox"][value=' + queueID + ']');
         if (selectedQ) {
             selectedQ.prop('checked', true);
-        }
-    }
-}
-
-function toggleItemDetails(table) {
-
-    if (!table) {
-        return;
-    }
-
-    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
-
-    // handle the queue detail button appearance and behavior
-    var queueDetailsCommand = $('#queueDetailsCommand');
-
-    if (checkedCount == 1) {
-        if (queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.removeClass('disabled');
-        }
-    }
-    else {
-        if (!queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.addClass('disabled');
-            // hide the queue detail section when disabling the button
-            $('#queueDetailsSection').collapse('hide');
-            // Clear the stored model ID (Queue ID) to avoid selecting it on onDocumentQueueDataBound after any grid action
-            $('#modelIDVal').val("");
         }
     }
 }
