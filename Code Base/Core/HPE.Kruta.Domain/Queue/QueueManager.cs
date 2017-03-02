@@ -87,32 +87,37 @@ namespace HPE.Kruta.Domain
                         .Include(q => q.Employee)
                         .ToList();
 
+                queues = AddSequenceToList(queueList);
 
-
-                queues = queueList.Select((q, seq) =>
-                                        new QueueWithSequence { QueueID = q.QueueID,
-                                                                Sequence = seq + 1,
-                                                                DepartmentID = q.DepartmentID,
-                                                                DepartmentName =  q.Department?.DepartmentName,
-                                                                DocumentStatus = q.Document?.DocumentStatus?.Description,
-                                                                DocumentID = q.DocumentID,
-                                                                DocumentNumber = q.Document?.DocumentNumber,
-                                                                DocumentStatusID = q.Document?.DocumentStatusID,
-                                                                DocumentType = q.Document?.DocumentSubType?.DocumentType?.Description,
-                                                                EmployeeID = q.EmployeeID,
-                                                                EmployeeName = q.Employee?.EmployeeName,
-                                                                ParcelNumber = q.Property?.ParcelNumber,
-                                                                PropertyID = q.PropertyID,
-                                                                QueueStatus = q.QueueStatus?.Description,
-                                                                QueueStatusID = q.QueueStatusID,
-                                                                ReceivedDateTime = q.ReceivedDateTime,
-                                                                RecordedDateTime = q.Document?.RecordedDateTime
-
-                                        }).ToList();
-              
             }
 
             return queues;
+        }
+
+        public List<QueueWithSequence> AddSequenceToList(List<Queue> queueList)
+        {
+            return queueList.Select((q, seq) =>
+                                    new QueueWithSequence
+                                    {
+                                        QueueID = q.QueueID,
+                                        Sequence = seq + 1,
+                                        DepartmentID = q.DepartmentID,
+                                        DepartmentName = q.Department?.DepartmentName,
+                                        DocumentStatus = q.Document?.DocumentStatus?.Description,
+                                        DocumentID = q.DocumentID,
+                                        DocumentNumber = q.Document?.DocumentNumber,
+                                        DocumentStatusID = q.Document?.DocumentStatusID,
+                                        DocumentType = q.Document?.DocumentSubType?.DocumentType?.Description,
+                                        EmployeeID = q.EmployeeID,
+                                        EmployeeName = q.Employee?.EmployeeName,
+                                        ParcelNumber = q.Property?.ParcelNumber,
+                                        PropertyID = q.PropertyID,
+                                        QueueStatus = q.QueueStatus?.Description,
+                                        QueueStatusID = q.QueueStatusID,
+                                        ReceivedDateTime = q.ReceivedDateTime,
+                                        RecordedDateTime = q.Document?.RecordedDateTime
+
+                                    }).ToList();
         }
 
         public int Update(Queue queue)
