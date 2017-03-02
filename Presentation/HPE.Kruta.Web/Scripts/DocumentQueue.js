@@ -322,6 +322,8 @@ function onDocumentQueueDataBound() {
             selectedQ.prop('checked', true);
         }
     }
+
+    toggleSelectAll($('table[role = "grid"]'));
 }
 
 function toggleItemDetails(table) {
