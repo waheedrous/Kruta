@@ -129,7 +129,7 @@ function yesAssignFunction() {
         data: { selectedQueueIds: selectedQueueIds, empId: empId },
         success: function (data) {
             if (data.Success) {
-                ShowInformationModal('Notification', 'The selected queue(s) assigned successfully.');
+                ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
                 RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
