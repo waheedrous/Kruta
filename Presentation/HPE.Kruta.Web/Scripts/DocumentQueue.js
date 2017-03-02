@@ -167,6 +167,7 @@ function yesRouteFunction() {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
                 ShowInformationModal('Notification', 'The selected document has been routed successfully.');
+                QueueDetailsCommandClick();
                 RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
