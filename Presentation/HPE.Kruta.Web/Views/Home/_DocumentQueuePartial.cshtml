@@ -55,7 +55,7 @@
                             .Refresh(true))
       .DataSource(dataSource => dataSource
                                 .Ajax()
-                                .Sort(sort => sort.Add("QueueID").Ascending())
+                                .Sort(sort => sort.Add("Sequence").Ascending())
                                 .PageSize(10)
                                 .Read(read => read.Action("Queues_Read", "DocumentQueue"))
                                 )
