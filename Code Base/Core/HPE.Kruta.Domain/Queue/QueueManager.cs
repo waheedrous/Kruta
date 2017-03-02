@@ -115,8 +115,9 @@ namespace HPE.Kruta.Domain
                                         QueueStatus = q.QueueStatus?.Description,
                                         QueueStatusID = q.QueueStatusID,
                                         ReceivedDateTime = q.ReceivedDateTime,
-                                        RecordedDateTime = q.Document?.RecordedDateTime
-
+                                        RecordedDateTime = q.Document?.RecordedDateTime,
+                                        DepartmentCode = q.Department?.DepartmentCode,
+                                        DocumentSubTypeCode = q.Document?.DocumentSubType?.Code
                                     }).ToList();
         }
 
