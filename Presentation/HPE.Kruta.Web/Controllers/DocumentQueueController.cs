@@ -1,4 +1,5 @@
 ﻿using HPE.Kruta.Model;
+using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace HPE.Kruta.Web.Controllers
 
         public ActionResult Queues_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<Queue> queues = this._queueManager.List(true).AsQueryable();
+            IQueryable<QueueWithSequence> queues = this._queueManager.ListWithSequence().AsQueryable();
             DataSourceResult result = queues.ToDataSourceResult(request);
 
             var list = JsonConvert.SerializeObject(result, Formatting.None,

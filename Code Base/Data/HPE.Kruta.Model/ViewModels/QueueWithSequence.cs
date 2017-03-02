@@ -17,17 +17,36 @@ namespace HPE.Kruta.Model.ViewModels
 
         public int Sequence { get; set; }
 
-        public DateTime? RecordedDateTime { get; set; }
+        //public DateTime? RecordedDateTime { get; set; }
+
+        private DateTime? _recordedDateTime;
+
+        public DateTime? RecordedDateTime
+        {
+            get { return _recordedDateTime?.Date; }
+            set { _recordedDateTime = value; }
+        }
+
 
         public int? EmployeeID { get; set; }
 
         public string EmployeeName { get; set; }
 
-        public DateTime? ReceivedDateTime { get; set; }
+        //public DateTime? ReceivedDateTime { get; set; }
+
+        private DateTime? _receivedDateTime;
+
+        public DateTime? ReceivedDateTime
+        {
+            get { return _receivedDateTime?.Date; }
+            set { _receivedDateTime = value; }
+        }
 
         public int? DepartmentID { get; set; }
 
         public string DepartmentName { get; set; }
+
+        public string DepartmentCode { get; set; }
 
         public int? DocumentID { get; set; }
 
@@ -47,6 +66,7 @@ namespace HPE.Kruta.Model.ViewModels
 
         public string QueueStatus { get; set; }
 
+        public string DocumentSubTypeCode { get; set; }
     }
 }
 

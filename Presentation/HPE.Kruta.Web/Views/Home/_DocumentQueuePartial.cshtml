@@ -16,12 +16,11 @@
     </div>
 
 </div>
-<!-- Modal Start 1 -->
 
 <div class="container-fluid">
     <div class="row">
 
-        @(Html.Kendo().Grid<HPE.Kruta.Model.Queue>()
+        @(Html.Kendo().Grid<HPE.Kruta.Model.ViewModels.QueueWithSequence>()
       .Name("DocumentQueue")
       .Columns(columns =>
       {
@@ -34,18 +33,17 @@
                  .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='selectAll' /></span>")
                  .HeaderHtmlAttributes(new { style = "text-align: center" })
                  .Sortable(false);
-          columns.Bound(c => c.QueueID).Title("ID").Width(150).Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false)));
+          columns.Bound(c => c.Sequence).Title("ID").Width(150).Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false)));
           columns.Bound(c => c.ReceivedDateTime).Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
-          columns.Bound(c => c.Property.ParcelNumber).Title("Parcel Number").Width(200);
-          //columns.Bound(c => c.Document.DocumentNumber).ClientTemplate("<a href='javascript:void(0);' onclick='DisplayQueueDetails(#=QueueID#,#=DocumentID#);'>#=Document.DocumentNumber#</a>").Title("Document Number").Width(200);
-          columns.Bound(c => c.Document.DocumentNumber).ClientTemplate("<a href='javascript:void(0);' onclick='OpenDocument(#=DocumentID#);'>#=Document.DocumentNumber#</a>").Title("Document Number").Width(200);
-          columns.Bound(c => c.Document.DocumentSubType.Code).Title("Document Type").Width(200);
-          columns.Bound(c => c.Department.DepartmentName).ClientTemplate(" #= Department ? Department.DepartmentName : '' # ").Title("Queue/Department").Width(200);
-          columns.Bound(c => c.Employee.EmployeeName).ClientTemplate(" #= Employee ? Employee.EmployeeName : '' # ").Title("Assigned To").Width(200);
-          columns.Bound(c => c.QueueStatus.Description).ClientTemplate(" #= QueueStatus ? QueueStatus.Description : '' # ").Title("Status").Width(200);
-          columns.Bound(c => c.Document.DocumentStatus.Description).ClientTemplate(" #= Document ? Document.DocumentStatus ? Document.DocumentStatus.Description : '' : '' # ").Title("Document Status").Width(200);
-          columns.Bound(c => c.Department.DepartmentCode).ClientTemplate(" #= Department ? Department.DepartmentCode : '' # ").Title("Flagged").Width(200);
+          columns.Bound(c => c.ParcelNumber).Title("Parcel Number").Width(200);
+          columns.Bound(c => c.DocumentNumber).ClientTemplate("<a href='javascript:void(0);' onclick='OpenDocument(#=DocumentID#);'>#=DocumentNumber#</a>").Title("Document Number").Width(200);
+          columns.Bound(c => c.DocumentSubTypeCode).Title("Document Type").Width(200);
+          columns.Bound(c => c.DepartmentName).Title("Queue/Department").Width(200);
+          columns.Bound(c => c.EmployeeName).Title("Assigned To").Width(200);
+          columns.Bound(c => c.QueueStatus).Title("Status").Width(200);
+          columns.Bound(c => c.DocumentStatus).Title("Document Status").Width(200);
+          columns.Bound(c => c.DepartmentCode).Title("Flagged").Width(200);
       })
       .Scrollable()
       .Sortable()
@@ -53,7 +51,6 @@
       .Selectable()
       .Pageable(pageable => pageable
                             .PageSizes(new string[] { "5", "10", "20", "50", "All" })
-                            //.PageSizes(true)
                             .ButtonCount(5)
                             .Refresh(true))
       .DataSource(dataSource => dataSource
