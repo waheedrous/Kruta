@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }*/
 
+body {
+    padding: 0 !important;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -282,6 +286,10 @@ textarea {
     border-right:0 !important;
     border-left:0 !important;
     border-top:0 !important;
+}
+
+.k-state-selected a {
+    color: white;
 }
 
 .success {
