@@ -4,39 +4,37 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    @*    <div class="col-md-1 sidenav">
-            @section Sidebar {
-                <p>Put you sidebar stuff here!</p>
-            }
-        </div>*@
-
-    <div class="col-md-12">
-        Home > Document > Queue
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="container-fluid text-right custom-text-right">
-                    <b class="custom-title-left custom-Queue">Document Queue</b>
-                    <div class="btn-group custom-btnGrup">
-                        <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand">Assign</button>
-                    </div>
-                </div>
-                @Html.Partial("_DocumentQueuePartial")
-            </div>
-            <div class="row">
-                <div class="container-collapse">
-                    <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Item Details</a>
-                    <div id="queueDetailsSection" class="collapse custom-queueDetails">
-                        @Html.Partial("_QueueDetailsPartial", Model)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p></p>
-        <p></p>
-    </div>
+<div class="container-fluid">
+    Home > Document > Queue
 </div>
+
+<div class="container-fluid">
+    <div class="container-fluid text-right custom-text-right">
+        <b class="custom-title-left custom-Queue">Document Queue</b>
+        <div class="btn-group custom-btnGrup">
+            <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand">Assign</button>
+        </div>
+    </div>
+
+    @Html.Partial("_DocumentQueuePartial")
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+
+    <div class="container-collapse">
+        <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Item Details</a>
+        <div id="queueDetailsSection" class="collapse custom-queueDetails">
+            @Html.Partial("_QueueDetailsPartial", Model)
+        </div>
+    </div>
+
+</div>
+
+
+
 <div class="modal fade" id="assignModal" role="dialog">
     <div class="modal-dialog custom-popupMain">
 
@@ -84,7 +82,7 @@
                 <!-- Form End -->
             </div>
             <div class="modal-footer">
-                <button type="submit" id="informationModalOk" class="btn btn-warning custom-popupMain-Footer-Btn" data-dismiss="modal">Ok</button>
+                <button type="submit" id="informationModalOk" class="btn btn-primary" data-dismiss="modal">Ok</button>
             </div>
         </div>
         <!-- Modal Content End -->

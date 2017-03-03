@@ -52,11 +52,13 @@ textarea {
 }
 
 .custom-navbar {
-    border-bottom-width: 20px;
+    /*border-bottom-width: 20px;
     border-bottom-style: solid;
-    border-bottom-color: white;
-    padding-left: 105px;
+    border-bottom-color: white;*/
+    margin-bottom: 10px;
+    padding-left: 115px;
     border-radius: 0;
+    min-height: 10px !important;
     height: 30px !important;
 }
 
@@ -92,7 +94,6 @@ footer {
 
 .navbar-header {
     padding-left: 45px;
-    
 }
 
 .custom-navbar ul.navbar-right > li > a,
@@ -108,7 +109,7 @@ footer {
 }
 
 .custom-navbar ul.navbar-right {
-    margin-right: 30px;
+    margin-right: 45px;
 }
 
 .custom-body {
@@ -119,7 +120,7 @@ footer {
 .custom-brand {
     padding-top: 2px;
     padding-bottom: 2px;
-    padding-left: 60px;
+    padding-left: 70px;
     color: white;
     background-color: #2E3D5E;
     border-bottom-style: solid;
@@ -291,7 +292,9 @@ textarea {
 .k-state-selected a {
     color: white;
 }
-
+.k-header > .k-grid-filter, .k-header > .k-header-column-menu {
+    background-color: #D1D8E9;
+}
 .success {
        background-color: #4CAF50;
 }
@@ -349,6 +352,7 @@ padding-top:15%;
 }
 .custom-popupMain-Close-Btn {
     color:white;
+    opacity:1;
 }
 .custom-popupMain-Title {
     color:white;
