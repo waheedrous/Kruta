@@ -4,9 +4,9 @@
 <script src="//kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
 
 @*@System.Web.Optimization.Styles.Render("~/Content/kendo.common-bootstrap.min.css")
-@System.Web.Optimization.Styles.Render("~/Content/kendo.common-bootstrap.min.css")
-@System.Web.Optimization.Scripts.Render("~/Scripts/kendo.all.min.js")
-@System.Web.Optimization.Scripts.Render("~/Scripts/kendo.aspnetmvc.min.js")*@
+    @System.Web.Optimization.Styles.Render("~/Content/kendo.common-bootstrap.min.css")
+    @System.Web.Optimization.Scripts.Render("~/Scripts/kendo.all.min.js")
+    @System.Web.Optimization.Scripts.Render("~/Scripts/kendo.aspnetmvc.min.js")*@
 @System.Web.Optimization.Scripts.Render("~/Scripts/DocumentQueue.js")
 
 <div class="container-fluid">
@@ -25,7 +25,7 @@
                  .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='selectAll' /></span>")
                  .HeaderHtmlAttributes(new { style = "text-align: center" })
                  .Sortable(false);
-          columns.Bound(c => c.Sequence).Title("ID").Width(150).Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false)));
+          columns.Template(t => { }).Title("ID").ClientTemplate("#= renderDocumentQueueRowNumber(data) #").Width(50);
           columns.Bound(c => c.ReceivedDateTime).Title("Received Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.ParcelNumber).Title("Parcel Number").Width(200);

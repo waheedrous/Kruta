@@ -56,13 +56,16 @@ function toggleSelectAll(table) {
 
     if (selectallCheckbox) {
         var checkedCount = table.find('input[id*=chkSelect]:checked').length;
-        var checkboxCount = table.find('input[id*=chkSelect]').length;
 
-        if (checkedCount == checkboxCount) {
-            selectallCheckbox.prop('checked', true);
-        }
-        else {
-            selectallCheckbox.prop('checked', false);
+        if (checkedCount > 0) {
+            var checkboxCount = table.find('input[id*=chkSelect]').length;
+
+            if (checkedCount == checkboxCount) {
+                selectallCheckbox.prop('checked', true);
+            }
+            else {
+                selectallCheckbox.prop('checked', false);
+            }
         }
     }
 
@@ -314,7 +317,10 @@ function SaveRouteStatus() {
     routeModal.modal('show');
 }
 
-function onDocumentQueueDataBound() {
+function onDocumentQueueDataBound(e) {
+    // Handle the row number of the grid
+    resetDocumentQueueRowNumber(e);
+
     // maintain the selection of the checkbox after routing
     var queueID = $('#modelIDVal').val();
     if (queueID && queueID > 0) {
@@ -325,6 +331,16 @@ function onDocumentQueueDataBound() {
     }
 
     toggleSelectAll($('table[role = "grid"]'));
+}
+
+var documentQueueRowNumber = 0;
+
+function resetDocumentQueueRowNumber(e) {
+    documentQueueRowNumber = 0;
+}
+
+function renderDocumentQueueRowNumber(data) {
+    return ++documentQueueRowNumber;
 }
 
 function toggleItemDetails(table) {
