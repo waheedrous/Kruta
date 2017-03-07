@@ -1,9 +1,6 @@
-﻿using HPE.Kruta.Domain.User;
-using HPE.Kruta.Web.Models;
+﻿using HPE.Kruta.Web.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using System.Security.Claims;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
