@@ -10,19 +10,8 @@ namespace HPE.Kruta.Web
     /// </summary>
     public class KrutaRoleProvider : RoleProvider
     {
-        public override string ApplicationName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        public override string ApplicationName { get; set; }
+        
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
             throw new NotImplementedException();
