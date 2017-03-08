@@ -22,6 +22,8 @@ namespace HPE.Kruta.DataAccess
         public virtual DbSet<QueueStatus> QueueStatus { get; set; }
         public virtual DbSet<QueueHistory> QueueHistories { get; set; }
         public virtual DbSet<QueueNote> QueueNotes { get; set; }
+        public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -127,6 +129,10 @@ namespace HPE.Kruta.DataAccess
 
             modelBuilder.Entity<QueueNote>()
                 .Property(e => e.Note)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Role>()
+                .Property(e => e.RoleName)
                 .IsUnicode(false);
         }
     }

@@ -51,6 +51,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,19 +61,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="User\EmployeeRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property\Department.cs" />
     <Compile Include="Property\Document.cs" />
     <Compile Include="Property\DocumentStatus.cs" />
     <Compile Include="Property\DocumentSubType.cs" />
     <Compile Include="Property\DocumentType.cs" />
-    <Compile Include="Property\Employee.cs" />
+    <Compile Include="User\Employee.cs" />
     <Compile Include="Property\Property.cs" />
     <Compile Include="Property\PropertyClass.cs" />
     <Compile Include="Queue\Queue.cs" />
     <Compile Include="Queue\QueueHistory.cs" />
     <Compile Include="Queue\QueueNote.cs" />
     <Compile Include="Queue\QueueStatus.cs" />
+    <Compile Include="User\Role.cs" />
     <Compile Include="ViewModels\QueueWithSequence.cs" />
   </ItemGroup>
   <ItemGroup>
