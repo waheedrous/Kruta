@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
-using HPE.Kruta.DataAccess;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HPE.Kruta.Domain

@@ -1,9 +1,5 @@
-﻿using HPE.Kruta.Domain;
-using System.Collections.Generic;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Linq;
-using System.IO;
-using HPE.Kruta.Common.Enum;
 
 namespace HPE.Kruta.Web.Controllers
 {

@@ -1,5 +1,4 @@
 ﻿using HPE.Kruta.Common.Enum;
-using HPE.Kruta.Model;
 using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;

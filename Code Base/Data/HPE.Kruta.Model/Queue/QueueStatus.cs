@@ -1,10 +1,9 @@
-            namespace HPE.Kruta.Model
+namespace HPE.Kruta.Model
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Xml.Serialization;
 
     [Serializable]
     public partial class QueueStatus

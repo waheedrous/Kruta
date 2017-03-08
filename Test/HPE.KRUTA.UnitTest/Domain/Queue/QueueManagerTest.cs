@@ -1,12 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HPE.Kruta.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HPE.Kruta.Model;
+﻿using HPE.Kruta.Model;
 using HPE.Kruta.Model.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace HPE.Kruta.Domain.Tests
 {

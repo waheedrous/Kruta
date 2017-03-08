@@ -1,7 +1,6 @@
 ﻿using HPE.Kruta.Common.Enum;
 using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.User;
-using System.Runtime.Caching;
 using System.Security.Claims;
 using System.Web.Mvc;
 

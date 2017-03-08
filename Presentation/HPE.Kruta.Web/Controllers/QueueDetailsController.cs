@@ -1,10 +1,8 @@
 ﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Model;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace HPE.Kruta.Web.Controllers
 {
