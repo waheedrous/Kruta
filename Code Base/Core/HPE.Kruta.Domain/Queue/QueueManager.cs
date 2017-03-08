@@ -9,8 +9,17 @@ using System.Linq;
 
 namespace HPE.Kruta.Domain
 {
+    /// <summary>
+    ///  handles the logic to retreive and update data in the queue table
+    /// </summary>
     public class QueueManager
     {
+        /// <summary>
+        /// get queue for the specified id
+        /// </summary>
+        /// <param name="queueID">queue id to return the data for</param>
+        /// <param name="includeDetails">include values from related tables e.g. document, property</param>
+        /// <returns></returns>
         public Queue Get(int queueID, bool includeDetails)
         {
             Queue queue;
@@ -42,9 +51,13 @@ namespace HPE.Kruta.Domain
 
         }
 
+        /// <summary>
+        /// lists all Queue items
+        /// </summary>
+        /// <param name="includeDetails">include values from related tables e.g. document, property</param>
+        /// <returns></returns>
         public List<Queue> List(bool includeDetails)
         {
-
             List<Queue> queues;
             using (var db = new ModelDBContext())
             {
@@ -71,6 +84,10 @@ namespace HPE.Kruta.Domain
             return queues;
         }
 
+        /// <summary>
+        /// returns a list of all queues in addition to a sequence column
+        /// </summary>
+        /// <returns></returns>
         public List<QueueWithSequence> ListWithSequence()
         {
 
@@ -94,6 +111,11 @@ namespace HPE.Kruta.Domain
             return queues;
         }
 
+        /// <summary>
+        /// gets a list of queues and returns the same list along with a sequence field tha t always has the values 1,2,3...n
+        /// </summary>
+        /// <param name="queueList">list to transform</param>
+        /// <returns></returns>
         public List<QueueWithSequence> AddSequenceToList(List<Queue> queueList)
         {
             return queueList.Select((q, seq) =>
@@ -121,6 +143,11 @@ namespace HPE.Kruta.Domain
                                     }).ToList();
         }
 
+        /// <summary>
+        /// update queue object
+        /// </summary>
+        /// <param name="queue"></param>
+        /// <returns></returns>
         public int Update(Queue queue)
         {
             using (var db = new ModelDBContext())
@@ -135,6 +162,12 @@ namespace HPE.Kruta.Domain
             return queue.QueueID;
         }
 
+
+        /// <summary>
+        /// assigns bulk for queue items to an employee
+        /// </summary>
+        /// <param name="queueIDs">list of queue ids</param>
+        /// <param name="employeeID">employee to assign to</param>
         public void AssignEmployeeBulk(List<int> queueIDs, int employeeID)
         {
             using (var db = new ModelDBContext())
@@ -155,6 +188,11 @@ namespace HPE.Kruta.Domain
             }
         }
 
+        /// <summary>
+        /// routes queue to a different department and saves history
+        /// </summary>
+        /// <param name="queueID">queue to route</param>
+        /// <param name="departmentID">department to route to</param>
         public void RouteQueue(int queueID, int departmentID)
         {
             using (var db = new ModelDBContext())
@@ -181,6 +219,12 @@ namespace HPE.Kruta.Domain
             }
         }
 
+        /// <summary>
+        /// update document status for a queue
+        /// </summary>
+        /// <param name="queueID">queue which has the document</param>
+        /// <param name="documentStatusID">the new status</param>
+        /// <returns></returns>
         public int UpdateQueueDocumentStatus(int queueID, int documentStatusID)
         {
             using (var db = new ModelDBContext())

@@ -5,25 +5,25 @@ using System.Linq;
 
 namespace HPE.Kruta.Domain.Property
 {
+    /// <summary>
+    /// handles the logic to retreive and update data in the department table
+    /// </summary>
     public class DepartmentManager
     {
+        /// <summary>
+        /// returns a list of all departments
+        /// </summary>
+        /// <param name="includeDetails">has no effect, should be removed</param>
+        /// <returns></returns>
         public List<Department> List(bool includeDetails)
         {
             List<Department> departments;
             using (var db = new ModelDBContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                //db.Configuration.LazyLoadingEnabled = false;
                 if (includeDetails)
                 {
                     departments = db.Departments
-                        //.Include(q => TODO)
-                        //.Include(q => q.Document.DocumentStatus)
-                        //.Include(q => q.Document.DocumentSubType.DocumentType)
-                        //.Include(q => q.Property)
-                        //.Include(q => q.QueueStatus)
-                        //.Include(q => q.Department)
-                        //.Include(q => q.Employee)
                         .ToList();
                 }
                 else

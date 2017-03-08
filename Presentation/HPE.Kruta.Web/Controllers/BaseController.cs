@@ -11,8 +11,8 @@ namespace HPE.Kruta.Web.Controllers
     public class BaseController : Controller
     {
         //public ObjectCache _cache = MemoryCache.Default;
-        public QueueManager _queueManager = new QueueManager();
-        public UserManager _userManager = new UserManager();
+        public QueueManager _queueManager;
+        public UserManager _userManager;
 
         public int LoggedInUserId
         {

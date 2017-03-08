@@ -6,9 +6,17 @@ using System.Linq;
 
 namespace HPE.Kruta.Domain
 {
+    /// <summary>
+    /// handles the logic to retreive and update data in the document table
+    /// </summary>
     public class DocumentManager
     {
-        public string GetDocumentPath( int documentID)
+        /// <summary>
+        /// return the document for the specified id
+        /// </summary>
+        /// <param name="documentID">documentid for the document to return</param>
+        /// <returns></returns>
+        public string GetDocumentPath(int documentID)
         {
             string documentNumber;
 
@@ -18,38 +26,27 @@ namespace HPE.Kruta.Domain
 
             }
 
-            string documentsFolder =  Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "../../Documents/"));
+            string documentsFolder = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "../../Documents/"));
 
             return @"\Documents\2017-123.pdf";
         }
 
-        public List<DocumentStatus> ListDocumentStatus(bool includeDetails)
+        /// <summary>
+        /// returns a list of all document statuses
+        /// </summary>
+        /// <returns></returns>
+        public List<DocumentStatus> ListDocumentStatus()
         {
             List<DocumentStatus> documentStatuses;
             using (var db = new ModelDBContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                //db.Configuration.LazyLoadingEnabled = false;
-                if (includeDetails)
-                {
-                    documentStatuses = db.DocumentStatus
-                        //.Include(q => q.Document)
-                        //.Include(q => q.Document.DocumentStatus)
-                        //.Include(q => q.Document.DocumentSubType.DocumentType)
-                        //.Include(q => q.Property)
-                        //.Include(q => q.QueueStatus)
-                        //.Include(q => q.Department)
-                        //.Include(q => q.Employee)
-                        .ToList();
-                }
-                else
-                {
-                    documentStatuses = db.DocumentStatus.ToList();
-                }
+                documentStatuses = db.DocumentStatus.ToList();
             }
+        
 
             return documentStatuses;
         }
 
-    }
+}
 }

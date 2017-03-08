@@ -17,39 +17,82 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult DisplayQueueDetails(int queueID)
         {
-            Queue queueModel = _queueManager.Get(queueID, true);
+            try
+            {
 
-            DocumentManager documentManager = new DocumentManager();
+                _queueManager = new QueueManager();
 
-            var documentStatuses = documentManager.ListDocumentStatus(false).OrderBy(o => o.Description);
-            ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
+                Queue queueModel = _queueManager.Get(queueID, true);
 
-            var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
-            ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
+                DocumentManager documentManager = new DocumentManager();
 
-            return PartialView("_QueueDetailsPartial", queueModel);
+                var documentStatuses = documentManager.ListDocumentStatus(false).OrderBy(o => o.Description);
+                ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
+
+                var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
+                ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
+
+                return PartialView("_QueueDetailsPartial", queueModel);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
-        public ActionResult SaveStatus(int queueID, int documentStatusID, string notes )
+        public ActionResult SaveStatus(int queueID, int documentStatusID, string notes)
         {
-            SaveStatusInternal(queueID, documentStatusID, notes);
+            try
+            {
 
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                SaveStatusInternal(queueID, documentStatusID, notes);
+
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
         private void SaveStatusInternal(int queueID, int documentStatusID, string notes)
         {
-            _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
-            SaveNotes(queueID, notes);
+            try
+            {
+                _queueManager = new QueueManager();
+                _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
+                SaveNotes(queueID, notes);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
         private void SaveNotes(int queueID, string notes)
         {
-            if (!string.IsNullOrEmpty(notes))
+            try
             {
-                QueueNoteManager queueNoteManager = new QueueNoteManager();
-                queueNoteManager.Add(queueID, notes, LoggedInUserId);
+
+                if (!string.IsNullOrEmpty(notes))
+                {
+                    _queueManager = new QueueManager();
+                    QueueNoteManager queueNoteManager = new QueueNoteManager();
+                    queueNoteManager.Add(queueID, notes, LoggedInUserId);
+                }
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
             }
         }
 
@@ -68,25 +111,46 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult RouteQueueAndSave(int queueID, int departmentID, int documentStatusID, string notes)
         {
-            if (queueID == 0 || departmentID == 0)
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            try
+            {
 
-            SaveStatusInternal(queueID, documentStatusID, notes);
+                _queueManager = new QueueManager();
+                if (queueID == 0 || departmentID == 0)
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-            this._queueManager.RouteQueue(queueID, departmentID);
+                SaveStatusInternal(queueID, documentStatusID, notes);
 
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                this._queueManager.RouteQueue(queueID, departmentID);
+
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
         public ActionResult AddNote(int queueID, string notes)
         {
-            if (queueID == 0 || string.IsNullOrWhiteSpace(notes))
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            try
+            {
 
-            SaveNotes(queueID, notes);
+                if (queueID == 0 || string.IsNullOrWhiteSpace(notes))
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                SaveNotes(queueID, notes);
+
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
