@@ -1,7 +1,7 @@
 ﻿using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
 using System.Linq;
-using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 
 namespace HPE.Kruta.Domain.User
@@ -35,12 +35,43 @@ namespace HPE.Kruta.Domain.User
         {
             List<Employee> employees;
 
-            using (var db = new ModelDBContext())
+            using (ModelDBContext db = new ModelDBContext())
             {
                 employees = db.Employees.ToList();
             }
 
             return employees;
+        }
+
+        /// <summary>
+        /// Retrieve all the roles for specific user
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <returns></returns>
+        public List<EmployeeRole> ListEmployeeRoles(int employeeID)
+        {
+            List<EmployeeRole> employeeRoles;
+
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                employeeRoles = db.EmployeeRoles
+                    .Include(q => q.Role)
+                    .Where(q => q.EmployeeID == employeeID).ToList();
+            }
+
+            return employeeRoles;
+        }
+
+        /// <summary>
+        /// Get the roles for specific user id
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <returns></returns>
+        public string[] GetRolesForUser(int employeeID)
+        {
+            List<EmployeeRole> employeeRoles = ListEmployeeRoles(employeeID);
+            string[] rolesName = employeeRoles.Select(q => q.Role.RoleName).ToArray();
+            return rolesName;
         }
     }
 }

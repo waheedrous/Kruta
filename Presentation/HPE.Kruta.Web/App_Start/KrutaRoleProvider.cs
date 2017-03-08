@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HPE.Kruta.Domain.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,9 @@ using System.Web.Security;
 
 namespace HPE.Kruta.Web
 {
+    /// <summary>
+    /// Custom role provider based of off ASP.NET role provider
+    /// </summary>
     public class KrutaRoleProvider : RoleProvider
     {
         public override string ApplicationName
@@ -46,9 +50,16 @@ namespace HPE.Kruta.Web
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get the roles for the related user name
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public override string[] GetRolesForUser(string username)
         {
-            return new string[] { };
+            UserManager um = new UserManager();
+            // TODO: Get the EMPID
+            return um.GetRolesForUser(2);
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -56,9 +67,16 @@ namespace HPE.Kruta.Web
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Verify if the user has the role
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         public override bool IsUserInRole(string username, string roleName)
         {
-            return false;
+            var roles = GetRolesForUser(username);
+            return roles.Contains(roleName);
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
