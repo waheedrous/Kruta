@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using System.IO;
+using HPE.Kruta.Common.Enum;
 
 namespace HPE.Kruta.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        [Authorize]
         public ActionResult Index()
         {
 

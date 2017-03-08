@@ -1,4 +1,5 @@
-﻿using HPE.Kruta.Model;
+﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Model;
 using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DocumentQueueController : BaseController
     {
         [ChildActionOnly]
@@ -33,6 +34,7 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
+        [AuthorizePermission(RolesEnum.CanAssign)]
         public ActionResult Queues_BatchAssign(List<int> selectedQueueIds, int empId)
         {
             if (selectedQueueIds == null || selectedQueueIds.Count == 0 || empId == 0)

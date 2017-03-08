@@ -1,4 +1,5 @@
-﻿using HPE.Kruta.Domain;
+﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.User;
 using System.Runtime.Caching;
 using System.Security.Claims;
@@ -6,6 +7,8 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
+    [Authorize]
+    [AuthorizePermission(RolesEnum.Login)]
     public class BaseController : Controller
     {
         //public ObjectCache _cache = MemoryCache.Default;

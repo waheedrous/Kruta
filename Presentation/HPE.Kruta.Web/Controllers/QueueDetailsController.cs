@@ -8,7 +8,6 @@ using System.Web.Script.Serialization;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    [Authorize]
     public class QueueDetailsController : BaseController
     {
         [ChildActionOnly]

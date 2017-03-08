@@ -12,4 +12,11 @@ namespace HPE.Kruta.Common.Enum
         InProgress = 2,
         Completed = 3
     }
+
+    public enum RolesEnum
+    {
+        Administrator,
+        Login,
+        CanAssign
+    }
 }
