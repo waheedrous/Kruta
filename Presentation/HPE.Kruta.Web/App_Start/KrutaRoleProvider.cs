@@ -44,9 +44,10 @@ namespace HPE.Kruta.Web
         /// <returns></returns>
         public override string[] GetRolesForUser(string username)
         {
-            UserManager um = new UserManager();
-            // TODO: Get the EMPID
-            return um.GetRolesForUser(2);
+            //UserManager um = new UserManager();
+            //// TODO: Get the EMPID
+            //return um.GetRolesForUser(2);
+            return new string[] { };
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -62,8 +63,9 @@ namespace HPE.Kruta.Web
         /// <returns></returns>
         public override bool IsUserInRole(string username, string roleName)
         {
-            var roles = GetRolesForUser(username);
-            return roles.Contains(roleName);
+            //var roles = GetRolesForUser(username);
+            //return roles.Contains(roleName);
+            return true;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
