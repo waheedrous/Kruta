@@ -4,5 +4,6 @@ namespace HPE.Kruta.Domain.Principals
 {
     public interface IKrutaPrincipal : IPrincipal
     {
+        int UserID { get; set; }
     }
 }

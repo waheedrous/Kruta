@@ -1,4 +1,5 @@
 ﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Domain.Principals;
 using System;
 using System.Web.Mvc;
 
@@ -25,6 +26,12 @@ namespace HPE.Kruta.Web
         /// <param name="filterContext"></param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            var user = filterContext.HttpContext.User as KrutaPrincipal;
+
+            if (user != null)
+            {
+                user.UserID = 2;
+            }
         }
 
         /// <summary>

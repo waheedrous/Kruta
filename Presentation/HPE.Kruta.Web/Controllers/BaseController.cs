@@ -1,7 +1,7 @@
 ﻿using HPE.Kruta.Common.Enum;
 using HPE.Kruta.Domain;
+using HPE.Kruta.Domain.Principals;
 using HPE.Kruta.Domain.User;
-using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
@@ -18,11 +18,13 @@ namespace HPE.Kruta.Web.Controllers
         {
             get
             {
-                var claim = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Sid);
-                var userIdClaim = claim == null ? null : claim.Value;
-
+                var user = User as KrutaPrincipal;
                 int userId = 0;
-                int.TryParse(userIdClaim, out userId);
+
+                if (user != null)
+                {
+                    userId = user.UserID;
+                }
 
                 return userId;
             }

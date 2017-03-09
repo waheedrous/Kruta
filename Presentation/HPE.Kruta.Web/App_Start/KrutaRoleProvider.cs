@@ -1,6 +1,8 @@
-﻿using HPE.Kruta.Domain.User;
+﻿using HPE.Kruta.Domain.Principals;
+using HPE.Kruta.Domain.User;
 using System;
 using System.Linq;
+using System.Web;
 using System.Web.Security;
 
 namespace HPE.Kruta.Web
@@ -44,10 +46,17 @@ namespace HPE.Kruta.Web
         /// <returns></returns>
         public override string[] GetRolesForUser(string username)
         {
-            //UserManager um = new UserManager();
-            //// TODO: Get the EMPID
-            //return um.GetRolesForUser(2);
-            return new string[] { };
+            UserManager um = new UserManager();
+
+            var user = HttpContext.Current.User as KrutaPrincipal;
+
+            if (user != null)
+            {
+                return um.GetRolesForUser(user.UserID);
+            }
+
+            return um.GetRolesForUser(username);
+            // return new string[] { };
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -63,9 +72,9 @@ namespace HPE.Kruta.Web
         /// <returns></returns>
         public override bool IsUserInRole(string username, string roleName)
         {
-            //var roles = GetRolesForUser(username);
-            //return roles.Contains(roleName);
-            return true;
+            var roles = GetRolesForUser(username);
+            return roles.Contains(roleName);
+            //return true;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)

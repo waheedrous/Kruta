@@ -8,26 +8,20 @@ namespace HPE.Kruta.Domain.User
 {
     public class UserManager
     {
-        public bool IsValid(string username, string password)
-        {
-            Employee emp = VerifyUser(username, password);
-
-            return emp != null;
-        }
-
-        public Employee VerifyUser(string username, string password)
+        /// <summary>
+        /// Get the employee by user name.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public Employee GetByUsername(string username)
         {
             Employee emp = null;
-            // This should be temp solution and it may be replaced with an actual database driven password in the future
-            string genericPassword = System.Configuration.ConfigurationManager.AppSettings["GenericPassword"];
 
             using (var db = new ModelDBContext())
             {
-                emp = db.Employees.FirstOrDefault(u => u.UserName == username &&
-                                              password == genericPassword);
+                emp = db.Employees.FirstOrDefault(u => string.Compare(u.UserName, username, System.StringComparison.OrdinalIgnoreCase) == 0);
             }
 
-            // It will be null if the username/password are wrong, the check for null should happen on the caller side
             return emp;
         }
 
@@ -63,7 +57,25 @@ namespace HPE.Kruta.Domain.User
         }
 
         /// <summary>
-        /// Get the roles for specific user id
+        /// Get the roles for specific user name.
+        /// Use GetRolesForUser(int employeeID) for better performance.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public string[] GetRolesForUser(string username)
+        {
+            Employee emp = GetByUsername(username);
+
+            if (emp != null)
+            {
+                return GetRolesForUser(emp.EmployeeID);
+            }
+
+            return new string[] { };
+        }
+
+        /// <summary>
+        /// Get the roles for specific user using the employee ID.
         /// </summary>
         /// <param name="employeeID"></param>
         /// <returns></returns>
