@@ -30,6 +30,7 @@ namespace HPE.Kruta.Web.Controllers
 
         public void LoadAssignToList()
         {
+            _userManager = new Domain.User.UserManager();
             var emps = _userManager.List().OrderBy(o => o.EmployeeName);
             ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
 
