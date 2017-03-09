@@ -6,8 +6,17 @@ using System.Linq;
 
 namespace HPE.Kruta.Domain.User
 {
+    /// <summary>
+    ///  handles the logic to retrieve and update data in the employee table
+    /// </summary>
     public class UserManager
     {
+        /// <summary>
+        /// checks if he user login is valid
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool IsValid(string username, string password)
         {
             Employee emp = VerifyUser(username, password);
@@ -31,13 +40,17 @@ namespace HPE.Kruta.Domain.User
             return emp;
         }
 
+        /// <summary>
+        /// lists all employees
+        /// </summary>
+        /// <returns></returns>
         public List<Employee> List()
         {
             List<Employee> employees;
 
             using (ModelDBContext db = new ModelDBContext())
             {
-                employees = db.Employees.ToList();
+                    employees = db.Employees.ToList();
             }
 
             return employees;

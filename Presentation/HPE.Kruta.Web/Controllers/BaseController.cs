@@ -6,8 +6,8 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    //[Authorize]
-    //[AuthorizePermission(RolesEnum.Login)]
+    [Authorize]
+    [AuthorizePermission(RolesEnum.Login)]
     public class BaseController : Controller
     {
         //public ObjectCache _cache = MemoryCache.Default;
@@ -26,6 +26,15 @@ namespace HPE.Kruta.Web.Controllers
 
                 return userId;
             }
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+
+            //filterContext.ExceptionHandled = true;
+
+            RedirectToAction("Error", "Home");
+
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 namespace HPE.Kruta.Domain
 {
     /// <summary>
-    /// handles the logic to retreive and update data in the document table
+    /// handles the logic to retrieve and update data in the document table
     /// </summary>
     public class DocumentManager
     {

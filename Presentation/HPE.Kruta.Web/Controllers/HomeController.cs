@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using HPE.Kruta.Domain.User;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
@@ -30,10 +31,16 @@ namespace HPE.Kruta.Web.Controllers
 
         public void LoadAssignToList()
         {
+            _userManager = new UserManager();
             var emps = _userManager.List().OrderBy(o => o.EmployeeName);
             ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
 
 
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }

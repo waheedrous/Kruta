@@ -78,22 +78,14 @@ namespace HPE.Kruta.Web.Controllers
 
         private void SaveNotes(int queueID, string notes)
         {
-            try
+
+            if (!string.IsNullOrEmpty(notes))
             {
-
-                if (!string.IsNullOrEmpty(notes))
-                {
-                    _queueManager = new QueueManager();
-                    QueueNoteManager queueNoteManager = new QueueNoteManager();
-                    queueNoteManager.Add(queueID, notes, LoggedInUserId);
-                }
-
+                _queueManager = new QueueManager();
+                QueueNoteManager queueNoteManager = new QueueNoteManager();
+                queueNoteManager.Add(queueID, notes, LoggedInUserId);
             }
-            catch (System.Exception)
-            {
 
-                throw;
-            }
         }
 
         [HttpGet]
@@ -135,22 +127,15 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult AddNote(int queueID, string notes)
         {
-            try
-            {
 
-                if (queueID == 0 || string.IsNullOrWhiteSpace(notes))
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            if (queueID == 0 || string.IsNullOrWhiteSpace(notes))
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-                SaveNotes(queueID, notes);
+            SaveNotes(queueID, notes);
 
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
-            }
-            catch (System.Exception)
-            {
 
-                throw;
-            }
         }
     }
 }

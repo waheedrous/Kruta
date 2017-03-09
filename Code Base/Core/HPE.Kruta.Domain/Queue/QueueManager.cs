@@ -10,7 +10,7 @@ using System.Linq;
 namespace HPE.Kruta.Domain
 {
     /// <summary>
-    ///  handles the logic to retreive and update data in the queue table
+    ///  handles the logic to retrieve and update data in the queue table
     /// </summary>
     public class QueueManager
     {
@@ -177,7 +177,7 @@ namespace HPE.Kruta.Domain
 
                 foreach (Queue q in queueList)
                 {
-                    //only chnage it to new if the current status is null
+                    //only change it to new if the current status is null
                     if (newQueueStatus != null && q.QueueStatusID == null)
                         q.QueueStatusID = newQueueStatus.QueueStatusID;
 
@@ -198,7 +198,7 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
-
+                //create history record shows the old and new departments
                 var queueHistory = new QueueHistory();
                 queueHistory.QueueID = queueID;
                 queueHistory.RoutedFromDepartmentID = currentQueue.DepartmentID;
