@@ -11,14 +11,12 @@ namespace HPE.Kruta.Domain.User
     /// </summary>
     public class UserManager
     {
-        public bool IsValid(string username, string password)
-        {
-            Employee emp = VerifyUser(username, password);
-
-            return emp != null;
-        }
-
-        public Employee VerifyUser(string username, string password)
+        /// <summary>
+        /// Get the employee by user name.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public Employee GetByUsername(string username)
         {
             Employee emp = null;
 
