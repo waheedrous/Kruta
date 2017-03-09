@@ -177,7 +177,7 @@ namespace HPE.Kruta.Domain
 
                 foreach (Queue q in queueList)
                 {
-                    //only chnage it to new if the curent status is null
+                    //only chnage it to new if the current status is null
                     if (newQueueStatus != null && q.QueueStatusID == null)
                         q.QueueStatusID = newQueueStatus.QueueStatusID;
 

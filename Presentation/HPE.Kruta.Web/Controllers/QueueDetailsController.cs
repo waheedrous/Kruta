@@ -26,7 +26,7 @@ namespace HPE.Kruta.Web.Controllers
 
                 DocumentManager documentManager = new DocumentManager();
 
-                var documentStatuses = documentManager.ListDocumentStatus(false).OrderBy(o => o.Description);
+                var documentStatuses = documentManager.ListDocumentStatus().OrderBy(o => o.Description);
                 ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
 
                 var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
