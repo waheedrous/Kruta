@@ -63,15 +63,11 @@
                     }
 
                 </div>
-                <div class="form-inline" style="padding-top:5px;">
+                <div class="form-inline" style="padding-top:5px;padding-top:10px;">
                     <div class="form-group"><label>New Note</label></div>
                     <br />
-                    <div class="form-group">
-                        @Html.TextArea("Notes")
-                    </div>
-
-
-                    <input value="Add" id="btnSubmit1" name="btnSubmit1" type="Submit" onclick="AddNote();" class="btn cust-warning custom-btn-SR" style="padding:6px 5px;margin-left:90px;font-size:8pt;width:40px;text-transform: capitalize" />
+                    @Html.TextArea("Notes")
+                     <input value="Add" id="btnSubmit1" name="btnSubmit1" type="Submit" onclick="AddNote();" class="btn cust-warning custom-btn-SR" style="padding:6px 5px;font-size:8pt;text-transform: capitalize;margin-bottom:40px;" />
                 </div>
 
             </div>
@@ -111,7 +107,7 @@
                     <div class="SR-btn-group ">
                         <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR" disabled="disabled" />
 
-                        <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn cust-warning custom-btn-SR" />
+                      @*  <input value="Route" id="btnRoute" name="btnRoute" type="Submit" onclick="SaveRouteStatus();" class="btn cust-warning custom-btn-SR" />*@
                     </div>
 
                 </div>
@@ -135,7 +131,7 @@
         <div class="modal-content custom-popupMain-Content">
             <div class="modal-header custom-popupMain-Header">
                 <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
-                <h6 class="modal-title custom-popupMain-Hr">ROUTE DOCUMENT TO</h6>
+                <h6 class="modal-title custom-popupMain-Hr">Route Document To</h6>
             </div>
             <div class="modal-body">
                 <!-- Form Start -->
@@ -153,7 +149,7 @@
                 <!-- Form End -->
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-warning custom-popupMain-Footer-Btn" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to save and route the current Document?');">Route</button>
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to save and route the current Document?');">Route</button>
             </div>
         </div>
         <!-- Modal Content End -->

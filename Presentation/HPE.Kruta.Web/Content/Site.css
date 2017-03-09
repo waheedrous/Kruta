@@ -1,4 +1,4 @@
-﻿/*body {
+﻿/*custom-popupMain-Footer-Btnody {
     padding-top: 50px;
     padding-bottom: 20px;
 }*/
@@ -268,8 +268,7 @@ html {
 
 textarea {
     resize: none;
-    width:150%;
-    max-width:450px;
+    width:75%;
 }
 
 /*The following styling is for DOcument Queue Container*/
@@ -322,6 +321,7 @@ textarea {
     text-align: center;
     font-size: 16px;
     float: left;
+    margin-right:2px;
 }
 
 .custom-Queue {
@@ -354,6 +354,11 @@ padding-top:15%;
     color:white;
     opacity:1;
 }
+.custom-popupMain-Close-Btn:hover {
+    color:white;
+    opacity:1;
+}
+
 .custom-popupMain-Title {
     color:white;
     font-size:medium;
@@ -367,11 +372,6 @@ padding-top:15%;
     padding-top:15px;
 }
 
-.custom-popupMain-Footer-Btn {
-    background-color:#91A2C9;
-    padding: 8px 30px;
-
-}
 .custom-text-right {
 
 padding-top:10px;
