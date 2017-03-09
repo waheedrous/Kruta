@@ -19,6 +19,9 @@ namespace HPE.Kruta.Domain.Principals
             }
         }
 
+        /// <summary>
+        /// Gets or sets the logged in user ID
+        /// </summary>
         public int UserID { get; set; }
 
         public bool IsInRole(string role)

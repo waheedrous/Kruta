@@ -26,28 +26,13 @@ namespace HPE.Kruta.Web
         /// <param name="filterContext"></param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            // this will be executed each time AuthorizePermissionAttribute is being presented
+            // first we need to check if the logged in user can access the system
             var user = filterContext.HttpContext.User as KrutaPrincipal;
 
             if (user != null)
             {
                 user.UserID = 2;
-            }
-        }
-
-        /// <summary>
-        /// Handle the unauthorized requets, in case the windows authintication failed
-        /// </summary>
-        /// <param name="filterContext"></param>
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            if (!filterContext.HttpContext.Request.IsAuthenticated)
-            {
-                filterContext.HttpContext.Response.StatusCode = 403;
-                filterContext.Result = new ViewResult { ViewName = "Unauthorized" };
-            }
-            else
-            {
-                base.HandleUnauthorizedRequest(filterContext);
             }
         }
     }

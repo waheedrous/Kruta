@@ -6,14 +6,9 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    //[Authorize]
-    //[AuthorizePermission(RolesEnum.Login)]
+    //[KrutaAuthorize]
     public class BaseController : Controller
     {
-        //public ObjectCache _cache = MemoryCache.Default;
-        public QueueManager _queueManager;
-        public UserManager _userManager;
-
         public int LoggedInUserId
         {
             get
