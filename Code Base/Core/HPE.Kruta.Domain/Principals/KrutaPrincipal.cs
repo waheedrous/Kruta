@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 
 namespace HPE.Kruta.Domain.Principals
 {
@@ -21,28 +19,14 @@ namespace HPE.Kruta.Domain.Principals
             }
         }
 
+        /// <summary>
+        /// Gets or sets the logged in user ID
+        /// </summary>
+        public int UserID { get; set; }
+
         public bool IsInRole(string role)
         {
             return _principal.IsInRole(role);
-        }
-
-        public bool IsInClient(string client)
-        {
-            return _principal.Identity.IsAuthenticated
-                   && GetClientsForUser(_principal.Identity.Name).Contains(client);
-        }
-
-        private IEnumerable<string> GetClientsForUser(string username)
-        {
-            //using (var db = new YourContext())
-            //{
-            //    var user = db.Users.SingleOrDefault(x => x.Name == username);
-            //    return user != null
-            //                ? user.Clients.Select(x => x.Name).ToArray()
-            //                : new string[0];
-            //}
-
-            return new string[0];
         }
     }
 }
