@@ -40,7 +40,7 @@ namespace HPE.Kruta.Web.Controllers
             {
                 var ident = new ClaimsIdentity(
                   new[] {
-                      // adding following 2 claim just for supporting default antiforgery provider
+                      // adding following 2 claim just for supporting default anti-forgery provider
                       new Claim(ClaimTypes.NameIdentifier, model.Username),
                       new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
                       new Claim(ClaimTypes.Name,model.Username),
@@ -55,8 +55,8 @@ namespace HPE.Kruta.Web.Controllers
                 HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = model.RememberMe }, ident);
                 return RedirectToLocal(returnUrl);
             }
-            // invalid username or password
-            //ModelState.AddModelError("", "invalid username or password");
+            // invalid user name or password
+            //ModelState.AddModelError("", "invalid user-name or password");
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(model);
         }

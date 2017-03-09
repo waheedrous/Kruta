@@ -10,7 +10,7 @@ using System.Linq;
 namespace HPE.Kruta.Domain
 {
     /// <summary>
-    ///  handles the logic to retreive and update data in the queue table
+    ///  handles the logic to retrieve and update data in the queue table
     /// </summary>
     public class QueueManager
     {
@@ -112,7 +112,7 @@ namespace HPE.Kruta.Domain
         }
 
         /// <summary>
-        /// gets a list of queues and returns the same list along with a sequence field tha t always has the values 1,2,3...n
+        /// gets a list of queues and returns the same list along with a sequence field that always has the values 1,2,3...n
         /// </summary>
         /// <param name="queueList">list to transform</param>
         /// <returns></returns>
@@ -177,7 +177,7 @@ namespace HPE.Kruta.Domain
 
                 foreach (Queue q in queueList)
                 {
-                    //only chnage it to new if the current status is null
+                    //only change it to new if the current status is null
                     if (newQueueStatus != null && q.QueueStatusID == null)
                         q.QueueStatusID = newQueueStatus.QueueStatusID;
 
