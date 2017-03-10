@@ -17,63 +17,39 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult DisplayQueueDetails(int queueID)
         {
-            try
-            {
 
-                _queueManager = new QueueManager();
+            _queueManager = new QueueManager();
 
-                Queue queueModel = _queueManager.Get(queueID, true);
+            Queue queueModel = _queueManager.Get(queueID, true);
 
-                DocumentManager documentManager = new DocumentManager();
+            DocumentManager documentManager = new DocumentManager();
 
-                var documentStatuses = documentManager.ListDocumentStatus().OrderBy(o => o.Description);
-                ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
+            var documentStatuses = documentManager.ListDocumentStatus().OrderBy(o => o.Description);
+            ViewBag.DocumentStatuses = new SelectList(documentStatuses, "DocumentStatusID", "Description", queueModel.Document.DocumentStatusID);
 
-                var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
-                ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
+            var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
+            ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
 
-                return PartialView("_QueueDetailsPartial", queueModel);
+            return PartialView("_QueueDetailsPartial", queueModel);
 
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
         }
 
         [HttpGet]
         public ActionResult SaveStatus(int queueID, int documentStatusID, string notes)
         {
-            try
-            {
 
-                SaveStatusInternal(queueID, documentStatusID, notes);
+            SaveStatusInternal(queueID, documentStatusID, notes);
 
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
-
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
         private void SaveStatusInternal(int queueID, int documentStatusID, string notes)
         {
-            try
-            {
-                _queueManager = new QueueManager();
-                _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
-                SaveNotes(queueID, notes);
 
-            }
-            catch (System.Exception)
-            {
+            _queueManager = new QueueManager();
+            _queueManager.UpdateQueueDocumentStatus(queueID, documentStatusID);
+            SaveNotes(queueID, notes);
 
-                throw;
-            }
         }
 
         private void SaveNotes(int queueID, string notes)
@@ -103,25 +79,17 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult RouteQueueAndSave(int queueID, int departmentID, int documentStatusID, string notes)
         {
-            try
-            {
 
-                _queueManager = new QueueManager();
-                if (queueID == 0 || departmentID == 0)
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            _queueManager = new QueueManager();
+            if (queueID == 0 || departmentID == 0)
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-                SaveStatusInternal(queueID, documentStatusID, notes);
+            SaveStatusInternal(queueID, documentStatusID, notes);
 
-                this._queueManager.RouteQueue(queueID, departmentID);
+            this._queueManager.RouteQueue(queueID, departmentID);
 
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
         }
 
         [HttpGet]

@@ -19,11 +19,13 @@ namespace HPE.Kruta.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// get unprocessed queue items
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public ActionResult Queues_Read([DataSourceRequest]DataSourceRequest request)
         {
-
-            try
-            {
                 _queueManager = new QueueManager();
 
                 IQueryable<QueueWithSequence> queues = this._queueManager.ListWithSequence().AsQueryable();
@@ -37,20 +39,18 @@ namespace HPE.Kruta.Web.Controllers
 
                 return Content(list, "application/json");
 
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
         }
 
+        /// <summary>
+        /// assign a bulk of documents to a single employee
+        /// </summary>
+        /// <param name="selectedQueueIds">list of selected queues ids</param>
+        /// <param name="empId">employee id to assign to</param>
+        /// <returns></returns>
         [HttpGet]
         [AuthorizePermission(RolesEnum.CanAssign)]
         public ActionResult Queues_BatchAssign(List<int> selectedQueueIds, int empId)
         {
-            try
-            {
                 _queueManager = new QueueManager();
 
                 if (selectedQueueIds == null || selectedQueueIds.Count == 0 || empId == 0)
@@ -60,12 +60,6 @@ namespace HPE.Kruta.Web.Controllers
 
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
         }
     }
 }

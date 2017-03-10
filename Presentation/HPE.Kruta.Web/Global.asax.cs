@@ -1,5 +1,8 @@
 ﻿using HPE.Kruta.Domain.Principals;
+using log4net;
+using log4net.Config;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -9,6 +12,8 @@ namespace HPE.Kruta.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private object filterContext;
+
         /// <summary>
         /// MVC application start
         /// </summary>
@@ -18,6 +23,9 @@ namespace HPE.Kruta.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //read log4net configurations
+            XmlConfigurator.Configure();
         }
 
         /// <summary>
@@ -30,6 +38,14 @@ namespace HPE.Kruta.Web
             Context.User = Thread.CurrentPrincipal = new KrutaPrincipal(User);
         }
 
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var raisedException = Server.GetLastError();
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+            log.Error("Error in controller", raisedException);
+
+        }
 
     }
 }

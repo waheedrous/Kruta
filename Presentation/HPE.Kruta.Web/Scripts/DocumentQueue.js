@@ -157,6 +157,9 @@ function yesAssignFunction() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
         }
     });
 }
@@ -192,6 +195,9 @@ function yesRouteFunction() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
         }
     });
 
@@ -225,6 +231,9 @@ function DisplayQueueDetails(queueID, documentID) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
         }
     });
 }
@@ -261,6 +270,9 @@ function OpenDocument(documentID) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
         }
     });
 }
@@ -296,6 +308,9 @@ function SaveQueueStatus() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
         }
     });
 }
@@ -320,13 +335,9 @@ function AddNote() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.responseText);
-            //1
-            //document.open();
-            //document.write(xhr.responseText);
-            //document.close();
-
-            //2
-            //$("html").html($(xhr.responseText));
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
 
         }
     });
