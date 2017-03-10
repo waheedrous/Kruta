@@ -148,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,8 +172,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Documents\2017-123.pdf" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\Add_screenshot.jpg" />
+    <Content Include="Images\Clear_filter.jpg" />
+    <Content Include="Images\column_menu.png" />
     <Content Include="Images\HPE_log_left_wht.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\refresh.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -214,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +239,9 @@
       <Project>{555f6284-4841-4129-be20-c7b6fa49a526}</Project>
       <Name>HPE.Kruta.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

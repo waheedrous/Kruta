@@ -7,14 +7,14 @@ using System.Linq;
 namespace HPE.Kruta.Domain
 {
     /// <summary>
-    /// handles the logic to retrieve and update data in the document table
+    /// handles the logic to retreive and update data in the document table
     /// </summary>
     public class DocumentManager
     {
         /// <summary>
         /// return the document for the specified id
         /// </summary>
-        /// <param name="documentID">document id for the document to return</param>
+        /// <param name="documentID">documentid for the document to return</param>
         /// <returns></returns>
         public string GetDocumentPath(int documentID)
         {

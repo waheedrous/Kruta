@@ -6,7 +6,7 @@ using System.Linq;
 namespace HPE.Kruta.Domain.Property
 {
     /// <summary>
-    /// handles the logic to retrieve and update data in the department table
+    /// handles the logic to retreive and update data in the department table
     /// </summary>
     public class DepartmentManager
     {

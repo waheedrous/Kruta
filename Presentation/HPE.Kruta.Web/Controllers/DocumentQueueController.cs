@@ -46,7 +46,7 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        //[AuthorizePermission(RolesEnum.CanAssign)]
+        [AuthorizePermission(RolesEnum.CanAssign)]
         public ActionResult Queues_BatchAssign(List<int> selectedQueueIds, int empId)
         {
             try
