@@ -32,10 +32,9 @@ namespace HPE.Kruta.Web.Controllers
         protected override void OnException(ExceptionContext filterContext)
         {
 
-            //filterContext.ExceptionHandled = true;
-
-            RedirectToAction("Error", "Home");
-
+            filterContext.ExceptionHandled = true;
+            
+            filterContext.Result = new ViewResult { ViewName = "Error" };
         }
     }
 }

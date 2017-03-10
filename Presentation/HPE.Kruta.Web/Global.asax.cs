@@ -29,5 +29,7 @@ namespace HPE.Kruta.Web
         {
             Context.User = Thread.CurrentPrincipal = new KrutaPrincipal(User);
         }
+
+
     }
 }
