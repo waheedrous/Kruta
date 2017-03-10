@@ -8,6 +8,7 @@ function AttachDocumentQueueCommands() {
     $("#AssignDocumentQueueCommand").attr('onclick', 'doAssign()');
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
     $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
+    $("#CreateCaseCommand").attr('onclick', 'doCase()');
 }
 
 function AttachToggleSelectAll() {
@@ -82,6 +83,19 @@ function doAssign() {
         var assignModal = $("#assignModal");
         $('#routingControlStaffList').prop('selectedIndex', 0);
         assignModal.modal('show');
+    }
+}
+
+function doCase() {
+    // check if any document has been selected
+    if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
+        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
+    }
+    else {
+        // show the CaseModel from index
+        var caseModal = $("#caseModal");
+        $('#departmentsList').prop('selectedIndex', 0);
+        caseModal.modal('show');
     }
 }
 

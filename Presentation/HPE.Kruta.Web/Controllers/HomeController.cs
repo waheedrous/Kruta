@@ -1,4 +1,4 @@
-﻿using HPE.Kruta.Domain.User;
+﻿using HPE.Kruta.Domain.Property;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -25,6 +25,9 @@ namespace HPE.Kruta.Web.Controllers
             //string a = q.Property.ParcelNumber;
             //string a1 = q.Document.DocumentSubType.DocumentType.Description;
 
+            //Get Department name from DocumentManager and show into Dropdown List which is in index
+            var department = new DepartmentManager().List(false).OrderBy(a => a.DepartmentName);
+            ViewBag.DepartmentsList = new SelectList(department, "DepartmentID", "DepartmentName");
             LoadAssignToList();
             return View();
         }

@@ -172,8 +172,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Documents\2017-123.pdf" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\Add_screenshot.jpg" />
+    <Content Include="Images\Clear_filter.jpg" />
+    <Content Include="Images\column_menu.png" />
     <Content Include="Images\HPE_log_left_wht.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\refresh.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

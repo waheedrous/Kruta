@@ -188,7 +188,7 @@ html {
 .row {
         overflow: hidden;
         border-left-width: 100px;
-        padding-top:10px;
+        padding-top:0px;
     }
 
 .custom-queueDetails {
@@ -308,20 +308,35 @@ textarea {
 .btn {
     text-transform: uppercase;
 }
-
+.custom-panel-sty {
+padding:0px;
+}
+.panel-default {
+    margin-bottom: 1.5px;
+}
 
 /*Queue Detail Grid and button*/
 
 
 .custom-btn {
     border: none;
-    background-color: #8CBA26;
-    color:white;
+    /*border-right:1px solid #ccc;*/
+    background-color: white;
+    color:black;
     padding: 6px 40px;
     text-align: center;
     font-size: 16px;
     float: left;
     margin-right:2px;
+    padding-left:5px;
+    padding-right:5px;
+    text-transform:capitalize;
+}
+.custom-btn:hover {
+    background-color:#A9B7D5; 
+}
+.btn-last {
+    border-right: none;
 }
 
 .custom-Queue {
@@ -333,8 +348,9 @@ textarea {
 }
 
 .custom-btnGrup {
-    padding-bottom:5px;
-    padding-left:10px
+    /*padding-bottom:5px;*/
+    padding-left:10px;
+    float:right;
 }
 
 .custom-popupMain {
