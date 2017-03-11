@@ -6,14 +6,10 @@ namespace HPE.Kruta.Model
     [Table("EmployeeRole")]
     public partial class EmployeeRole
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int EmployeeRoleID { get; set; }
+
         public int EmployeeID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoleID { get; set; }
 
         public virtual Role Role { get; set; }

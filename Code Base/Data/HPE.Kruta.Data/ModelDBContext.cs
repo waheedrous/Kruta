@@ -134,6 +134,11 @@ namespace HPE.Kruta.DataAccess
             modelBuilder.Entity<Role>()
                 .Property(e => e.RoleName)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Role>()
+                .HasMany(e => e.EmployeeRoles)
+                .WithRequired(e => e.Role)
+                .WillCascadeOnDelete(false);
         }
     }
 }
