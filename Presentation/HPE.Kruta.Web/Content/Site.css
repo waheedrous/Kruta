@@ -231,7 +231,7 @@ html {
     }
 
 .custom-docstatusdropdown {
-    padding-left: 20%
+    display: -webkit-inline-box;
     }
 
 .custom-drp {
@@ -243,17 +243,21 @@ html {
     font-size: 13px; 
     float: left;
     }
-.SR-btn-group {
+/*.SR-btn-group {
     padding-top: 57%; 
     padding-left: 1%;
-    }
+    }*/
 
+
+/*.cust-rw {
+display:inline-block
+}*/
 .custom-btn-SR{
     border: none; 
     background-color: #8CBA26; 
     color: white; 
     text-align: center; 
-    padding: 6px 25px; 
+    padding: 3px 20px; 
     font-size: 16px;  
 }
 .cust-warning:hover{

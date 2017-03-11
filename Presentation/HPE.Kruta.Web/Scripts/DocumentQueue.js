@@ -107,11 +107,11 @@ function showAssignConfirmModal(title, msg) {
 }
 
 function showRouteConfirmModal(title, msg) {
-    $("#routeModal").modal("hide");
+   // $("#routeModal").modal("hide");
     var confirmationModal = $("#confirmationModal");
     confirmationModal.find("#confirmationModalTitle").html(title);
     confirmationModal.find("#confirmationModalMessage").html(msg);
-    asyncShowConfirmModal(yesRouteFunction, noFunction);
+    asyncShowConfirmModal(yesCaseFunction, noFunction);
 }
 
 function asyncShowConfirmModal(yesFunction, noFunction) {
@@ -143,6 +143,44 @@ function yesAssignFunction() {
 
     $.ajax({
         url: "/DocumentQueue/Queues_BatchAssign",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        datatype: "json",
+        data: { selectedQueueIds: selectedQueueIds, empId: empId },
+        success: function (data) {
+            if (data.Success) {
+                ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
+                RefreshDocumentQueue();
+            } else {
+                ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.responseText);
+            //in case of error the error view will come back
+            //the code below will display it instead of the current page
+            $("html").html($(xhr.responseText));
+        }
+    });
+}
+
+//Added Case function to load data into database
+function yesCaseFunction() {
+    // call the assign method
+    // show the succss informaion
+    var selectedQueueIds = [];
+    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
+        if (index > 0 && element.checked) {
+            selectedQueueIds.push(element.value);
+        }
+    });
+
+    var empId = $('#DepartmentsList :selected').val();
+
+    jQuery.ajaxSettings.traditional = true
+
+    $.ajax({
+        url: "/QueueDetails/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
@@ -220,6 +258,10 @@ function RefreshDocumentQueue() {
     $("#DocumentQueue").data("kendoGrid").dataSource.read();
 }
 
+//Added clear filter functionality
+function clearFilter() {
+    $("#DocumentQueue").data("kendoGrid").dataSource.filter([]);
+}
 function DisplayQueueDetails(queueID, documentID) {
     $.ajax({
         url: "/QueueDetails/DisplayQueueDetails",
@@ -343,11 +385,23 @@ function AddNote() {
     });
 }
 
+//No more using route button in queu details part so it will be shown besides Assign button
 function SaveRouteStatus() {
     // show the route modal
-    var routeModal = $("#routeModal");
-    routeModal.find('#departmentsList').prop('selectedIndex', 0);
-    routeModal.modal('show');
+    //var routeModal = $("#routeModal");
+    //routeModal.find('#departmentsList').prop('selectedIndex', 0);
+    //routeModal.modal('show');
+
+    if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
+        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
+    }
+    else {
+        // show the CaseModel from index
+        var routeBtnModal = $("#routeBtnModal");
+        $('#departmentsList').prop('selectedIndex', 0);
+        routeBtnModal.modal('show');
+    }
+
 }
 
 function onDocumentQueueDataBound(e) {

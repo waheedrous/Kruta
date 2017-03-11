@@ -21,13 +21,13 @@ $(document).ready(function(){
          <div class="panel panel-default">
     <div class="panel-body custom-panel-sty">
         <div class="btn-group custom-btnGrup2">
-            <button type="button" data-toggle="tooltip" title="Refresh" class="btn btn-default">
+            <button type="button" data-toggle="tooltip" title="Refresh" class="btn btn-default" onclick="RefreshDocumentQueue()">
                 <img src="~/Images/refresh.jpg" width="20"/>
             </button>
             <button type="button" data-toggle="tooltip" title="Column Menu" class="btn btn-default">
                 <img src="~/Images/column_menu.png" width="20"/>
             </button>
-            <button type="button" data-toggle="tooltip" title="Clear All Filters" class="btn btn-default">
+            <button type="button" data-toggle="tooltip" title="Clear All Filters" class="btn btn-default" onclick="clearFilter()">
                 <img src="~/Images/Clear_filter.jpg" width="20"/>
             </button>
             <button type="button" data-toggle="tooltip" title="Favourites" class="btn btn-default">
@@ -160,6 +160,8 @@ $(document).ready(function(){
 </div>
 <!-- Confirmation Modal End -->
 
+
+<!-- Case Modal Start -->
 <div class="modal fade" id="caseModal" role="dialog">
     <div class="modal-dialog custom-popupMain">
 
@@ -172,23 +174,53 @@ $(document).ready(function(){
             <div class="modal-body">
                 <!-- Form Start -->
                 <div class="container">
-                    <form>
-                        <div class="form-group">
-                            <label for="department">Departments:</label>
-                             @if (ViewBag.DepartmentsList != null)
-                             {
-                                @Html.DropDownList("DepartmentsList", ViewBag.DepartmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
-                             }
-                        </div>
-                    </form>
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="department">Departments:</label>
+                        @if (ViewBag.DepartmentsList != null)
+                            {
+                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        }
+                    </div>
                 </div>
                 <!-- Form End -->
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to save and route the current Document?');">Route</button>
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to route the selected Document(s)?');">Route</button>
             </div>
         </div>
-        <!-- Modal Content End -->
+        <!-- Case Modal End -->
+
+    </div>
+</div>
+
+<!-- Route Modal Start -->
+<div class="modal fade" id="routeBtnModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">Route Document To</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="department">Departments:</label>
+                        @if (ViewBag.DepartmentsList != null)
+                            {
+                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        }
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to route the selected Document(s)?');">Route</button>
+            </div>
+        </div>
+        <!-- Case Route End -->
 
     </div>
 </div>
