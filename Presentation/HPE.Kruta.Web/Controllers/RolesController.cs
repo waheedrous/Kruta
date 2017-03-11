@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using HPE.Kruta.Domain.User;
 using HPE.Kruta.Model;
-using HPE.Kruta.Web.Models;
-using HPE.Kruta.Domain.User;
+using System.Net;
+using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {

@@ -1,5 +1,4 @@
-﻿using HPE.Kruta.Common.Enum;
-using HPE.Kruta.Domain;
+﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Principals;
 using HPE.Kruta.Domain.User;
 using log4net;

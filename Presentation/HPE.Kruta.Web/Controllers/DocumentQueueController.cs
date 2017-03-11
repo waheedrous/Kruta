@@ -1,4 +1,5 @@
 ﻿using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Domain;
 using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -6,7 +7,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using HPE.Kruta.Domain;
 
 namespace HPE.Kruta.Web.Controllers
 {

@@ -146,6 +146,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentQueueController.cs" />
+    <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueueDetailsController.cs" />
     <Compile Include="App_Start\AuthorizePermissionAttribute.cs" />
@@ -225,6 +226,11 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\EmployeeRoles\Create.cshtml" />
+    <Content Include="Views\EmployeeRoles\Delete.cshtml" />
+    <Content Include="Views\EmployeeRoles\Details.cshtml" />
+    <Content Include="Views\EmployeeRoles\Edit.cshtml" />
+    <Content Include="Views\EmployeeRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,6 @@ using HPE.Kruta.Model;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System;
 
 namespace HPE.Kruta.Domain.User
 {
@@ -41,6 +40,18 @@ namespace HPE.Kruta.Domain.User
             return role;
         }
 
+        public EmployeeRole GetEmployeeRole(int? id)
+        {
+            EmployeeRole employeeRole = null;
+
+            using (var db = new ModelDBContext())
+            {
+                employeeRole = db.EmployeeRoles.Find(id);
+            }
+
+            return employeeRole;
+        }
+
         public IEnumerable<Role> ListRoles()
         {
             List<Role> roles;
@@ -63,10 +74,19 @@ namespace HPE.Kruta.Domain.User
 
             using (ModelDBContext db = new ModelDBContext())
             {
-                    employees = db.Employees.ToList();
+                employees = db.Employees.ToList();
             }
 
             return employees;
+        }
+
+        public void CreateEmployeeRole(EmployeeRole employeeRole)
+        {
+            using (var db = new ModelDBContext())
+            {
+                db.EmployeeRoles.Add(employeeRole);
+                db.SaveChanges();
+            }
         }
 
         public void AddRole(Role role)
@@ -97,11 +117,44 @@ namespace HPE.Kruta.Domain.User
             return employeeRoles;
         }
 
+        public IEnumerable<EmployeeRole> ListEmployeeRoles()
+        {
+            List<EmployeeRole> employeeRoles;
+
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                employeeRoles = db.EmployeeRoles
+                    .Include(q => q.Role)
+                    .ToList();
+            }
+
+            return employeeRoles;
+        }
+
+        public void EditEmployeeRole(EmployeeRole employeeRole)
+        {
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                db.Entry(employeeRole).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public void EditRole(Role role)
         {
             using (ModelDBContext db = new ModelDBContext())
             {
                 db.Entry(role).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteEmployeeRole(int id)
+        {
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                EmployeeRole employeeRole = db.EmployeeRoles.Find(id);
+                db.EmployeeRoles.Remove(employeeRole);
                 db.SaveChanges();
             }
         }
