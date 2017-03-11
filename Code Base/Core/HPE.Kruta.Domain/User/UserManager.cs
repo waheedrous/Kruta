@@ -3,6 +3,7 @@ using HPE.Kruta.Model;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace HPE.Kruta.Domain.User
 {
@@ -28,11 +29,35 @@ namespace HPE.Kruta.Domain.User
             return emp;
         }
 
+        public Role GetRole(int? id)
+        {
+            Role role = null;
+
+            using (var db = new ModelDBContext())
+            {
+                role = db.Roles.Find(id);
+            }
+
+            return role;
+        }
+
+        public IEnumerable<Role> ListRoles()
+        {
+            List<Role> roles;
+
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                roles = db.Roles.ToList();
+            }
+
+            return roles;
+        }
+
         /// <summary>
         /// lists all employees
         /// </summary>
         /// <returns></returns>
-        public List<Employee> List()
+        public List<Employee> ListEmployees()
         {
             List<Employee> employees;
 
@@ -42,6 +67,15 @@ namespace HPE.Kruta.Domain.User
             }
 
             return employees;
+        }
+
+        public void AddRole(Role role)
+        {
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                db.Roles.Add(role);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -63,6 +97,15 @@ namespace HPE.Kruta.Domain.User
             return employeeRoles;
         }
 
+        public void EditRole(Role role)
+        {
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                db.Entry(role).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         /// <summary>
         /// Get the roles for specific user name.
         /// Use GetRolesForUser(int employeeID) for better performance.
@@ -79,6 +122,16 @@ namespace HPE.Kruta.Domain.User
             }
 
             return new string[] { };
+        }
+
+        public void DeleteRole(int id)
+        {
+            using (ModelDBContext db = new ModelDBContext())
+            {
+                Role role = db.Roles.Find(id);
+                db.Roles.Remove(role);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
