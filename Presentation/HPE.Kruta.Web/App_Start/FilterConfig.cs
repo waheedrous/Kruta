@@ -6,7 +6,7 @@ namespace HPE.Kruta.Web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new KrutaAuthorize());
+            filters.Add(new KrutaAuthorize());
             //filters.Add(new RequireHttpsAttribute());
             filters.Add(new HandleErrorAttribute());
         }

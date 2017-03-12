@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    //[KrutaAuthorize]
+    [KrutaAuthorize]
     public class BaseController : Controller
     {
         //public ObjectCache _cache = MemoryCache.Default;
