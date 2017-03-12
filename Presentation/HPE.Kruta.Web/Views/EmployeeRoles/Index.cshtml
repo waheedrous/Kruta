@@ -9,7 +9,7 @@
 <div class="form-group">
     <div class="col-md-10">
         @Html.DropDownList("EmployeeList", ViewBag.EmployeeList as SelectList,
-           new { @class = "form-control form-control-custom", @id = "EmployeeList", @onchange = "onChangeEmployeeList(this.value)" })
+           new { @class = "form-control form-control-custom", @id = "EmployeeList", @onchange = "LoadEmployeeRoles(this.value)" })
     </div>
 </div>
 <div id="employeeRoles">

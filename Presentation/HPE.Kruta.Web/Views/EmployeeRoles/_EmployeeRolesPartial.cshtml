@@ -20,10 +20,11 @@
                 @Html.DisplayFor(modelItem => item.RoleName)
             </td>
             <td>
-                <script>
-                    var x = $('#EmployeeList').val();
-                </script>
-                <input id="Checkbox1" type="checkbox" @(item.EmployeeRoles.Count(q => q.EmployeeID == ViewBag.EmployeeID) > 0 ? "checked" : "") />
+                <input id="chkSelectRole" type="checkbox"
+                       onchange="onSelectEmployeeRole(this);"
+                       @(item.EmployeeRoles.Count(q => q.EmployeeID == ViewBag.EmployeeID) > 0 ? "checked" : "")
+                       value="@item.RoleID"
+                       data-EmployeeRoleID="@(item.EmployeeRoles.FirstOrDefault(q => q.EmployeeID == ViewBag.EmployeeID) != null ? item.EmployeeRoles.FirstOrDefault(q => q.EmployeeID == ViewBag.EmployeeID).EmployeeRoleID:0)" />
             </td>
 
             <td></td>

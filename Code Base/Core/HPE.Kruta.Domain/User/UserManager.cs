@@ -28,6 +28,11 @@ namespace HPE.Kruta.Domain.User
             return emp;
         }
 
+        /// <summary>
+        /// Get role by role ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Role GetRole(int? id)
         {
             Role role = null;
@@ -40,18 +45,11 @@ namespace HPE.Kruta.Domain.User
             return role;
         }
 
-        public EmployeeRole GetEmployeeRole(int? id)
-        {
-            EmployeeRole employeeRole = null;
-
-            using (var db = new ModelDBContext())
-            {
-                employeeRole = db.EmployeeRoles.Find(id);
-            }
-
-            return employeeRole;
-        }
-
+        /// <summary>
+        /// Load all roles with or without EmployeeRoles
+        /// </summary>
+        /// <param name="includeDetails"></param>
+        /// <returns></returns>
         public IEnumerable<Role> ListRoles(bool includeDetails)
         {
             List<Role> roles;
@@ -89,6 +87,10 @@ namespace HPE.Kruta.Domain.User
             return employees;
         }
 
+        /// <summary>
+        /// Create a role for the selected employee.
+        /// </summary>
+        /// <param name="employeeRole"></param>
         public void CreateEmployeeRole(EmployeeRole employeeRole)
         {
             using (var db = new ModelDBContext())
@@ -98,6 +100,10 @@ namespace HPE.Kruta.Domain.User
             }
         }
 
+        /// <summary>
+        /// Add role to the system.
+        /// </summary>
+        /// <param name="role"></param>
         public void AddRole(Role role)
         {
             using (ModelDBContext db = new ModelDBContext())
@@ -125,30 +131,11 @@ namespace HPE.Kruta.Domain.User
 
             return employeeRoles;
         }
-
-        public IEnumerable<EmployeeRole> ListEmployeeRoles()
-        {
-            List<EmployeeRole> employeeRoles;
-
-            using (ModelDBContext db = new ModelDBContext())
-            {
-                employeeRoles = db.EmployeeRoles
-                    .Include(q => q.Role)
-                    .ToList();
-            }
-
-            return employeeRoles;
-        }
-
-        public void EditEmployeeRole(EmployeeRole employeeRole)
-        {
-            using (ModelDBContext db = new ModelDBContext())
-            {
-                db.Entry(employeeRole).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-
+        
+        /// <summary>
+        /// Edit specific role.
+        /// </summary>
+        /// <param name="role"></param>
         public void EditRole(Role role)
         {
             using (ModelDBContext db = new ModelDBContext())
@@ -158,6 +145,10 @@ namespace HPE.Kruta.Domain.User
             }
         }
 
+        /// <summary>
+        /// Delete and employee role.
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteEmployeeRole(int id)
         {
             using (ModelDBContext db = new ModelDBContext())
@@ -186,6 +177,10 @@ namespace HPE.Kruta.Domain.User
             return new string[] { };
         }
 
+        /// <summary>
+        /// Delete a role from the system.
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteRole(int id)
         {
             using (ModelDBContext db = new ModelDBContext())

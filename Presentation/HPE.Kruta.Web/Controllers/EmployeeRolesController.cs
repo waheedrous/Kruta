@@ -7,12 +7,18 @@ namespace HPE.Kruta.Web.Controllers
 {
     public class EmployeeRolesController : BaseController
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public EmployeeRolesController()
         {
             _userManager = new Domain.User.UserManager();
         }
 
-        // GET: EmployeeRoles
+        /// <summary>
+        /// Default method. Loads all roles and employee list.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var roles = _userManager.ListRoles(true);
@@ -25,6 +31,11 @@ namespace HPE.Kruta.Web.Controllers
             return View(roles.ToList());
         }
 
+        /// <summary>
+        /// Load the roles for the selected employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult LoadEmployeeRoles(int? id)
         {
             var roles = _userManager.ListRoles(true);
@@ -32,83 +43,29 @@ namespace HPE.Kruta.Web.Controllers
             return PartialView("_EmployeeRolesPartial", roles.ToList());
         }
 
-        // POST: EmployeeRoles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeRoleID,EmployeeID,RoleID")] EmployeeRole employeeRole)
+        /// <summary>
+        /// Handle Employee Role Selection to add or remove the role from the employee
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="employeeId"></param>
+        /// <param name="isSelected"></param>
+        /// <param name="employeeRoleId"></param>
+        public void HandleEmployeeRoleSelection(int roleId, int employeeId, bool isSelected, int employeeRoleId)
         {
-            if (ModelState.IsValid)
+            if (isSelected)
             {
+                // this is an insert operation
+                EmployeeRole employeeRole = new EmployeeRole { RoleID = roleId, EmployeeID = employeeId };
                 _userManager.CreateEmployeeRole(employeeRole);
-
-                return RedirectToAction("Index");
             }
-
-            var roles = _userManager.ListRoles(false);
-            ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
-            return View(employeeRole);
-        }
-
-        // GET: EmployeeRoles/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // this is a delete operation
+                if (employeeRoleId > 0)
+                {
+                    _userManager.DeleteEmployeeRole(employeeRoleId);
+                }
             }
-            EmployeeRole employeeRole = _userManager.GetEmployeeRole(id);
-            if (employeeRole == null)
-            {
-                return HttpNotFound();
-            }
-            var roles = _userManager.ListRoles(false);
-            ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
-            return View(employeeRole);
-        }
-
-        // POST: EmployeeRoles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeRoleID,EmployeeID,RoleID")] EmployeeRole employeeRole)
-        {
-            if (ModelState.IsValid)
-            {
-                _userManager.EditEmployeeRole(employeeRole);
-
-                return RedirectToAction("Index");
-            }
-            var roles = _userManager.ListRoles(false);
-            ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
-            return View(employeeRole);
-        }
-
-        // GET: EmployeeRoles/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeRole employeeRole = _userManager.GetEmployeeRole(id);
-            if (employeeRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeRole);
-        }
-
-        // POST: EmployeeRoles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            _userManager.DeleteEmployeeRole(id);
-
-            return RedirectToAction("Index");
         }
     }
 }

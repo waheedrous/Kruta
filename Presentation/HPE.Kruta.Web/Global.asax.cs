@@ -12,8 +12,6 @@ namespace HPE.Kruta.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private object filterContext;
-
         /// <summary>
         /// MVC application start
         /// </summary>
