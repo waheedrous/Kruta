@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HPE.Kruta.Model.Role>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            Selected
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleID) -
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                <script>
+                    var x = $('#EmployeeList').val();
+                </script>
+                <input id="Checkbox1" type="checkbox" @(item.EmployeeRoles.Count(q => q.EmployeeID == ViewBag.EmployeeID) > 0 ? "checked" : "") />
+            </td>
+
+            <td></td>
+        </tr>
+    }
+
+</table>

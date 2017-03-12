@@ -185,6 +185,7 @@
     <Content Include="Images\refresh.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\EmployeeRoles.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -226,10 +227,7 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\EmployeeRoles\Create.cshtml" />
-    <Content Include="Views\EmployeeRoles\Delete.cshtml" />
-    <Content Include="Views\EmployeeRoles\Details.cshtml" />
-    <Content Include="Views\EmployeeRoles\Edit.cshtml" />
+    <None Include="Views\EmployeeRoles\_EmployeeRolesPartial.cshtml" />
     <Content Include="Views\EmployeeRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

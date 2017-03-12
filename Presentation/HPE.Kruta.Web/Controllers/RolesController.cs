@@ -15,7 +15,7 @@ namespace HPE.Kruta.Web.Controllers
         // GET: Roles
         public ActionResult Index()
         {
-            return View(_userManager.ListRoles());
+            return View(_userManager.ListRoles(false));
         }
 
         // GET: Roles/Details/5

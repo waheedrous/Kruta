@@ -52,13 +52,22 @@ namespace HPE.Kruta.Domain.User
             return employeeRole;
         }
 
-        public IEnumerable<Role> ListRoles()
+        public IEnumerable<Role> ListRoles(bool includeDetails)
         {
             List<Role> roles;
 
             using (ModelDBContext db = new ModelDBContext())
             {
-                roles = db.Roles.ToList();
+                if (includeDetails)
+                {
+                    roles = db.Roles
+                    .Include(e => e.EmployeeRoles)
+                    .ToList();
+                }
+                else
+                {
+                    roles = db.Roles.ToList();
+                }
             }
 
             return roles;

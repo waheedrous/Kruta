@@ -1,39 +1,17 @@
-﻿@model IEnumerable<HPE.Kruta.Model.EmployeeRole>
+﻿@model IEnumerable<HPE.Kruta.Model.Role>
 
 @{
     ViewBag.Title = "Employee Role Management";
 }
-
+@System.Web.Optimization.Scripts.Render("~/Scripts/EmployeeRoles.js")
 <h2>Employee Role Management</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Role.RoleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeID)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role.RoleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeRoleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeRoleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeRoleID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="form-group">
+    <div class="col-md-10">
+        @Html.DropDownList("EmployeeList", ViewBag.EmployeeList as SelectList,
+           new { @class = "form-control form-control-custom", @id = "EmployeeList", @onchange = "onChangeEmployeeList(this.value)" })
+    </div>
+</div>
+<div id="employeeRoles">
+    @Html.Partial("_EmployeeRolesPartial", Model)
+</div>

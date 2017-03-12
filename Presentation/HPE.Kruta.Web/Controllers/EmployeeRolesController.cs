@@ -15,32 +15,21 @@ namespace HPE.Kruta.Web.Controllers
         // GET: EmployeeRoles
         public ActionResult Index()
         {
-            var employeeRoles = _userManager.ListEmployeeRoles();
-            return View(employeeRoles.ToList());
+            var roles = _userManager.ListRoles(true);
+
+            var emps = _userManager.ListEmployees().OrderBy(o => o.EmployeeName);
+            ViewBag.EmployeeList = new SelectList(emps, "EmployeeID", "EmployeeName");
+
+            ViewBag.EmployeeID = emps.First().EmployeeID;
+
+            return View(roles.ToList());
         }
 
-        // GET: EmployeeRoles/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult LoadEmployeeRoles(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EmployeeRole employeeRole = _userManager.GetEmployeeRole(id);
-                
-            if (employeeRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeRole);
-        }
-
-        // GET: EmployeeRoles/Create
-        public ActionResult Create()
-        {
-            var roles = _userManager.ListRoles();
-            ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName");
-            return View();
+            var roles = _userManager.ListRoles(true);
+            ViewBag.EmployeeID = id;
+            return PartialView("_EmployeeRolesPartial", roles.ToList());
         }
 
         // POST: EmployeeRoles/Create
@@ -53,11 +42,11 @@ namespace HPE.Kruta.Web.Controllers
             if (ModelState.IsValid)
             {
                 _userManager.CreateEmployeeRole(employeeRole);
-                
+
                 return RedirectToAction("Index");
             }
 
-            var roles = _userManager.ListRoles();
+            var roles = _userManager.ListRoles(false);
             ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
             return View(employeeRole);
         }
@@ -74,7 +63,7 @@ namespace HPE.Kruta.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var roles = _userManager.ListRoles();
+            var roles = _userManager.ListRoles(false);
             ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
             return View(employeeRole);
         }
@@ -89,10 +78,10 @@ namespace HPE.Kruta.Web.Controllers
             if (ModelState.IsValid)
             {
                 _userManager.EditEmployeeRole(employeeRole);
-                
+
                 return RedirectToAction("Index");
             }
-            var roles = _userManager.ListRoles();
+            var roles = _userManager.ListRoles(false);
             ViewBag.RoleID = new SelectList(roles, "RoleID", "RoleName", employeeRole.RoleID);
             return View(employeeRole);
         }
@@ -118,7 +107,7 @@ namespace HPE.Kruta.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             _userManager.DeleteEmployeeRole(id);
-            
+
             return RedirectToAction("Index");
         }
     }
