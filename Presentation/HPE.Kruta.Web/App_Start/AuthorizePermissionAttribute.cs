@@ -1,6 +1,8 @@
 ﻿using HPE.Kruta.Common.Enum;
 using HPE.Kruta.Domain.Principals;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web
@@ -27,13 +29,30 @@ namespace HPE.Kruta.Web
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             // this will be executed each time AuthorizePermissionAttribute is being presented
-            // first we need to check if the logged in user can access the system
             var user = filterContext.HttpContext.User as KrutaPrincipal;
+            Dictionary<string, bool> auth = new Dictionary<string, bool>();
 
             if (user != null)
             {
-                user.UserID = 2;
+                var roles = Roles.Split(',');
+
+                foreach (var role in roles)
+                {
+                    auth.Add(role, user.IsInRole(role));
+                }
             }
+
+            if (auth.Values.Any(q => !q))
+            {
+                // user is NOT allowed
+                SendToUnauthorized(filterContext);
+            }
+        }
+
+        private static void SendToUnauthorized(AuthorizationContext filterContext)
+        {
+            filterContext.HttpContext.Response.StatusCode = 403;
+            filterContext.Result = new ViewResult { ViewName = "Unauthorized" };
         }
     }
 }

@@ -11,6 +11,6 @@
     {
         Administrator,
         Login,
-        CanAssign
+        Assigner
     }
 }
