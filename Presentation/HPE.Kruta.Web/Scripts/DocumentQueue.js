@@ -16,7 +16,7 @@ function AttachToggleSelectAll() {
 
         toggleSelectAll($(this).closest('table'));
 
-        //Select the grid row when checking one of the checkboxes
+        //Select the grid row when checking one of the check boxes
         //var cb = $(this);
         //if (cb.prop('checked')) {
         //    cb.closest('tr').addClass('k-state-selected');
@@ -46,7 +46,7 @@ function selectAll(cb) {
 
 function toggleSelectAll(table) {
     // Set the "select all" checkbox to a checked state if all
-    // child checkboxes are checked.
+    // child check boxes are checked.
 
     if (!table) {
         return;
@@ -129,7 +129,7 @@ function asyncShowConfirmModal(yesFunction, noFunction) {
 
 function yesAssignFunction() {
     // call the assign method
-    // show the succss informaion
+    // show the success information
     var selectedQueueIds = [];
     $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0 && element.checked) {
@@ -152,7 +152,7 @@ function yesAssignFunction() {
                 ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
                 RefreshDocumentQueue();
             } else {
-                ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
+                ShowInformationModal('Notification', 'Oops! Something wrong just happened.');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -167,7 +167,7 @@ function yesAssignFunction() {
 //Added Case function to load data into database
 function yesCaseFunction() {
     // call the assign method
-    // show the succss informaion
+    // show the success information
     var selectedQueueIds = [];
     $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
         if (index > 0 && element.checked) {
@@ -190,7 +190,7 @@ function yesCaseFunction() {
                 ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
                 RefreshDocumentQueue();
             } else {
-                ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
+                ShowInformationModal('Notification', 'Oops! Something wrong just happened.');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -207,7 +207,7 @@ function noFunction() {
 
 function yesRouteFunction() {
     // call the route method
-    // show the succss informaion
+    // show the success information
 
     var queueID = $('#modelIDVal').val();
     var departmentID = $('#departmentsList :selected').val();
@@ -228,7 +228,7 @@ function yesRouteFunction() {
                 QueueDetailsCommandClick();
                 RefreshDocumentQueue();
             } else {
-                ShowInformationModal('Notification', 'Opps! Somthing wrong just happend.');
+                ShowInformationModal('Notification', 'Oops! Something wrong just happened.');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -385,7 +385,7 @@ function AddNote() {
     });
 }
 
-//No more using route button in queu details part so it will be shown besides Assign button
+//No more using route button in queue details part so it will be shown besides Assign button
 function SaveRouteStatus() {
     // show the route modal
     //var routeModal = $("#routeModal");
