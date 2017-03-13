@@ -36,7 +36,11 @@ $(document).ready(function(){
 
         </div>
         <div class="btn-group custom-btnGrup">
-            <button type="button" class="btn warning custom-btn"  id="AssignDocumentQueueCommand">Assign</button>
+                @if (User.IsInRole("Assigner"))
+            {
+                <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand" Enabled='@HttpContext.Current.User.IsInRole("Assigner").ToString()'>Assign</button>
+            }
+   
             <input value="Route" id="btnRoute" name="btnRoute"  type="Submit" onclick="SaveRouteStatus();" class="btn warning custom-btn" />
             <button type="button" class="btn warning custom-btn btn-last"  id="CreateCaseCommand">Create Case</button>
        
