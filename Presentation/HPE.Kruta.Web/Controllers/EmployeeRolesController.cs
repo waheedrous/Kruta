@@ -66,6 +66,7 @@ namespace HPE.Kruta.Web.Controllers
                     _userManager.DeleteEmployeeRole(employeeRoleId);
                 }
             }
+            Session["IsAuthorized"] = null;
         }
     }
 }

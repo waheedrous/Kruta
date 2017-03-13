@@ -50,9 +50,9 @@ namespace HPE.Kruta.Web
 
             var user = HttpContext.Current.User as KrutaPrincipal;
 
-            if (user != null)
+            if (HttpContext.Current.Session["UserID"] != null)
             {
-                return um.GetRolesForUser(user.UserID);
+                return um.GetRolesForUser(Convert.ToInt32(HttpContext.Current.Session["UserID"]));
             }
 
             return um.GetRolesForUser(username);

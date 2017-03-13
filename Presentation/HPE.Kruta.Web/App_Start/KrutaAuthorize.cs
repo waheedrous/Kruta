@@ -66,7 +66,8 @@ namespace HPE.Kruta.Web
                 if (user != null)
                 {
                     // set the logged in user id
-                    user.UserID = employee.EmployeeID;
+                    //user.UserID = employee.EmployeeID;
+                    HttpContext.Current.Session["UserID"] = employee.EmployeeID;
 
                     if (!user.IsInRole(RolesEnum.Login.ToString()))
                     {

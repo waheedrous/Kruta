@@ -3,6 +3,7 @@ using HPE.Kruta.Domain.Principals;
 using HPE.Kruta.Domain.User;
 using log4net;
 using log4net.Config;
+using System;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -21,15 +22,7 @@ namespace HPE.Kruta.Web.Controllers
         {
             get
             {
-                var user = User as KrutaPrincipal;
-                int userId = 0;
-
-                if (user != null)
-                {
-                    userId = user.UserID;
-                }
-
-                return userId;
+                return Convert.ToInt32(Session["UserID"]);
             }
         }
 

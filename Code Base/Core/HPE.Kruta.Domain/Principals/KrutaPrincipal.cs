@@ -30,12 +30,7 @@ namespace HPE.Kruta.Domain.Principals
                 return _principal.Identity;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the logged in user ID
-        /// </summary>
-        public int UserID { get; set; }
-
+                
         /// <summary>
         /// Check if the user has the specified role.
         /// </summary>

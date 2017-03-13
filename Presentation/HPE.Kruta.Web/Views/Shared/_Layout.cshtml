@@ -9,6 +9,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+
+
+    <script>
+        $(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+            $("html").html($(jqxhr.responseText));
+        });
+    </script>
+
+
 </head>
 <body>
 
@@ -19,21 +28,20 @@
 
     <!-- Navigation Section Start -->
     <nav class="navbar custom-navbar">
-        
+
         <div class="container-fluid">
 
             <!-- Brand Start -->
-@*            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("IPTS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <a class="navbar-brand" href="/Home"><img src="~/Images/logo.png" alt=""></a>
-            </div>*@
+            @*            <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("IPTS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <a class="navbar-brand" href="/Home"><img src="~/Images/logo.png" alt=""></a>
+                </div>*@
             <!-- Brand End -->
-            
             <!-- Menu Start -->
             <ul class="nav navbar-nav">
                 @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
@@ -57,13 +65,13 @@
             @Html.Partial("_LoginPartial")
             <!-- Login End -->
             <!-- Menu End -->
-        
+
         </div>
 
-@*        <div class="container custom-block"></div>*@
+        @*        <div class="container custom-block"></div>*@
     </nav>
     <!-- Navigation Section End -->
-    
+
     <div class="container-fluid body-content custom-body">
         @RenderSection("sidebar", required: false)
         @RenderBody()

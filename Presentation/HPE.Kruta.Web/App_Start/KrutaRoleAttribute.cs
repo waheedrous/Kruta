@@ -11,13 +11,13 @@ namespace HPE.Kruta.Web
     /// Custom attribute to handle the authorization logic for the logged in user
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class AuthorizePermissionAttribute : AuthorizeAttribute
+    public class KrutaRole : AuthorizeAttribute
     {
         /// <summary>
-        /// AuthorizePermissionAttribute default constructor
+        /// KrutaRole default constructor
         /// </summary>
         /// <param name="roles"></param>
-        public AuthorizePermissionAttribute(params RolesEnum[] roles)
+        public KrutaRole(params RolesEnum[] roles)
         {
             Roles = string.Join(",", roles);
         }
@@ -28,7 +28,12 @@ namespace HPE.Kruta.Web
         /// <param name="filterContext"></param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            // this will be executed each time AuthorizePermissionAttribute is being presented
+            if (string.IsNullOrWhiteSpace(Roles))
+            {
+                SendToUnauthorized(filterContext);
+            }
+
+            // this will be executed each time KrutaRole is being presented
             var user = filterContext.HttpContext.User as KrutaPrincipal;
             Dictionary<string, bool> auth = new Dictionary<string, bool>();
 

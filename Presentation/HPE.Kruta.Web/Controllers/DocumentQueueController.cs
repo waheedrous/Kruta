@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    //[Authorize]
+    
     public class DocumentQueueController : BaseController
     {
         [ChildActionOnly]

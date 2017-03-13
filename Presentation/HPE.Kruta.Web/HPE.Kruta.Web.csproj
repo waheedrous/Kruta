@@ -149,7 +149,7 @@
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueueDetailsController.cs" />
-    <Compile Include="App_Start\AuthorizePermissionAttribute.cs" />
+    <Compile Include="App_Start\KrutaRoleAttribute.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
