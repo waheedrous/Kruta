@@ -107,7 +107,7 @@ function showAssignConfirmModal(title, msg) {
 }
 
 function showRouteConfirmModal(title, msg) {
-   // $("#routeModal").modal("hide");
+    // $("#routeModal").modal("hide");
     var confirmationModal = $("#confirmationModal");
     confirmationModal.find("#confirmationModalTitle").html(title);
     confirmationModal.find("#confirmationModalMessage").html(msg);
@@ -409,11 +409,17 @@ function onDocumentQueueDataBound(e) {
     resetDocumentQueueRowNumber(e);
 
     // maintain the selection of the checkbox after routing
-    var queueID = $('#modelIDVal').val();
-    if (queueID && queueID > 0) {
-        var selectedQ = $('table[role = "grid"]').find('input[type="checkbox"][value=' + queueID + ']');
-        if (selectedQ) {
-            selectedQ.prop('checked', true);
+    var tempSelectedQueueIds = $('#selectedQueueIds').val();
+    if (tempSelectedQueueIds && tempSelectedQueueIds.length > 0) {
+        var selectedQueueIds = tempSelectedQueueIds.split(",").map(Number);
+
+        if (selectedQueueIds && selectedQueueIds.length > 0) {
+            for (var i in selectedQueueIds) {
+                var selectedQ = $('table[role = "grid"]').find('input[type="checkbox"][value=' + selectedQueueIds[i] + ']');
+                if (selectedQ) {
+                    selectedQ.prop('checked', true);
+                }
+            }
         }
     }
 
@@ -436,7 +442,16 @@ function toggleItemDetails(table) {
         return;
     }
 
-    var checkedCount = table.find('input[id*=chkSelect]:checked').length;
+    var selectedQueueIds = [];
+    var checkedQueueIds = table.find('input[id*=chkSelect]:checked');
+
+    checkedQueueIds.each(function (index, element) {
+        selectedQueueIds.push(element.value);
+    });
+
+    $('#selectedQueueIds').val(selectedQueueIds)
+
+    var checkedCount = checkedQueueIds.length;
 
     // handle the queue detail button appearance and behavior
     var queueDetailsCommand = $('#queueDetailsCommand');
