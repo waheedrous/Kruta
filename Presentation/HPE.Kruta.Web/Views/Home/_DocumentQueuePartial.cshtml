@@ -27,7 +27,7 @@
           columns.Bound(c => c.RecordedDateTime).Title("Recorded Date").Format("{0:MM/dd/yyyy}").Width(200);
           columns.Bound(c => c.ParcelNumber).Title("Parcel Number").Width(200);
           columns.Bound(c => c.DocumentNumber).ClientTemplate("<a href='javascript:void(0);' onclick='OpenDocument(#=DocumentID#);'>#=DocumentNumber#</a>").Title("Document Number").Width(200);
-          columns.Bound(c => c.DocumentSubTypeCode).Title("Document Type").Width(200);
+          columns.Bound(c => c.DocumentSubTypeCode).Title("Document Type").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
           columns.Bound(c => c.DepartmentName).Title("Queue/Department").Width(200);
           columns.Bound(c => c.EmployeeName).Title("Assigned To").Width(200);
           columns.Bound(c => c.QueueStatus).Title("Status").Width(200);
