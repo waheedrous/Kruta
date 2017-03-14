@@ -22,31 +22,34 @@ $(document).ready(function(){
     <div class="panel-body custom-panel-sty">
         <div class="btn-group custom-btnGrup2">
             <button type="button" data-toggle="tooltip" title="Refresh" class="btn btn-default" onclick="RefreshDocumentQueue()">
-                <img src="~/Images/refresh.jpg" width="20"/>
+                <img src="~/Images/refresh 1.png" width="30" height="25"/>
             </button>
             <button type="button" data-toggle="tooltip" title="Column Menu" class="btn btn-default">
-                <img src="~/Images/column_menu.png" width="20"/>
+                <img src="~/Images/Column menu1.png" width="30" height="25"/>
             </button>
             <button type="button" data-toggle="tooltip" title="Clear All Filters" class="btn btn-default" onclick="clearFilter()">
-                <img src="~/Images/Clear_filter.jpg" width="20"/>
+                <img src="~/Images/Clear Filters 1.png" width="30" height="25"/>
             </button>
             <button type="button" data-toggle="tooltip" title="Favorites" class="btn btn-default">
-                <img src="~/Images/Add_screenshot.jpg" width="20"/>
+                <img src="~/Images/Favourites 1.png" width="30" height="25"/>
             </button>
-
         </div>
+        <div class="btn-group custom-btnGrup">
+            <button type="button" class="btn warning custom-btn btn-last"  id="CreateCaseCommand">Create Case</button>
+         </div>
+         <div class="btn-group custom-btnGrup">
+            <input value="Route" id="btnRoute_temp" name="btnRoute"  type="Submit" onclick="SaveRouteStatus();" class="btn warning custom-btn" />
+         </div>
         <div class="btn-group custom-btnGrup">
                 @if (User.IsInRole("Assigner"))
             {
                 <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand" Enabled='@HttpContext.Current.User.IsInRole("Assigner").ToString()'>Assign</button>
-            }
-   
-            <input value="Route" id="btnRoute" name="btnRoute"  type="Submit" onclick="SaveRouteStatus();" class="btn warning custom-btn" />
-            <button type="button" class="btn warning custom-btn btn-last"  id="CreateCaseCommand">Create Case</button>
-       
+            }  
+        </div>
+        
+        
     </div>
-    </div>
-             </div>
+  </div>
 
     @Html.Partial("_DocumentQueuePartial")
 
@@ -57,7 +60,7 @@ $(document).ready(function(){
 <div class="container-fluid">
 
     <div class="container-collapse">
-        <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Item Details</a>
+        <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Document Details</a>
         <div id="queueDetailsSection" class="collapse custom-queueDetails">
             @Html.Partial("_QueueDetailsPartial", Model)
         </div>

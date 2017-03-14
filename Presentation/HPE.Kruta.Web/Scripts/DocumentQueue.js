@@ -9,6 +9,7 @@ function AttachDocumentQueueCommands() {
     $("#RefreshDocumentQueueCommand").attr('onclick', 'RefreshDocumentQueue()');
     $("#queueDetailsCommand").attr('onclick', 'QueueDetailsCommandClick()');
     $("#CreateCaseCommand").attr('onclick', 'doCase()');
+    //$("#btnRoute_temp").attr('onclick', 'SaveRouteStatus()');
 }
 
 function AttachToggleSelectAll() {
@@ -93,9 +94,9 @@ function doCase() {
     }
     else {
         // show the CaseModel from index
-        //var caseModal = $("#caseModal");
-        //$('#departmentsList').prop('selectedIndex', 0);
-        //caseModal.modal('show');
+        var caseModal = $("#caseModal");
+        $('#departmentsList').prop('selectedIndex', 0);
+        caseModal.modal('show');
     }
 }
 
@@ -128,6 +129,14 @@ function showRouteConfirmModal(title, msg) {
     confirmationModal.find("#confirmationModalTitle").html(title);
     confirmationModal.find("#confirmationModalMessage").html(msg);
     asyncShowConfirmModal(yesRouteFunction, noFunction);
+}
+
+function showCaseConfirmModal(title, msg) {
+    // $("#routeModal").modal("hide");
+    var confirmationModal = $("#confirmationModal");
+    confirmationModal.find("#confirmationModalTitle").html(title);
+    confirmationModal.find("#confirmationModalMessage").html(msg);
+    asyncShowConfirmModal(yesCaseFunction, noFunction);
 }
 
 function asyncShowConfirmModal(yesFunction, noFunction) {
@@ -191,7 +200,7 @@ function yesCaseFunction() {
         }
     });
 
-    var empId = $('#DepartmentsList :selected').val();
+    var departmentID = $('#departmentsList :selected').val();
 
     jQuery.ajaxSettings.traditional = true
 
@@ -200,7 +209,7 @@ function yesCaseFunction() {
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        data: { selectedQueueIds: selectedQueueIds, empId: empId },
+        data: { selectedQueueIds: selectedQueueIds, departmentID: departmentID },
         success: function (data) {
             if (data.Success) {
                 ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
