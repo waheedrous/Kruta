@@ -1,6 +1,7 @@
 ﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Model;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -77,16 +78,14 @@ namespace HPE.Kruta.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult RouteQueueAndSave(int queueID, int departmentID, int documentStatusID, string notes)
+        public ActionResult RouteQueueAndSave(List<int> selectedQueueIds, int departmentID)
         {
 
             _queueManager = new QueueManager();
-            if (queueID == 0 || departmentID == 0)
+            if (selectedQueueIds == null || selectedQueueIds.Count == 0 || departmentID == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-            SaveStatusInternal(queueID, documentStatusID, notes);
-
-            this._queueManager.RouteQueue(queueID, departmentID);
+            this._queueManager.RouteQueueList(selectedQueueIds, departmentID);
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 

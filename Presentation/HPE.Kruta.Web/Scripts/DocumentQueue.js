@@ -93,10 +93,26 @@ function doCase() {
     }
     else {
         // show the CaseModel from index
-        var caseModal = $("#caseModal");
-        $('#departmentsList').prop('selectedIndex', 0);
-        caseModal.modal('show');
+        //var caseModal = $("#caseModal");
+        //$('#departmentsList').prop('selectedIndex', 0);
+        //caseModal.modal('show');
     }
+}
+
+
+function SaveRouteStatus() {
+    // show the route modal
+
+    if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
+        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
+    }
+    else {
+        // show the CaseModel from index
+        var routeBtnModal = $("#routeBtnModal");
+        $('#departmentsList').prop('selectedIndex', 0);
+        routeBtnModal.modal('show');
+    }
+
 }
 
 function showAssignConfirmModal(title, msg) {
@@ -111,7 +127,7 @@ function showRouteConfirmModal(title, msg) {
     var confirmationModal = $("#confirmationModal");
     confirmationModal.find("#confirmationModalTitle").html(title);
     confirmationModal.find("#confirmationModalMessage").html(msg);
-    asyncShowConfirmModal(yesCaseFunction, noFunction);
+    asyncShowConfirmModal(yesRouteFunction, noFunction);
 }
 
 function asyncShowConfirmModal(yesFunction, noFunction) {
@@ -208,19 +224,27 @@ function noFunction() {
 function yesRouteFunction() {
     // call the route method
     // show the success information
+   
+    var selectedQueueIds = [];
+    $('table[role = "grid"]').find('input[type="checkbox"]').each(function (index, element) {
+        if (index > 0 && element.checked) {
+            selectedQueueIds.push(element.value);
+        }
+    });
 
-    var queueID = $('#modelIDVal').val();
+    //alert($('#departmentsList option:selected').text());
+    //return;
+
     var departmentID = $('#departmentsList :selected').val();
-    var noteVal = $('#Notes').val();
-    var statusVal = $('#DocumentStatuses').val();
-    var documentIDVal = $('#documentIDVal').val();
+
+   jQuery.ajaxSettings.traditional = true
 
     $.ajax({
         url: "/QueueDetails/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        data: { queueID: queueID, departmentID: departmentID, documentStatusID: statusVal, notes: noteVal },
+        data: { selectedQueueIds: selectedQueueIds, departmentID: departmentID },
         success: function (data) {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
@@ -385,24 +409,6 @@ function AddNote() {
     });
 }
 
-//No more using route button in queue details part so it will be shown besides Assign button
-function SaveRouteStatus() {
-    // show the route modal
-    //var routeModal = $("#routeModal");
-    //routeModal.find('#departmentsList').prop('selectedIndex', 0);
-    //routeModal.modal('show');
-
-    if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
-        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
-    }
-    else {
-        // show the CaseModel from index
-        var routeBtnModal = $("#routeBtnModal");
-        $('#departmentsList').prop('selectedIndex', 0);
-        routeBtnModal.modal('show');
-    }
-
-}
 
 function onDocumentQueueDataBound(e) {
     // Handle the row number of the grid

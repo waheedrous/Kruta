@@ -188,6 +188,12 @@ namespace HPE.Kruta.Domain
             }
         }
 
+        public void RouteQueueList(List<int> queueIDList, int departmentID)
+        {
+            foreach (int queueID in queueIDList)
+                RouteQueue(queueID, departmentID);
+        }
+
         /// <summary>
         /// routes queue to a different department and saves history
         /// </summary>
@@ -198,24 +204,28 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 var currentQueue = db.Queues.Where(q => q.QueueID == queueID).First();
-                //create history record shows the old and new departments
-                var queueHistory = new QueueHistory();
-                queueHistory.QueueID = queueID;
-                queueHistory.RoutedFromDepartmentID = currentQueue.DepartmentID;
-                queueHistory.RoutedToDepartmentID = departmentID;
-                queueHistory.AssignedFromEmployeeID = currentQueue.EmployeeID;
-                queueHistory.EventDatetime = DateTime.Now;
 
-                db.QueueHistories.Add(queueHistory);
+                if (currentQueue.DepartmentID != departmentID)
+                {
+                    //create history record shows the old and new departments
+                    var queueHistory = new QueueHistory();
+                    queueHistory.QueueID = queueID;
+                    queueHistory.RoutedFromDepartmentID = currentQueue.DepartmentID;
+                    queueHistory.RoutedToDepartmentID = departmentID;
+                    queueHistory.AssignedFromEmployeeID = currentQueue.EmployeeID;
+                    queueHistory.EventDatetime = DateTime.Now;
 
-                currentQueue.DepartmentID = departmentID;
-                currentQueue.EmployeeID = null;
+                    db.QueueHistories.Add(queueHistory);
 
-                var inProgressQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.InProgress);
-                if (inProgressQueueStatus != null)
-                    currentQueue.QueueStatusID = inProgressQueueStatus.QueueStatusID;
+                    currentQueue.DepartmentID = departmentID;
+                    currentQueue.EmployeeID = null;
 
-                db.SaveChanges();
+                    var inProgressQueueStatus = db.QueueStatus.FirstOrDefault(q => q.QueueStatusID == (int)QueueStatusEnum.InProgress);
+                    if (inProgressQueueStatus != null)
+                        currentQueue.QueueStatusID = inProgressQueueStatus.QueueStatusID;
+
+                    db.SaveChanges();
+                }
             }
         }
 
