@@ -2,6 +2,7 @@
     AttachSelectAllToControl();
     AttachToggleSelectAll();
     AttachDocumentQueueCommands();
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function AttachDocumentQueueCommands() {

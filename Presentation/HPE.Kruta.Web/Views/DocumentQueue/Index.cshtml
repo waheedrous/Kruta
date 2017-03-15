@@ -1,0 +1,223 @@
+﻿@model HPE.Kruta.Model.Queue
+
+@{
+    ViewBag.Title = "Document Queue";
+}
+
+<div class="container-fluid">
+    Home > Document > Queue
+</div>
+
+<div class="container-fluid">
+    <div class="container-fluid text-right custom-text-right">
+        <b class="custom-title-left custom-Queue">Document Queue</b>
+        </div>
+         <div class="panel panel-default">
+    <div class="panel-body custom-panel-sty">
+        <div class="btn-group custom-btnGrup2">
+            <button type="button" data-toggle="tooltip" title="Refresh" class="btn btn-default" onclick="RefreshDocumentQueue()">
+                <img src="~/Images/refresh 1.png" width="30" height="25"/>
+            </button>
+            <button type="button" data-toggle="tooltip" title="Column Menu" class="btn btn-default">
+                <img src="~/Images/Column menu1.png" width="30" height="25"/>
+            </button>
+            <button type="button" data-toggle="tooltip" title="Clear All Filters" class="btn btn-default" onclick="clearFilter()">
+                <img src="~/Images/Clear Filters 1.png" width="30" height="25"/>
+            </button>
+            <button type="button" data-toggle="tooltip" title="Favorites" class="btn btn-default">
+                <img src="~/Images/Favourites 1.png" width="30" height="25"/>
+            </button>
+        </div>
+        <div class="btn-group custom-btnGrup">
+            <button type="button" class="btn warning custom-btn btn-last"  id="CreateCaseCommand">Create Case</button>
+         </div>
+         <div class="btn-group custom-btnGrup">
+            <input value="Route" id="btnRoute_temp" name="btnRoute"  type="Submit" onclick="SaveRouteStatus();" class="btn warning custom-btn" />
+         </div>
+        <div class="btn-group custom-btnGrup">
+                @if (User.IsInRole("Assigner"))
+            {
+                <button type="button" class="btn warning custom-btn" id="AssignDocumentQueueCommand" Enabled='@HttpContext.Current.User.IsInRole("Assigner").ToString()'>Assign</button>
+            }  
+        </div>
+        
+        
+    </div>
+  </div>
+
+    @Html.Partial("_DocumentQueuePartial")
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+
+    <div class="container-collapse">
+        <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Document Details</a>
+        <div id="queueDetailsSection" class="collapse custom-queueDetails">
+            @*@Html.Partial("_QueueDetailsPartial", Model)*@
+            @Html.Partial("~/Views/DocumentQueue/_QueueDetailsPartial.cshtml", Model)
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="assignModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">Assign Document(s) To</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="routingControlStaff">Assign To :</label>
+                        @Html.DropDownList("RoutingControlStaffList", ViewBag.RoutingControlStaffList as SelectList, new { @class = "form-control form-control-custom", @id = "routingControlStaffList" })
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showAssignConfirmModal('Confirmation', 'Are you sure you want to assign the selected Document(s)?');">Assign</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- information Modal Start -->
+<div class="modal fade" id="informationModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr" id="informationModalTitle">Notification</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <p id="informationModalMessage">Please select at least one document from the queue.</p>
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="informationModalOk" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- information Modal End -->
+<!-- Confirmation Modal Start -->
+<div class="modal fade" id="confirmationModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr" id="confirmationModalTitle">Confirmation</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <p id="confirmationModalMessage">Are you sure you want to assign the selected Document(s)?</p>
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                @*<button type="submit" class="btn btn-warning" data-dismiss="modal" style="background-color:#91A2C9; padding: 8px 30px;">Ok</button>*@
+                <button id="btnYesConfirmYesNo"
+                        type="button" class="btn btn-primary">
+                    Yes
+                </button>
+                <button id="btnNoConfirmYesNo"
+                        type="button" class="btn btn-default">
+                    No
+                </button>
+            </div>
+        </div>
+        <!-- Modal Content End -->
+
+    </div>
+</div>
+<!-- Confirmation Modal End -->
+
+
+<!-- Case Modal Start -->
+<div class="modal fade" id="caseModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">Create Case</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="department">Departments:</label>
+                        @if (ViewBag.DepartmentsList != null)
+                            {
+                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        }
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to route the selected Document(s)?');">Route</button>
+            </div>
+        </div>
+        <!-- Case Modal End -->
+
+    </div>
+</div>
+
+<!-- Route Modal Start -->
+<div class="modal fade" id="routeBtnModal" role="dialog">
+    <div class="modal-dialog custom-popupMain">
+
+        <!-- Modal Content Start -->
+        <div class="modal-content custom-popupMain-Content">
+            <div class="modal-header custom-popupMain-Header">
+                <button type="button" class="close custom-popupMain-Close-Btn" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title custom-popupMain-Hr">Route Document To</h6>
+            </div>
+            <div class="modal-body">
+                <!-- Form Start -->
+                <div class="container">
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="department">Departments:</label>
+                        @if (ViewBag.DepartmentsList != null)
+                            {
+                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        }
+                    </div>
+                </div>
+                <!-- Form End -->
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary custom-popupMain-Footer-Btn" data-dismiss="modal" onclick="showRouteConfirmModal('Confirmation', 'Are you sure you want to route the selected Document(s)?');">Route</button>
+            </div>
+        </div>
+        <!-- Case Route End -->
+
+    </div>
+</div>
