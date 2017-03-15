@@ -74,7 +74,7 @@ function toggleSelectAll(table) {
 function doAssign() {
     // check if any document has been selected
     if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
-        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
+        ShowInformationModal('Notification', 'Please select at least one case from the queue.');
     }
     else {
         // show the Assign Modal
@@ -88,7 +88,7 @@ function SaveRouteStatus() {
     // show the route modal
 
     if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
-        ShowInformationModal('Notification', 'Please select at least one document from the queue.');
+        ShowInformationModal('Notification', 'Please select at least one case from the queue.');
     }
     else {
         // show the CaseModel from index
@@ -184,7 +184,7 @@ function yesRouteFunction() {
    jQuery.ajaxSettings.traditional = true
 
     $.ajax({
-        url: "/QueueDetails/RouteQueueAndSave",
+        url: "/CaseQueue/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
@@ -193,7 +193,6 @@ function yesRouteFunction() {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
                 ShowInformationModal('Notification', 'The selected document has been routed successfully.');
-                QueueDetailsCommandClick();
                 RefreshCaseQueue();
             } else {
                 ShowInformationModal('Notification', 'Oops! Something wrong just happened.');
@@ -228,24 +227,6 @@ function RefreshCaseQueue() {
 
 function clearFilter() {
     $("#CaseQueue").data("kendoGrid").dataSource.filter([]);
-}
-
-function DisplayQueueDetails(queueID, documentID) {
-    $.ajax({
-        url: "/QueueDetails/DisplayQueueDetails",
-        type: "GET",
-        datatype: "json",
-        data: { queueID: queueID },
-        success: function (data) {
-            $('#queueDetailsSection').html(data);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.responseText);
-            //in case of error the error view will come back
-            //the code below will display it instead of the current page
-            $("html").html($(xhr.responseText));
-        }
-    });
 }
 
 function onCaseQueueDataBound(e) {
@@ -294,24 +275,4 @@ function toggleItemDetails(table) {
     });
 
     $('#selectedQueueIds').val(selectedQueueIds)
-
-    var checkedCount = checkedQueueIds.length;
-
-    // handle the queue detail button appearance and behavior
-    var queueDetailsCommand = $('#queueDetailsCommand');
-
-    if (checkedCount == 1) {
-        if (queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.removeClass('disabled');
-        }
-    }
-    else {
-        if (!queueDetailsCommand.hasClass('disabled')) {
-            queueDetailsCommand.addClass('disabled');
-            // hide the queue detail section when disabling the button
-            $('#queueDetailsSection').collapse('hide');
-            // Clear the stored model ID (Queue ID) to avoid selecting it on onCaseQueueDataBound after any grid action
-            $('#modelIDVal').val("");
-        }
-    }
 }

@@ -65,7 +65,20 @@ namespace HPE.Kruta.Web.Controllers
             if (selectedQueueIds == null || selectedQueueIds.Count == 0 || empId == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
-            //caseManager.AssignEmployeeBulk(selectedQueueIds, empId);
+            caseManager.AssignEmployeeBulk(selectedQueueIds, empId);
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public ActionResult RouteQueueAndSave(List<int> selectedQueueIds, int departmentID)
+        {
+            CaseManager caseManager = new CaseManager();
+            if (selectedQueueIds == null || selectedQueueIds.Count == 0 || departmentID == 0)
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            caseManager.RouteQueueList(selectedQueueIds, departmentID);
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
