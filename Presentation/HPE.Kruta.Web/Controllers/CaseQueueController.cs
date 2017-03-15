@@ -38,7 +38,7 @@ namespace HPE.Kruta.Web.Controllers
         {
             CaseManager caseManager = new CaseManager();
 
-            IQueryable<Case> queues = caseManager.List().AsQueryable();
+            IQueryable<PropertyCase> queues = caseManager.List().AsQueryable();
             DataSourceResult result = queues.ToDataSourceResult(request);
 
             var list = JsonConvert.SerializeObject(result, Formatting.None,

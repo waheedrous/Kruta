@@ -29,6 +29,8 @@ namespace HPE.Kruta.Model
 
         public int? DocumentID { get; set; }
 
+        public int? PropertyCaseID { get; set; }
+
         public DateTime? ReceivedDateTime { get; set; }
 
         [ForeignKey("DepartmentID")]
@@ -36,6 +38,9 @@ namespace HPE.Kruta.Model
 
         [ForeignKey("DocumentID")]
         public virtual Document Document { get; set; }
+
+        [ForeignKey("PropertyCaseID")]
+        public virtual PropertyCase PropertyCase { get; set; }
 
         [ForeignKey("EmployeeID")]
         public virtual Employee Employee { get; set; }

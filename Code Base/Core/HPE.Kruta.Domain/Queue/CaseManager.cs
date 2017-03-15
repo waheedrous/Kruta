@@ -8,16 +8,16 @@ namespace HPE.Kruta.Domain
 {
     public class CaseManager
     {
-        public IEnumerable<Case> List()
+        public IEnumerable<PropertyCase> List()
         {
-            List<Case> cases;
+            List<PropertyCase> cases;
             using (var db = new ModelDBContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
 
-                cases = db.Cases
+                cases = db.PropertyCases
                     .Include(c => c.Department)
-                    .Include(c => c.AssignedToEmployee)
+                    .Include(c => c.Employee)
                     .Include(c => c.CaseType)
                     .ToList();
                

@@ -18,7 +18,7 @@ namespace HPE.Kruta.Model
             QueueHistories1 = new HashSet<QueueHistory>();
             Properties = new HashSet<Property>();
             Employees = new HashSet<Employee>();
-            Cases = new HashSet<Case>();
+            PropertyCases = new HashSet<PropertyCase>();
         }
 
         [Key]
@@ -50,6 +50,6 @@ namespace HPE.Kruta.Model
         public virtual ICollection<Employee> Employees { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Case> Cases { get; set; }
+        public virtual ICollection<PropertyCase> PropertyCases { get; set; }
     }
 }

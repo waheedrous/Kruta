@@ -2,23 +2,22 @@ namespace HPE.Kruta.Model
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("CaseType")]
-    public partial class CaseType
+    public partial class CaseStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CaseType()
+        public CaseStatus()
         {
-            Cases = new HashSet<PropertyCase>();
+            PropertyCases = new HashSet<PropertyCase>();
         }
 
-        public int CaseTypeID { get; set; }
+        [Key]
+        public int CaseStatusID { get; set; }
 
-        [StringLength(255)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropertyCase> Cases { get; set; }
+        public virtual ICollection<PropertyCase> PropertyCases { get; set; }
     }
 }

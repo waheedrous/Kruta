@@ -57,7 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Queue\Case.cs" />
+    <Compile Include="Queue\CaseStatus.cs" />
+    <Compile Include="Queue\PropertyCase.cs" />
     <Compile Include="Queue\CaseType.cs" />
     <Compile Include="User\EmployeeRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
