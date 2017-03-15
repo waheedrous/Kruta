@@ -1,5 +1,7 @@
 ﻿using HPE.Kruta.Common.Enum;
 using HPE.Kruta.Domain;
+using HPE.Kruta.Domain.Property;
+using HPE.Kruta.Domain.User;
 using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -13,9 +15,16 @@ namespace HPE.Kruta.Web.Controllers
     
     public class DocumentQueueController : BaseController
     {
-        [ChildActionOnly]
+        /// <summary>
+        /// Default action. 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            //Get Department name from DocumentManager and show into Drop down List which is in index
+            var department = new DepartmentManager().List(false).OrderBy(a => a.DepartmentName);
+            ViewBag.DepartmentsList = new SelectList(department, "DepartmentID", "DepartmentName");
+            LoadAssignToList();
             return View();
         }
 
@@ -59,6 +68,16 @@ namespace HPE.Kruta.Web.Controllers
 
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
+        }
+
+        /// <summary>
+        /// Load the assign to drop down list
+        /// </summary>
+        private void LoadAssignToList()
+        {
+            _userManager = new UserManager();
+            var emps = _userManager.ListEmployees().OrderBy(o => o.EmployeeName);
+            ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
         }
     }
 }

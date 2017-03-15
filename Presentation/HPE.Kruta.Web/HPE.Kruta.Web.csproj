@@ -219,14 +219,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\_DocumentQueuePartial.cshtml" />
-    <Content Include="Views\Shared\_QueueDetailsPartial.cshtml" />
+    <Content Include="Views\DocumentQueue\_QueueDetailsPartial.cshtml" />
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\DocumentQueue\_DocumentQueuePartial.cshtml" />
+    <Content Include="Views\DocumentQueue\Index.cshtml" />
     <None Include="Views\EmployeeRoles\_EmployeeRolesPartial.cshtml" />
     <Content Include="Views\EmployeeRoles\Index.cshtml" />
   </ItemGroup>
