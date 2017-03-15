@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CaseQueueController.cs" />
     <Compile Include="Controllers\DocumentQueueController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +186,7 @@
     <Content Include="Images\Refresh 1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CaseQueue.js" />
     <Content Include="Scripts\EmployeeRoles.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -228,6 +230,8 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\DocumentQueue\_DocumentQueuePartial.cshtml" />
     <Content Include="Views\DocumentQueue\Index.cshtml" />
+    <Content Include="Views\CaseQueue\_CaseQueuePartial.cshtml" />
+    <Content Include="Views\CaseQueue\Index.cshtml" />
     <None Include="Views\EmployeeRoles\_EmployeeRolesPartial.cshtml" />
     <Content Include="Views\EmployeeRoles\Index.cshtml" />
   </ItemGroup>

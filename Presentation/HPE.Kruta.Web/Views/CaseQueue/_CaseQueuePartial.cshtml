@@ -1,0 +1,52 @@
+﻿<link rel="stylesheet" href="//kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-bootstrap.min.css" />
+<link rel="stylesheet" href="//kendo.cdn.telerik.com/2017.1.223/styles/kendo.bootstrap.min.css" />
+<script src="//kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+<script src="//kendo.cdn.telerik.com/2017.1.223/js/kendo.aspnetmvc.min.js"></script>
+
+@System.Web.Optimization.Scripts.Render("~/Scripts/CaseQueue.js")
+
+<div class="container-fluid">
+    <div class="row">
+
+        @(Html.Kendo().Grid<HPE.Kruta.Model.Case>()
+      .Name("CaseQueue")
+      .Columns(columns =>
+      {
+          columns.Template(t => { })
+                 .ClientTemplate("<input type='checkbox' id='chkSelect' value='#= CaseID #' />")
+                 .Width(30)
+                 .HtmlAttributes(new { style = "text-align: center" })
+                 .HeaderTemplate("<span title='Select all documents'><input type='checkbox' id='selectAll' /></span>")
+                 .HeaderHtmlAttributes(new { style = "text-align: center" });
+          columns.Template(t => { }).Title("ID").ClientTemplate("#= renderCaseQueueRowNumber(data) #").Width(50);
+          columns.Bound(c => c.CaseID).Title("Case ID").Width(100);
+          columns.Bound(c => c.CreatedDate).Title("Created Date").Format("{0:MM/dd/yyyy}").Width(200);
+          columns.Bound(c => c.Department.DepartmentCode).ClientTemplate(" #= Department ? Department.DepartmentCode : '' # ").Title("Department").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
+          columns.Bound(c => c.AssignedToEmployee.EmployeeName).ClientTemplate(" #= AssignedToEmployee ? AssignedToEmployee.EmployeeName : '' # ").Title("Assigned To").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
+          columns.Bound(c => c.CaseType.Name).ClientTemplate(" #= CaseType ? CaseType.Name : '' # ").Title("Case Type").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
+          columns.Bound(c => c.CaseStatus).Title("Status").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
+      })
+      .Scrollable()
+      .Sortable()
+      .ColumnMenu(m => m.Filterable(false).Sortable(false))
+      .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+      .Selectable()
+      .Pageable(pageable => pageable
+                            .PageSizes(new string[] { "5", "10", "20", "50", "All" })
+                            .ButtonCount(5)
+                            .Refresh(true))
+      .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Sort(sort => sort.Add("CaseID").Ascending())
+                                .PageSize(10)
+                                .Read(read => read.Action("CaseQueue_Read", "CaseQueue"))
+                                )
+      .Resizable(resize => resize.Columns(true))
+      .Reorderable(reorder => reorder.Columns(true))
+      .Events(events => events
+            .DataBound("onCaseQueueDataBound")
+        )
+        )
+    </div>
+</div>
+<input id="selectedQueueIds" name="selectedQueueIds" type="hidden">

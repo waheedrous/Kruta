@@ -8,7 +8,7 @@ namespace HPE.Kruta.Domain
 {
     public class CaseManager
     {
-        public List<Case> List()
+        public IEnumerable<Case> List()
         {
             List<Case> cases;
             using (var db = new ModelDBContext())
