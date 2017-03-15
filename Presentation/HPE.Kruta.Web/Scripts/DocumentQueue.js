@@ -96,7 +96,7 @@ function doCase() {
     else {
         // show the CaseModel from index
         var caseModal = $("#caseModal");
-        $('#departmentsList').prop('selectedIndex', 0);
+        $('#createCaseDepartmentsList').prop('selectedIndex', 0);
         caseModal.modal('show');
     }
 }
@@ -111,7 +111,7 @@ function SaveRouteStatus() {
     else {
         // show the CaseModel from index
         var routeBtnModal = $("#routeBtnModal");
-        $('#departmentsList').prop('selectedIndex', 0);
+        $('#routeDepartmentsList').prop('selectedIndex', 0);
         routeBtnModal.modal('show');
     }
 
@@ -201,7 +201,7 @@ function yesCaseFunction() {
         }
     });
 
-    var departmentID = $('#departmentsList :selected').val();
+    var departmentID = $('#createCaseDepartmentsList :selected').val();
 
     jQuery.ajaxSettings.traditional = true
 
@@ -242,10 +242,7 @@ function yesRouteFunction() {
         }
     });
 
-    //alert($('#departmentsList option:selected').text());
-    //return;
-
-    var departmentID = $('#departmentsList :selected').val();
+    var departmentID = $('#routeDepartmentsList :selected').val();
 
    jQuery.ajaxSettings.traditional = true
 

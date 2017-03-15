@@ -175,7 +175,7 @@
                         <label for="department">Departments:</label>
                         @if (ViewBag.DepartmentsList != null)
                             {
-                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        @Html.DropDownList("createCaseDepartmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "createCaseDepartmentsList" })
                         }
                     </div>
                 </div>
@@ -207,7 +207,7 @@
                         <label for="department">Departments:</label>
                         @if (ViewBag.DepartmentsList != null)
                             {
-                        @Html.DropDownList("departmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "departmentsList" })
+                        @Html.DropDownList("routeDepartmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "routeDepartmentsList" })
                         }
                     </div>
                 </div>
