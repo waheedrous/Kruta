@@ -184,7 +184,7 @@ function yesRouteFunction() {
    jQuery.ajaxSettings.traditional = true
 
     $.ajax({
-        url: "/QueueDetails/RouteQueueAndSave",
+        url: "/CaseQueue/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
@@ -193,7 +193,6 @@ function yesRouteFunction() {
             if (data.Success) {
                 //DisplayQueueDetails(modelIDVal, documentIDVal);
                 ShowInformationModal('Notification', 'The selected document has been routed successfully.');
-                QueueDetailsCommandClick();
                 RefreshCaseQueue();
             } else {
                 ShowInformationModal('Notification', 'Oops! Something wrong just happened.');

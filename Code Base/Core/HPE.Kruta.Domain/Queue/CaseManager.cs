@@ -10,6 +10,10 @@ namespace HPE.Kruta.Domain
 {
     public class CaseManager
     {
+        /// <summary>
+        /// Get all cases from database.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<PropertyCase> List()
         {
             List<PropertyCase> cases;
@@ -21,6 +25,7 @@ namespace HPE.Kruta.Domain
                     .Include(c => c.Department)
                     .Include(c => c.Employee)
                     .Include(c => c.CaseType)
+                    .Include(c => c.CaseStatus)
                     .ToList();
                
             }
@@ -38,9 +43,9 @@ namespace HPE.Kruta.Domain
             using (var db = new ModelDBContext())
             {
                 var newQueueStatus = db.CaseStatus.FirstOrDefault(q => q.CaseStatusID == (int)QueueStatusEnum.New);
-                var queueList = db.Cases.Where(q => queueIDs.Contains(q.CaseID)).ToList();
+                var queueList = db.PropertyCases.Where(q => queueIDs.Contains(q.PropertyCaseID)).ToList();
 
-                foreach (Case q in queueList)
+                foreach (PropertyCase q in queueList)
                 {
                     //only change it to new if the current status is null
                     if (newQueueStatus != null && q.CaseStatusID == null)
@@ -59,7 +64,7 @@ namespace HPE.Kruta.Domain
             {
                 foreach (int queueID in selectedQueueIds)
                 {
-                    var currentQueue = db.Cases.Where(q => q.CaseID == queueID).First();
+                    var currentQueue = db.PropertyCases.Where(q => q.PropertyCaseID == queueID).First();
 
                     if (currentQueue.DepartmentID != departmentID)
                     {
