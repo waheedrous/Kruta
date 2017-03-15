@@ -31,7 +31,7 @@ namespace HPE.Kruta.Web.Controllers
             var departments = new DepartmentManager().List(false).OrderBy(o => o.DepartmentName);
             ViewBag.DepartmentsList = new SelectList(departments, "DepartmentID", "DepartmentName");
 
-            return PartialView("_QueueDetailsPartial", queueModel);
+            return PartialView("~/Views/DocumentQueue/_QueueDetailsPartial.cshtml", queueModel);
 
         }
 

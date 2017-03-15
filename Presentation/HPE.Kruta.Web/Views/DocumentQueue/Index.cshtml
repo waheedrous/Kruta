@@ -56,7 +56,8 @@
     <div class="container-collapse">
         <a href="#queueDetailsSection" class="btn cust-bn custom-queueDetailsCommand disabled" style="text-transform:capitalize;" data-toggle="collapse" id="queueDetailsCommand">Document Details</a>
         <div id="queueDetailsSection" class="collapse custom-queueDetails">
-            @Html.Partial("_QueueDetailsPartial", Model)
+            @*@Html.Partial("_QueueDetailsPartial", Model)*@
+            @Html.Partial("~/Views/DocumentQueue/_QueueDetailsPartial.cshtml", Model)
         </div>
     </div>
 
