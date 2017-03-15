@@ -24,6 +24,8 @@ namespace HPE.Kruta.DataAccess
         public virtual DbSet<QueueNote> QueueNotes { get; set; }
         public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<CaseType> CaseTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -139,6 +141,40 @@ namespace HPE.Kruta.DataAccess
                 .HasMany(e => e.EmployeeRoles)
                 .WithRequired(e => e.Role)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Case>()
+                .Property(e => e.CaseName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Case>()
+                .Property(e => e.CaseStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CaseType>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Department>()
+                .Property(e => e.DepartmentCode)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Department>()
+                .Property(e => e.DepartmentName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.EmployeeName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.UserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.Cases)
+                .WithOptional(e => e.AssignedToEmployee)
+                .HasForeignKey(e => e.AssignedTo);
         }
     }
 }

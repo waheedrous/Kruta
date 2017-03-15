@@ -16,6 +16,7 @@ namespace HPE.Kruta.Model
             Queues = new HashSet<Queue>();
             QueueHistories = new HashSet<QueueHistory>();
             EmployeeRoles = new HashSet<EmployeeRole>();
+            Cases = new HashSet<Case>();
         }
 
         [Key]
@@ -48,5 +49,8 @@ namespace HPE.Kruta.Model
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeRole> EmployeeRoles { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Cases { get; set; }
     }
 }
