@@ -24,6 +24,10 @@ namespace HPE.Kruta.Web.Controllers
             //Get Department name from DocumentManager and show into Drop down List which is in index
             var department = new DepartmentManager().List(false).OrderBy(a => a.DepartmentName);
             ViewBag.DepartmentsList = new SelectList(department, "DepartmentID", "DepartmentName");
+
+            var caseTypes = new CaseTypeManager().List().OrderBy(a => a.Name);
+            ViewBag.CaseTypesList = new SelectList(caseTypes, "CaseTypeID", "Name");
+
             LoadAssignToList();
             return View();
         }
@@ -78,6 +82,26 @@ namespace HPE.Kruta.Web.Controllers
             _userManager = new UserManager();
             var emps = _userManager.ListEmployees().OrderBy(o => o.EmployeeName);
             ViewBag.RoutingControlStaffList = new SelectList(emps, "EmployeeID", "EmployeeName");
+        }
+
+        /// <summary>
+        /// routes a queue item and saves history
+        /// </summary>
+        /// <param name="selectedQueueIds"></param>
+        /// <param name="departmentID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult RouteQueueAndSave(List<int> selectedQueueIds, int departmentID)
+        {
+
+            _queueManager = new QueueManager();
+            if (selectedQueueIds == null || selectedQueueIds.Count == 0 || departmentID == 0)
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+            this._queueManager.RouteQueueList(selectedQueueIds, departmentID);
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

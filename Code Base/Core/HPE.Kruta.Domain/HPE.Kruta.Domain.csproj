@@ -54,6 +54,7 @@
     <Compile Include="Property\DepartmentManager.cs" />
     <Compile Include="Property\DocumentManager.cs" />
     <Compile Include="Queue\CaseManager.cs" />
+    <Compile Include="Queue\CaseTypeManager.cs" />
     <Compile Include="Queue\QueueManager.cs" />
     <Compile Include="Queue\QueueNoteManager.cs" />
     <Compile Include="Queue\QueueStatusManager.cs" />

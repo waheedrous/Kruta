@@ -89,7 +89,7 @@ function doAssign() {
 }
 
 function doCase() {
-    // check if any document has been selected
+        // check if any document has been selected
     if ($('table[role = "grid"] input:checkbox:checked').length == 0) {
         ShowInformationModal('Notification', 'Please select at least one document from the queue.');
     }
@@ -247,7 +247,7 @@ function yesRouteFunction() {
    jQuery.ajaxSettings.traditional = true
 
     $.ajax({
-        url: "/QueueDetails/RouteQueueAndSave",
+        url: "/DocumentQueue/RouteQueueAndSave",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",

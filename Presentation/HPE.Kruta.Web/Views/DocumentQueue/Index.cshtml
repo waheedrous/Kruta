@@ -178,6 +178,14 @@
                         @Html.DropDownList("createCaseDepartmentsList", ViewBag.departmentsList as SelectList, new { @class = "form-control form-control-custom", @id = "createCaseDepartmentsList" })
                         }
                     </div>
+                    <div class="form-group custom-popupMain-Form">
+                        <label for="caseType">Case Type:</label>
+                        @if (ViewBag.CaseTypesList != null)
+                        {
+                            @Html.DropDownList("createCaseTypeList", ViewBag.CaseTypesList as SelectList, new { @class = "form-control form-control-custom", @id = "createCaseTypeList" })
+                        }
+                    </div>
+
                 </div>
                 <!-- Form End -->
             </div>

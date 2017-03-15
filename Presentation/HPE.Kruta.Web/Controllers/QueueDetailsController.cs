@@ -77,19 +77,7 @@ namespace HPE.Kruta.Web.Controllers
             return Json(new { DocumentPath = documentPath }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult RouteQueueAndSave(List<int> selectedQueueIds, int departmentID)
-        {
 
-            _queueManager = new QueueManager();
-            if (selectedQueueIds == null || selectedQueueIds.Count == 0 || departmentID == 0)
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-
-            this._queueManager.RouteQueueList(selectedQueueIds, departmentID);
-
-            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
-
-        }
 
         [HttpGet]
         public ActionResult AddNote(int queueID, string notes)
