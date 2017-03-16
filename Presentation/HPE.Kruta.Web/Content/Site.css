@@ -185,6 +185,24 @@ html {
       font-family:Arial;
 }
 
+.PropertyCaseInformation .inner {
+    background-color: #F1F3F9;
+    border: hidden;
+    margin: 10px 0;
+    height: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Arial;
+}
+
+.PropertyCaseInformation .custom-inner {
+    border: solid;
+    border-color: #91A2C9;
+    border-width: 1px;
+}
+
 .row {
         overflow: hidden;
         border-left-width: 100px;
@@ -222,6 +240,7 @@ border: 1px solid grey;
     border-color:#91A2C9; 
     border-width:1px;
     }
+
 .custom-row-1 {
     padding-right: 20px;
     padding-left: 20px;

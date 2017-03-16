@@ -2,69 +2,139 @@
 @{
     ViewBag.Title = "Property Case Information";
 }
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="container-fluid">
     Home > Case > Property Case Information
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid PropertyCaseInformation">
 
     <div class="container-collapse">
-        <div>
-            <div class="container-fluid">
-                <div class="row cust-rw">
-                    <div class="col-sm-4 documentdetailLeft">
+        <div class="container-fluid">
+            <div class="row cust-rw">
+                <div class="col-sm-12 documentdetailLeft">
+                    <div class="row">
                         <div class="inner custom-inner">
                             <div class="row custom-row-1">
-                                <h5 style="font-weight: 700 !important;">Document Details </h5>
+                                <h5 style="font-weight: 700 !important;">Document Indexed Data </h5>
                                 <br />
                             </div>
                             <div class="row custom-row-2">
-                                Grant Deed:
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 documentdetailProperty">
-                        <div class="inner custom-inner">
-                            <div class="row custom-row-1">
-
-                                <h5 style="font-weight: 700 !important;">Property Details </h5>
-                                <br />
-                            </div>
-                            <div class="row custom-row-2">
-                                text 2
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 documentdetail">
-                        <div class="inner custom-inner">
-                            <div class="row custom-row-1 cust-rw">
-                                @*<div class="inner"*@ @*style="background-color: #D1D8E9">*@
-                                <div class="dropdown custom-docstatusdropdown">
-                                    <label style="font-weight: 700 !important;">Document Status: </label>
-
-                                    text 3
-
-                                    <br />
-
-                                    <div class="SR-btn-group ">
-                                        <input value="Save" id="btnSubmit" name="btnSubmit" type="Submit" onclick="SaveQueueStatus();" class="btn cust-warning custom-btn-SR cust-add" disabled="disabled" />
-                                    </div>
-
+                                <div class="col-md-4 stackem">
+                                    <p>Grant Deed: text</p>
+                                    <p>Preliminary Change of Ownership Record (PCOR)</p>
+                                    <p>Record Purchase Contact: </p>
+                                    <p>Security Interest Documentation: </p>
+                                    <p>Legal Will & Testament: </p>
+                                    <p>Memorandum of Lease (or sublease): </p>
+                                    <p>Various Affidavits: </p>
                                 </div>
                             </div>
-                            <div class="form-inline" style="padding-top:5px;padding-top:10px;box-shadow:0px 15px 3px -15px #91A2C9;height:30%;">
-                                text 5
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner custom-inner">
+                            <div class="row custom-row-1">
+                                <h5 style="font-weight: 700 !important;">IPTS System property record</h5>
+                                <br />
                             </div>
-
-                            <div class="row custom-row-2" style="overflow-y: scroll; overflow-y: auto; height: 100px;width:105%;">
-                                text 6
+                            <div class="row custom-row-2">
+                                <div class="col-md-4 stackem">
+                                    <p>The Historical Chain of Title for the Property</p>
+                                    <p>Historical Purchase price</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner custom-inner">
+                            <div class="row custom-row-1">
+                                <h5 style="font-weight: 700 !important;">Property Information</h5>
+                                <br />
+                            </div>
+                            <div class="row custom-row-2">
+                                <div class="col-md-4 stackem">
+                                    <p>PIN: text</p>
+                                    <p>Address:</p>
+                                    <p>Street address:</p>
+                                    <p>City: </p>
+                                    <p>State: </p>
+                                    <p>Country: </p>
+                                    <p>Zip code: </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner custom-inner">
+                            <div class="row custom-row-1">
+                                <h5 style="font-weight: 700 !important;">Property Owner Information</h5>
+                                <br />
+                            </div>
+                            <div class="row custom-row-2">
+                                <div class="col-md-4 stackem">
+                                    <p>Corporate Name / Person's Name: text</p>
+                                    <p>Owner's address:</p>
+                                    <p>Street address:</p>
+                                    <p>City: </p>
+                                    <p>State: </p>
+                                    <p>Country: </p>
+                                    <p>Zip code: </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="effect" style="display: none;">
+                        <div class="inner custom-inner">
+                            <div class="row custom-row-1">
+                                <h5 style="font-weight: 700 !important;">Enter Owner Information</h5>
+                                <br />
+                            </div>
+                            <div class="row custom-row-2">
+                                <div class="col-md-4 stackem">
+                                    <table>
+                                        <tr>
+                                            <td>Corporate Name / Person's Name</td>
+                                            <td><input id="Text1" type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Owner's address</td>
+                                            <td><input id="Text1" type="text" /></td>
+                                        </tr>
+                                        
+                                    </table>
+                                    <button type="button" class="btn warning custom-btn" id="saveCommand">Save</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group custom-btnGrup">
+                        <button type="button" class="btn warning custom-btn" onclick="runEffect();" id="AddOwnerCommand">Add Owner</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    // run the currently selected effect
+    function runEffect() {
+        // get effect type from
+        var selectedEffect = "blind";
+
+        // Most effect types need no options passed by default
+        var options = {};
+        // some effects have required parameters
+        if (selectedEffect === "scale") {
+            options = { percent: 50 };
+        } else if (selectedEffect === "size") {
+            options = { to: { width: 200, height: 60 } };
+        }
+
+        // Run the effect
+        $("#effect").toggle(selectedEffect, options, 500);
+    }
+</script>
