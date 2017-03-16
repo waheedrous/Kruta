@@ -149,6 +149,7 @@
     <Compile Include="Controllers\DocumentQueueController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PropertyCaseInformationController.cs" />
     <Compile Include="Controllers\QueueDetailsController.cs" />
     <Compile Include="App_Start\KrutaRoleAttribute.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Views\CaseQueue\Index.cshtml" />
     <None Include="Views\EmployeeRoles\_EmployeeRolesPartial.cshtml" />
     <Content Include="Views\EmployeeRoles\Index.cshtml" />
+    <Content Include="Views\PropertyCaseInformation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
