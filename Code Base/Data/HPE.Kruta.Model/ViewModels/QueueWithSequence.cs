@@ -63,6 +63,8 @@ namespace HPE.Kruta.Model.ViewModels
         public string QueueStatus { get; set; }
 
         public string DocumentSubTypeCode { get; set; }
+
+        public int? PropertyCaseID { get; set; }
     }
 }
 

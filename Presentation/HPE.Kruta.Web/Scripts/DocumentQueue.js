@@ -202,18 +202,19 @@ function yesCaseFunction() {
     });
 
     var departmentID = $('#createCaseDepartmentsList :selected').val();
+    var caseTypeID = $('#createCaseTypeList :selected').val();
 
     jQuery.ajaxSettings.traditional = true
 
     $.ajax({
-        url: "/QueueDetails/RouteQueueAndSave",
+        url: "/DocumentQueue/CreatePropertyCase",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        data: { selectedQueueIds: selectedQueueIds, departmentID: departmentID },
+        data: { selectedQueueIds: selectedQueueIds, departmentID: departmentID, caseTypeID: caseTypeID },
         success: function (data) {
             if (data.Success) {
-                ShowInformationModal('Notification', 'The selected Document(s) assigned successfully.');
+                ShowInformationModal('Notification', 'Case created successfully.');
                 RefreshDocumentQueue();
             } else {
                 ShowInformationModal('Notification', 'Oops! Something wrong just happened.');

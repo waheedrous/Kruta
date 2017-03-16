@@ -139,7 +139,8 @@ namespace HPE.Kruta.Domain
                                         ReceivedDateTime = q.ReceivedDateTime,
                                         RecordedDateTime = q.Document?.RecordedDateTime,
                                         DepartmentCode = q.Department?.DepartmentCode,
-                                        DocumentSubTypeCode = q.Document?.DocumentSubType?.Code
+                                        DocumentSubTypeCode = q.Document?.DocumentSubType?.Code,
+                                        PropertyCaseID = q.PropertyCaseID
                                     }).ToList();
         }
 

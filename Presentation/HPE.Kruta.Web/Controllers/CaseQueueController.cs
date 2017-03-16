@@ -36,7 +36,7 @@ namespace HPE.Kruta.Web.Controllers
         /// <returns></returns>
         public ActionResult CaseQueue_Read([DataSourceRequest]DataSourceRequest request)
         {
-            CaseManager caseManager = new CaseManager();
+            PropertyCaseManager caseManager = new PropertyCaseManager();
 
             IQueryable<PropertyCase> queues = caseManager.List().AsQueryable();
             DataSourceResult result = queues.ToDataSourceResult(request);
@@ -60,7 +60,7 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult CaseQueues_BatchAssign(List<int> selectedQueueIds, int empId)
         {
-            CaseManager caseManager = new CaseManager();
+            PropertyCaseManager caseManager = new PropertyCaseManager();
 
             if (selectedQueueIds == null || selectedQueueIds.Count == 0 || empId == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
@@ -74,7 +74,7 @@ namespace HPE.Kruta.Web.Controllers
         [HttpGet]
         public ActionResult RouteQueueAndSave(List<int> selectedQueueIds, int departmentID)
         {
-            CaseManager caseManager = new CaseManager();
+            PropertyCaseManager caseManager = new PropertyCaseManager();
             if (selectedQueueIds == null || selectedQueueIds.Count == 0 || departmentID == 0)
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 

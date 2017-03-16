@@ -103,5 +103,22 @@ namespace HPE.Kruta.Web.Controllers
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        /// <summary>
+        /// creates a case for selected documents
+        /// </summary>
+        /// <param name="selectedQueueIds"></param>
+        /// <param name="departmentID"></param>
+        /// <param name="caseTypeID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult CreatePropertyCase(List<int> selectedQueueIds, int departmentID, int caseTypeID)
+        {
+            PropertyCaseManager caseManager = new PropertyCaseManager();
+            caseManager.CreateCase(selectedQueueIds, departmentID, caseTypeID);
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -8,7 +8,7 @@ using HPE.Kruta.Common.Enum;
 
 namespace HPE.Kruta.Domain
 {
-    public class CaseManager
+    public class PropertyCaseManager
     {
         /// <summary>
         /// Get all cases from database.
@@ -31,6 +31,44 @@ namespace HPE.Kruta.Domain
             }
 
             return cases;
+        }
+
+        public int CreateCase(List<int> selectedQueueIds, int departmentID, int caseTypeID)
+        {
+
+            using (var db = new ModelDBContext())
+            {
+                //get list of queues to be update later on
+                var queueList = db.Queues.Where(q => selectedQueueIds.Contains(q.QueueID)).Include(q => q.Property).ToList();
+                //get case type name
+                string caseType = db.CaseTypes.Where(c => c.CaseTypeID == caseTypeID).Select(c => c.Name).FirstOrDefault();
+
+                //generate case name
+                string caseName = caseType + "-" + queueList[0].Property.ParcelNumber + "-" + DateTime.Now.ToString("MM-dd-yyyy");
+
+                //create case object
+                PropertyCase propertyCase = new PropertyCase()
+                {
+                    CaseTypeID = caseTypeID,
+                    DepartmentID = departmentID,
+                    CreatedDate = DateTime.Now,
+                    CaseName = caseName
+                };
+
+                //save changes to get the case id
+                db.PropertyCases.Add(propertyCase);
+                db.SaveChanges();
+
+                //assign case number to all queues
+                foreach (var queue in queueList)
+                {
+                    queue.PropertyCaseID = propertyCase.PropertyCaseID;
+                }
+
+                db.SaveChanges();
+
+                return propertyCase.PropertyCaseID;
+            }
         }
 
         /// <summary>
@@ -57,6 +95,7 @@ namespace HPE.Kruta.Domain
                 db.SaveChanges();
             }
         }
+
 
         public void RouteQueueList(List<int> selectedQueueIds, int departmentID)
         {

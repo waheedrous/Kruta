@@ -32,6 +32,7 @@
           columns.Bound(c => c.EmployeeName).Title("Assigned To").Width(200);
           columns.Bound(c => c.QueueStatus).Title("Status").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
           columns.Bound(c => c.DocumentStatus).Title("Document Status").Width(200).Filterable(f => f.Cell( c => c.SuggestionOperator(FilterType.Contains)));
+          columns.Bound(c => c.PropertyCaseID).Title("Related case").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains))); 
           columns.Bound(c => c.DepartmentCode).Title("Flagged").Width(200).Filterable(f => f.Cell(c => c.SuggestionOperator(FilterType.Contains)));
       })
       .Scrollable()
