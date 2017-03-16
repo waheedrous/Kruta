@@ -185,6 +185,7 @@
     <Content Include="Images\HPE_log_left_wht.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Refresh 1.png" />
+    <Content Include="Images\smaller search.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CaseQueue.js" />
