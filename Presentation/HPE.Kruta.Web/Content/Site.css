@@ -196,7 +196,9 @@ border: 1px solid grey;
 }*/
 
 .custom-queueDetails {
-    background-color:#D1D8E9;
+    /*background-color:#D1D8E9;*/
+    border-radius: 5px;
+    border: 1px solid #D1D8E9;
     
     }
 .custom-queueDetailsCommand {
@@ -247,6 +249,24 @@ border: 1px solid grey;
     font-size: 13px; 
     float: left;
     }
+
+.documentdetail {
+    padding-right: 30px;
+    padding-top : 15px;
+    padding-bottom:15px;
+}
+
+.documentdetailLeft {
+    padding-left: 30px;
+    padding-top : 15px;
+    padding-bottom:15px;
+}
+
+.documentdetailProperty {
+    padding-top : 15px;
+    padding-bottom:15px;
+}
+
 /*.SR-btn-group {
     padding-top: 57%; 
     padding-left: 1%;
@@ -269,7 +289,7 @@ display:inline-block
 color:black; 
 padding:6px 5px;
 font-size:8pt;
-text-transform: capitalize;
+text-transform: capitalize ! important;
 margin-bottom:40px;
 }
 .cust-warning:hover{
@@ -339,7 +359,6 @@ padding:0px;
     /*border-right:1px solid #ccc;*/
     background-color: #8CBA26;
     color:black;
-    padding: 6px 50px;
     text-align: center;
     font-size: 16px;
     text-transform:capitalize;
@@ -347,6 +366,7 @@ padding:0px;
     margin-bottom:2px;
     margin-top:2px;
     margin-right:5px;
+    width:115px;
 
 }
 .custom-btn:hover {

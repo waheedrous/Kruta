@@ -41,8 +41,7 @@
       .Selectable()
       .Pageable(pageable => pageable
                             .PageSizes(new string[] { "5", "10", "20", "50", "All" })
-                            .ButtonCount(5)
-                            .Refresh(true))
+                            .ButtonCount(5))
       .DataSource(dataSource => dataSource
                                 .Ajax()
                                 .Sort(sort => sort.Add("Sequence").Ascending())
