@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HPE.Kruta.Common.Enum
+namespace HPE.Kruta.Common.Config.Enums
 {
     /// <summary>
-    /// This enum keys the available environments for the eServices platform
+    /// This enum keys the available environments for the Kruta platform
     /// </summary>
     [DataContract]
     public enum EnvironmentsEnum

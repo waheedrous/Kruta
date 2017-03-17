@@ -1,7 +1,4 @@
-﻿using HPE.Kruta.Domain.Property;
-using HPE.Kruta.Domain.User;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
@@ -12,7 +9,13 @@ namespace HPE.Kruta.Web.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
-        {            
+        {
+            //var GeneralTestFlagUniqueKey = Common.Config.KrutaConfigSectionHandler.Instance.CurrentEnvironmentConfig.Flags["GeneralTestFlagUniqueKey"].Active;
+            //var DevTestFlagUniqueKey = Common.Config.KrutaConfigSectionHandler.Instance.CurrentEnvironmentConfig.Flags["DevTestFlagUniqueKey"].Active;
+
+            //var GeneralKeyValueUniqueKey = Common.Config.KrutaConfigSectionHandler.Instance.CurrentEnvironmentConfig.KeyValues["GeneralKeyValueUniqueKey"].Value;
+            //var DevKeyValueUniqueKey = Common.Config.KrutaConfigSectionHandler.Instance.CurrentEnvironmentConfig.KeyValues["DevKeyValueUniqueKey"].Value;  
+
             return RedirectToAction("Index", "DocumentQueue");
         }
 

@@ -38,43 +38,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Config\Enums\BusinessObject\BehaviorTypeEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\BusinesObjectTypeEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\CommandEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\DataMapperEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\DomainMapperEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\EntityEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\ParameterEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\ServiceEnum.cs" />
-    <Compile Include="Config\Enums\BusinessObject\ServiceOperationEnum.cs" />
-    <Compile Include="Config\Enums\XMLConfig\ConfigResourceEnum.cs" />
-    <Compile Include="Config\Enums\XMLConfig\DatastoreConnectionEnum.cs" />
-    <Compile Include="Config\Enums\XMLConfig\EnvironmentsEnum.cs" />
-    <Compile Include="Config\Enums\XMLConfig\MachineEnum.cs" />
-    <Compile Include="Config\eServicesConfigParser.cs" />
-    <Compile Include="Config\eServicesConfigSectionHandler.cs" />
-    <Compile Include="Config\eServicesConfigXml.cs" />
-    <Compile Include="Config\Nodes\DataConnectionConfig.cs" />
+    <Compile Include="Config\Enums\DbFamilyEnum.cs" />
+    <Compile Include="Config\Enums\ResourceFileTypeEnum.cs" />
+    <Compile Include="Config\Enums\EnvironmentsEnum.cs" />
+    <Compile Include="Config\KrutaConfigParser.cs" />
+    <Compile Include="Config\KrutaConfigSectionHandler.cs" />
+    <Compile Include="Config\KrutaConfigXml.cs" />
     <Compile Include="Config\Nodes\EnvironmentConfig.cs" />
-    <Compile Include="Config\Nodes\eServicesConfig.cs" />
+    <Compile Include="Config\Nodes\KrutaConfig.cs" />
     <Compile Include="Config\Nodes\FlagConfig.cs" />
     <Compile Include="Config\Nodes\KeyValueConfig.cs" />
     <Compile Include="Config\Nodes\MachineConfig.cs" />
-    <Compile Include="Config\Nodes\ResourceFile.cs" />
-    <Compile Include="Config\Nodes\WcfEndpoints.cs" />
     <Compile Include="Config\Nodes\WorkspaceConfig.cs" />
-    <Compile Include="Enums\EnvironmentsEnum.cs" />
     <Compile Include="Enums\QueueStatusEnum.cs" />
     <Compile Include="Enums\RolesEnum.cs" />
+    <Compile Include="Utils\EnumUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ReflectionUtils.cs" />
+    <Compile Include="Utils\XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
