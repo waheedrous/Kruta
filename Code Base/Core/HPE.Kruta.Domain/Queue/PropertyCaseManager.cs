@@ -1,10 +1,10 @@
-﻿using HPE.Kruta.DataAccess;
+﻿using HPE.Kruta.Common.Enums;
+using HPE.Kruta.DataAccess;
 using HPE.Kruta.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System;
-using HPE.Kruta.Common.Enums;
 
 namespace HPE.Kruta.Domain
 {

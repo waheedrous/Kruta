@@ -4,7 +4,6 @@ namespace HPE.Kruta.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("PropertyCase")]
     public partial class PropertyCase

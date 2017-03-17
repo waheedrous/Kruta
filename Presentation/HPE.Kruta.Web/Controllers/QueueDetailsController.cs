@@ -1,7 +1,6 @@
 ﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Model;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 

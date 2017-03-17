@@ -1,8 +1,6 @@
 ﻿using HPE.Kruta.Domain;
-using HPE.Kruta.Domain.Principals;
 using HPE.Kruta.Domain.User;
 using log4net;
-using log4net.Config;
 using System;
 using System.Reflection;
 using System.Web.Mvc;

@@ -1,5 +1,4 @@
-﻿using HPE.Kruta.Common.Enums;
-using HPE.Kruta.Domain;
+﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Domain.User;
 using HPE.Kruta.Model.ViewModels;
@@ -12,7 +11,7 @@ using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers
 {
-    
+
     public class DocumentQueueController : BaseController
     {
         /// <summary>

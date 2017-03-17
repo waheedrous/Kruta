@@ -34,57 +34,6 @@
                 {
                     public const string Node = "EnvironmentConfig";
                     public const string Key = "Key";
-                    //        <DataConnections>
-                    public static class DataConnections
-                    {
-                        public const string Node = "DataConnectionConfigs";
-                        public static class DataConnection
-                        {
-                            public const string Element = "DataConnectionConfig";
-                            public const string Key = "Key";
-                            public const string ConnectionStringAttribute = "ConnectionString";
-                            public const string DbFamilyAttribute = "DBFamily";
-                        }
-                    }
-                    public static class ResourceFiles
-                    {
-                        public const string Node = Workspace.ResourceFiles.Node;
-                        //<ResourceFiles>
-                        //    <ResourceFile
-                        //      ConfigResource="BehaviorData"
-                        //      FilePath="C:\BehaviorData.xml"
-                        //      UseFile="false"
-                        //      FileType="XML"
-                        //      />
-                        //    <ResourceFile
-                        //      ConfigResource="EnvironmentConnectionData"
-                        //      FilePath="C:\EnvironmentConnectionData.xml"
-                        //      UseFile="false" 
-                        //      FileType="XML"
-                        //      />
-                        //    <ResourceFile
-                        //      ConfigResource="BehaviorData"
-                        //      FilePath="C:\BehaviorData.json"
-                        //      UseFile="false"
-                        //      FileType="JSON"
-                        //      />
-                        //    <ResourceFile
-                        //      ConfigResource="EnvironmentConnectionData"
-                        //      FilePath="C:\EnvironmentConnectionData.json"
-                        //      UseFile="false" 
-                        //      FileType="JSON"
-                        //      />
-                        //</ResourceFiles>
-                        public static class ResourceFile
-                        {
-                            public const string Element = Workspace.ResourceFiles.ResourceFile.Element;
-                            public const string FilePathAttribute = Workspace.ResourceFiles.ResourceFile.FilePathAttribute;
-                            public const string UseFileAttribute = Workspace.ResourceFiles.ResourceFile.UseFileAttribute;
-                            public const string ConfigResourceAttribute = Workspace.ResourceFiles.ResourceFile.ConfigResourceAttribute;
-                            public const string FileTypeAttribute = Workspace.ResourceFiles.ResourceFile.FileTypeAttribute;
-                        }
-
-                    }
                     public static class FlagsXml
                     {
                         public const string Node = Workspace.FlagsXml.Node;
@@ -108,7 +57,7 @@
 
                         //<KeyValueConfigs>
                         //  <KeyValueConfig Key="SomeUniqueString" Value="AbcDefGhi"  />
-                        //  <KeyValueConfig Key="SomeOtherUniqueString" Value="someperson@aam.us.com"  />
+                        //  <KeyValueConfig Key="SomeOtherUniqueString" Value="someperson@somewhere.com"  />
                         //</KeyValueConfigs>
                         public static class KeyValue
                         {
@@ -122,45 +71,6 @@
                 }
             }
 
-            public static class ResourceFiles
-            {
-                public const string Node = "ResourceFiles";
-                //<ResourceFiles>
-                //    <ResourceFile
-                //      ConfigResource="BehaviorData"
-                //      FilePath="C:\BehaviorData.xml"
-                //      UseFile="false"
-                //      FileType="XML"
-                //      />
-                //    <ResourceFile
-                //      ConfigResource="EnvironmentConnectionData"
-                //      FilePath="C:\EnvironmentConnectionData.xml"
-                //      UseFile="false" 
-                //      FileType="XML"
-                //      />
-                //    <ResourceFile
-                //      ConfigResource="BehaviorData"
-                //      FilePath="C:\BehaviorData.json"
-                //      UseFile="false"
-                //      FileType="JSON"
-                //      />
-                //    <ResourceFile
-                //      ConfigResource="EnvironmentConnectionData"
-                //      FilePath="C:\EnvironmentConnectionData.json"
-                //      UseFile="false" 
-                //      FileType="JSON"
-                //      />
-                //</ResourceFiles>
-                public static class ResourceFile
-                {
-                    public const string Element = "ResourceFile";
-                    public const string FilePathAttribute = "FilePath";
-                    public const string UseFileAttribute = "UseFile";
-                    public const string ConfigResourceAttribute = "ConfigResource";
-                    public const string FileTypeAttribute = "FileType";
-                }
-
-            }
             public static class FlagsXml
             {
                 public const string Node = "FlagConfigs";
@@ -184,7 +94,7 @@
 
                 //<KeyValueConfigs>
                 //  <KeyValueConfig Key="SomeUniqueString" Value="AbcDefGhi"  />
-                //  <KeyValueConfig Key="SomeOtherUniqueString" Value="someperson@aam.us.com"  />
+                //  <KeyValueConfig Key="SomeOtherUniqueString" Value="someperson@somewhere.com"  />
                 //</KeyValueConfigs>
                 public static class KeyValue
                 {

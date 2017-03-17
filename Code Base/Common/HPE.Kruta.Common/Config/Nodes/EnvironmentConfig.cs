@@ -1,6 +1,6 @@
-﻿using System;
+﻿using HPE.Kruta.Common.Config.Enums;
+using System;
 using System.Collections.Generic;
-using HPE.Kruta.Common.Config.Enums;
 
 namespace HPE.Kruta.Common.Config
 {
@@ -18,7 +18,7 @@ namespace HPE.Kruta.Common.Config
         }
 
         /// <summary>
-        /// Case insensitve getter by key
+        /// Case insensitive getter by key
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>

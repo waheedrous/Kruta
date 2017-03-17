@@ -1,6 +1,6 @@
-﻿using System;
+﻿using HPE.Kruta.Common.Config.Enums;
+using System;
 using System.Collections.Generic;
-using HPE.Kruta.Common.Config.Enums;
 
 namespace HPE.Kruta.Common.Config
 {

@@ -1,9 +1,7 @@
-﻿using HPE.Kruta.Common.Enums;
-using HPE.Kruta.Domain;
+﻿using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Domain.User;
 using HPE.Kruta.Model;
-using HPE.Kruta.Model.ViewModels;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Newtonsoft.Json;

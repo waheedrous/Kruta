@@ -1,24 +1,18 @@
-﻿using System;
+﻿using HPE.Kruta.Common.Config.Enums;
+using HPE.Kruta.Common.Utils;
+using System;
 using System.Collections.Generic;
 using System.Xml;
-using HPE.Kruta.Common.Enums;
-using HPE.Kruta.Common.Utils;
-using HPE.Kruta.Common.Config.Enums;
 
 namespace HPE.Kruta.Common.Config
 {
-    using MachinesXml = KrutaConfigXml.Workspace.Machines;
-    using FlagsXml = KrutaConfigXml.Workspace.FlagsXml;
-    using KeyValuesXml = KrutaConfigXml.Workspace.KeyValuesXml;
-    using ResourceFilesXml = KrutaConfigXml.Workspace.ResourceFiles;
-    
-
-    using EnvironmentsXml = KrutaConfigXml.Workspace.Environments;
     using EnvironmentFlagsXml = KrutaConfigXml.Workspace.Environments.Environment.FlagsXml;
     using EnvironmentKeyValuesXml = KrutaConfigXml.Workspace.Environments.Environment.KeyValuesXml;
-    
-    using DataConnectionsXml = KrutaConfigXml.Workspace.Environments.Environment.DataConnections;
-    
+    using EnvironmentsXml = KrutaConfigXml.Workspace.Environments;
+    using FlagsXml = KrutaConfigXml.Workspace.FlagsXml;
+    using KeyValuesXml = KrutaConfigXml.Workspace.KeyValuesXml;
+    using MachinesXml = KrutaConfigXml.Workspace.Machines;
+
     public class KrutaConfigParser
     {
         /// <summary>

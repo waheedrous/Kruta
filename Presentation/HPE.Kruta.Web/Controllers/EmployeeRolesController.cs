@@ -1,6 +1,5 @@
 ﻿using HPE.Kruta.Model;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace HPE.Kruta.Web.Controllers

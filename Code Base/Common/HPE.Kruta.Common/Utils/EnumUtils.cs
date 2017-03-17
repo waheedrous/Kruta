@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HPE.Kruta.Common.Utils
 {
@@ -157,10 +153,10 @@ namespace HPE.Kruta.Common.Utils
                 T t = (T)Enum.Parse(typeof(T), text, true);
                 return t;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //throw new EnumParseException("Parse Failed", ex);
-                throw ex;
+                throw;
             }
         }
         /// <summary>
@@ -321,9 +317,9 @@ namespace HPE.Kruta.Common.Utils
 
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
             }
             return 0;
@@ -356,9 +352,9 @@ namespace HPE.Kruta.Common.Utils
                     return minVal;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
             }
             return 0;
