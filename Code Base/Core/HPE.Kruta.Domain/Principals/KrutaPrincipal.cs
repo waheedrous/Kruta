@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Principal;
-using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Common.Enums;
 
 namespace HPE.Kruta.Domain.Principals
 {

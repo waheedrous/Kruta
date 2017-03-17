@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System;
-using HPE.Kruta.Common.Enum;
+using HPE.Kruta.Common.Enums;
 
 namespace HPE.Kruta.Domain
 {

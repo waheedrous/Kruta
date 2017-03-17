@@ -1,4 +1,4 @@
-﻿using HPE.Kruta.Common.Enum;
+﻿using HPE.Kruta.Common.Enums;
 using HPE.Kruta.Domain;
 using HPE.Kruta.Domain.Property;
 using HPE.Kruta.Domain.User;
